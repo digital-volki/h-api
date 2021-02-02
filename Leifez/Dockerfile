@@ -22,7 +22,7 @@
 #ENTRYPOINT ["dotnet", "Leifez.dll"]
 
 # https://hub.docker.com/_/microsoft-dotnet
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:3.1-buster AS build
 WORKDIR /source
 
 # copy csproj and restore as distinct layers
@@ -36,7 +36,7 @@ WORKDIR /source/Leifez
 RUN dotnet publish -c release -o /app -r linux-arm64 --self-contained false --no-restore
 
 # final stage/image
-FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim-arm64v8
+FROM mcr.microsoft.com/dotnet/aspnet:3.1.11-buster-slim-arm64v8
 WORKDIR /app
 COPY --from=build /app ./
 ENTRYPOINT ["./Leifez"]
