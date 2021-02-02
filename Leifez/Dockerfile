@@ -27,11 +27,11 @@ WORKDIR /source
 
 # copy csproj and restore as distinct layers
 COPY *.sln .
-COPY *.csproj ./Leifez/
+COPY Leifez/*.csproj ./Leifez/
 RUN dotnet restore -r linux-arm64
 
 # copy everything else and build app
-COPY . ./Leifez/
+COPY Leifez/. ./Leifez/
 WORKDIR /source/Leifez
 RUN dotnet publish -c release -o /app -r linux-arm64 --self-contained false --no-restore
 
