@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Leifez.Queries;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -22,13 +23,17 @@ namespace Leifez
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services
+                .AddGraphQLServer()
+
+                .AddQueryType(d => d.Name("Query"))
+                    .AddTypeExtension<AccountQuery>();
+
             services.AddControllers();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -38,12 +43,22 @@ namespace Leifez
 
             app.UseHttpsRedirection();
 
+            app.UseWebSockets();
+
             app.UseRouting();
 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapGraphQL();
+
+                endpoints.MapGet("/", context =>
+                {
+                    context.Response.Redirect("/graphql");
+                    return Task.CompletedTask;
+                });
+
                 endpoints.MapControllers();
             });
         }

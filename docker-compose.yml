@@ -1,6 +1,18 @@
 version: "3"
 
 services:
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: site_db
+      POSTGRES_DB: site_db
+      POSTGRES_PASSWORD: JGJS89ydhnflsar312h89HLFDF2
+    volumes:
+      - ./db:/var/lib/postgresql/data
+
   web:
     ports:
       - "80:80"
