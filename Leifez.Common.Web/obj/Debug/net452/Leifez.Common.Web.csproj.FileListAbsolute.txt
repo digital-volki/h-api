@@ -1,0 +1,12 @@
+F:\Source\Leifez\Leifez\Leifez.Common.Web\bin\Debug\net452\Leifez.Common.Web.dll
+F:\Source\Leifez\Leifez\Leifez.Common.Web\obj\Debug\net452\Leifez.Common.Web.csprojAssemblyReference.cache
+F:\Source\Leifez\Leifez\Leifez.Common.Web\obj\Debug\net452\Leifez.Common.Web.AssemblyInfoInputs.cache
+F:\Source\Leifez\Leifez\Leifez.Common.Web\obj\Debug\net452\Leifez.Common.Web.AssemblyInfo.cs
+F:\Source\Leifez\Leifez\Leifez.Common.Web\bin\Debug\net452\Leifez.Common.Web.pdb
+F:\Source\Leifez\Leifez\Leifez.Common.Web\bin\Debug\net452\System.Net.Http.Formatting.dll
+F:\Source\Leifez\Leifez\Leifez.Common.Web\bin\Debug\net452\System.Web.Http.dll
+F:\Source\Leifez\Leifez\Leifez.Common.Web\bin\Debug\net452\Newtonsoft.Json.dll
+F:\Source\Leifez\Leifez\Leifez.Common.Web\obj\Debug\net452\Leifez.Common.Web.csproj.CoreCompileInputs.cache
+F:\Source\Leifez\Leifez\Leifez.Common.Web\obj\Debug\net452\Leifez.Common.Web.csproj.CopyComplete
+F:\Source\Leifez\Leifez\Leifez.Common.Web\obj\Debug\net452\Leifez.Common.Web.dll
+F:\Source\Leifez\Leifez\Leifez.Common.Web\obj\Debug\net452\Leifez.Common.Web.pdb

@@ -1,0 +1,4 @@
+F:\Source\Leifez\Leifez\Leifez.Domain.Account\obj\Debug\net452\Leifez.Domain.Account.csprojAssemblyReference.cache
+F:\Source\Leifez\Leifez\Leifez.Domain.Account\obj\Debug\net452\Leifez.Domain.Account.AssemblyInfoInputs.cache
+F:\Source\Leifez\Leifez\Leifez.Domain.Account\obj\Debug\net452\Leifez.Domain.Account.AssemblyInfo.cs
+F:\Source\Leifez\Leifez\Leifez.Domain.Account\obj\Debug\net452\Leifez.Domain.Account.csproj.CoreCompileInputs.cache

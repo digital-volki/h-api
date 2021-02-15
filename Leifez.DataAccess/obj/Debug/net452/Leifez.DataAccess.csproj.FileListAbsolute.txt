@@ -1,0 +1,12 @@
+F:\Source\Leifez\Leifez\Leifez.DataAccess\bin\Debug\net452\Leifez.DataAccess.dll
+F:\Source\Leifez\Leifez\Leifez.DataAccess\obj\Debug\net452\Leifez.DataAccess.csprojAssemblyReference.cache
+F:\Source\Leifez\Leifez\Leifez.DataAccess\obj\Debug\net452\Leifez.DataAccess.AssemblyInfoInputs.cache
+F:\Source\Leifez\Leifez\Leifez.DataAccess\obj\Debug\net452\Leifez.DataAccess.AssemblyInfo.cs
+F:\Source\Leifez\Leifez\Leifez.DataAccess\bin\Debug\net452\EntityFramework.SqlServer.dll
+F:\Source\Leifez\Leifez\Leifez.DataAccess\bin\Debug\net452\EntityFramework.dll
+F:\Source\Leifez\Leifez\Leifez.DataAccess\obj\Debug\net452\Leifez.DataAccess.csproj.CopyComplete
+F:\Source\Leifez\Leifez\Leifez.DataAccess\bin\Debug\net452\Leifez.DataAccess.pdb
+F:\Source\Leifez\Leifez\Leifez.DataAccess\bin\Debug\net452\Microsoft.Practices.Unity.dll
+F:\Source\Leifez\Leifez\Leifez.DataAccess\obj\Debug\net452\Leifez.DataAccess.csproj.CoreCompileInputs.cache
+F:\Source\Leifez\Leifez\Leifez.DataAccess\obj\Debug\net452\Leifez.DataAccess.dll
+F:\Source\Leifez\Leifez\Leifez.DataAccess\obj\Debug\net452\Leifez.DataAccess.pdb

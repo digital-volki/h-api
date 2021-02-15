@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "FChXxvmdwftbNNLA+O7sS2LoS26ToANCIt62Mpy8utFlmh2hKzc/X7LEdgMw/6o+ODKX+PzJYEQ/5UlfiTE6rw==",
+  "success": true,
+  "projectFilePath": "F:\\Source\\Leifez\\Leifez\\Leifez.Common.Web\\Leifez.Common.Web.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\cherv\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.7\\microsoft.aspnet.webapi.client.5.2.7.nupkg.sha512",
+    "C:\\Users\\cherv\\.nuget\\packages\\microsoft.aspnet.webapi.core\\5.2.7\\microsoft.aspnet.webapi.core.5.2.7.nupkg.sha512",
+    "C:\\Users\\cherv\\.nuget\\packages\\newtonsoft.json\\6.0.4\\newtonsoft.json.6.0.4.nupkg.sha512"
+  ],
+  "logs": []
+}

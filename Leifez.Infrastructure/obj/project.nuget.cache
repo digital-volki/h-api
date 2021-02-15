@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "dgSpecHash": "vJRs0R8KqCLYdXXmwX9cKG+hwC3IhFvVi4Mb6IpkfiCik8u/6OVjI8WilQEV1FE1hl+fvUkL4UOWMMFiVAWemw==",
+  "success": true,
+  "projectFilePath": "F:\\Source\\Leifez\\Leifez\\Leifez.Infrastructure\\Leifez.Infrastructure.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\cherv\\.nuget\\packages\\cquential.microsoft.practices.unity\\2.0.414\\cquential.microsoft.practices.unity.2.0.414.nupkg.sha512",
+    "C:\\Users\\cherv\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
+    "C:\\Users\\cherv\\.nuget\\packages\\microsoft.aspnet.identity.core\\2.2.3\\microsoft.aspnet.identity.core.2.2.3.nupkg.sha512",
+    "C:\\Users\\cherv\\.nuget\\packages\\microsoft.aspnet.identity.entityframework\\2.2.3\\microsoft.aspnet.identity.entityframework.2.2.3.nupkg.sha512",
+    "C:\\Users\\cherv\\.nuget\\packages\\npgsql\\4.0.5\\npgsql.4.0.5.nupkg.sha512",
+    "C:\\Users\\cherv\\.nuget\\packages\\system.buffers\\4.4.0\\system.buffers.4.4.0.nupkg.sha512",
+    "C:\\Users\\cherv\\.nuget\\packages\\system.memory\\4.5.2\\system.memory.4.5.2.nupkg.sha512",
+    "C:\\Users\\cherv\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",
+    "C:\\Users\\cherv\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.2\\system.threading.tasks.extensions.4.5.2.nupkg.sha512",
+    "C:\\Users\\cherv\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}

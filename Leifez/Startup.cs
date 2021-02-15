@@ -1,16 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Leifez.Queries;
+using System.Web.Http;
+using Leifez.AppStart;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace Leifez
 {
@@ -25,11 +20,7 @@ namespace Leifez
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services
-                .AddGraphQLServer()
-
-                .AddQueryType(d => d.Name("Query"))
-                    .AddTypeExtension<AccountQuery>();
+            QueriesRegistration.Register(services);
 
             services.AddControllers();
         }
@@ -42,16 +33,21 @@ namespace Leifez
             }
 
             app.UseHttpsRedirection();
-
             app.UseWebSockets();
-
+            
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+
+            var httpConfiguration = new HttpConfiguration();
+            WebApiConfig.Register(httpConfiguration);
+            LeifezUnityConfig.RegisterComponents(httpConfiguration);
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGraphQL();
+                endpoints.MapGraphQL()
+                .RequireAuthorization();
 
                 endpoints.MapGet("/", context =>
                 {
@@ -59,7 +55,8 @@ namespace Leifez
                     return Task.CompletedTask;
                 });
 
-                endpoints.MapControllers();
+                endpoints.MapControllers()
+                .RequireAuthorization();
             });
         }
     }

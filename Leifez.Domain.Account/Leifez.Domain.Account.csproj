@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net452</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Leifez.DataAccess.PostgreSQL\Leifez.DataAccess.PostgreSQL.csproj" />
+    <ProjectReference Include="..\Leifez.DataAccess\Leifez.DataAccess.csproj" />
+  </ItemGroup>
+
+</Project>
