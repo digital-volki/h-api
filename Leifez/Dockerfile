@@ -5,7 +5,7 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/core/sdk:5.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["Leifez/Leifez.csproj", "Leifez/"]
 COPY ["Leifez.Common.Web/Leifez.Common.Web.csproj", "Leifez.Common.Web/"]
