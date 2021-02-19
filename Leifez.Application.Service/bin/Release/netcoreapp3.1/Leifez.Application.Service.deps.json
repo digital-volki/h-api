@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "Leifez.Application.Service/1.0.0": {
+        "dependencies": {
+          "Leifez.DataAccess": "1.0.0"
+        },
+        "runtime": {
+          "Leifez.Application.Service.dll": {}
+        }
+      },
+      "Leifez.DataAccess/1.0.0": {
+        "runtime": {
+          "Leifez.DataAccess.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Leifez.Application.Service/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Leifez.DataAccess/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

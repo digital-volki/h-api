@@ -1,11 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wytQfacCfOJ3ChiHyZYAXBcZJoBaAR1iqesy1E4SUTnwWtTjcHBWBuCJT6XzImkkoqhgNxzoSXrT4+SCqtk20g==",
+  "dgSpecHash": "tk7eWQw2XN+lg1mzoneP+FSUVN142K0PkAgHzC9MOeprhCJl99te/reWZpsEiebf9gwl9aWLe3eMf5zgm8gCvg==",
   "success": true,
   "projectFilePath": "F:\\Source\\Leifez\\Leifez\\Leifez.DataAccess\\Leifez.DataAccess.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\cherv\\.nuget\\packages\\cquential.microsoft.practices.unity\\2.0.414\\cquential.microsoft.practices.unity.2.0.414.nupkg.sha512",
-    "C:\\Users\\cherv\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }

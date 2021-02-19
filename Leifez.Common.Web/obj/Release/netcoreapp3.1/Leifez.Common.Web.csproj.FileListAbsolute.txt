@@ -1,0 +1,9 @@
+F:\Source\Leifez\Leifez\Leifez.Common.Web\bin\Release\netcoreapp3.1\Leifez.Common.Web.deps.json
+F:\Source\Leifez\Leifez\Leifez.Common.Web\bin\Release\netcoreapp3.1\Leifez.Common.Web.dll
+F:\Source\Leifez\Leifez\Leifez.Common.Web\bin\Release\netcoreapp3.1\Leifez.Common.Web.pdb
+F:\Source\Leifez\Leifez\Leifez.Common.Web\obj\Release\netcoreapp3.1\Leifez.Common.Web.csprojAssemblyReference.cache
+F:\Source\Leifez\Leifez\Leifez.Common.Web\obj\Release\netcoreapp3.1\Leifez.Common.Web.AssemblyInfoInputs.cache
+F:\Source\Leifez\Leifez\Leifez.Common.Web\obj\Release\netcoreapp3.1\Leifez.Common.Web.AssemblyInfo.cs
+F:\Source\Leifez\Leifez\Leifez.Common.Web\obj\Release\netcoreapp3.1\Leifez.Common.Web.csproj.CoreCompileInputs.cache
+F:\Source\Leifez\Leifez\Leifez.Common.Web\obj\Release\netcoreapp3.1\Leifez.Common.Web.dll
+F:\Source\Leifez\Leifez\Leifez.Common.Web\obj\Release\netcoreapp3.1\Leifez.Common.Web.pdb

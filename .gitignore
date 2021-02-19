@@ -2,3 +2,4 @@
 *.csproj.user
 Leifez/bin
 Leifez/obj
+/db_data

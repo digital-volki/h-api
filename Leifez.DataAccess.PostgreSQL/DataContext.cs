@@ -1,28 +1,42 @@
 ﻿using Leifez.DataAccess.Interfaces;
 using Leifez.DataAccess.PostgreSQL.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+//using Microsoft.EntityFrameworkCore.Storage;
+//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Linq.Expressions;
 
 namespace Leifez.DataAccess.PostgreSQL
 {
     public class DataContext : IdentityDbContext, IDataContext
     {
-        public DataContext(string nameOrConnectionString) : base(nameOrConnectionString)
+        private readonly string _connectionString;
+
+        public DataContext(DbContextOptions options)
+            : base(options)
         {
-            
+            Database.EnsureCreated();
         }
 
-        public Database GetDatabase()
+        public DataContext(string connectionString)
         {
-            return Database;
+            _connectionString = connectionString;
+            Database.EnsureCreated();
         }
 
-        public ICollection<T> SqlQuery<T>(string sql, params object[] parameters)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            return Database.SqlQuery<T>(sql, parameters).ToList();
+            optionsBuilder.UseNpgsql();
+            base.OnConfiguring(optionsBuilder);
+        }
+
+        public IQueryable<T> GetQueryable<T>(bool trackChanges = true, bool disabled = false) where T : class, new()
+        {
+            return GetQueryable<T>(null, trackChanges);
         }
 
         private IQueryable<T> GetQueryable<T>(Expression<Func<T, bool>> expression, bool trackChanges = true)
@@ -48,61 +62,94 @@ namespace Leifez.DataAccess.PostgreSQL
             return query;
         }
 
-        public T Delete<T>(T item) where T : class, new()
-        {
-            return Set<T>().Remove(item);
-        }
+        //public Database GetDatabase()
+        //{
+        //    return Database;
+        //}
 
-        public void SqlCommand(string sql, params object[] parameters)
-        {
-            Database.ExecuteSqlCommand(sql, parameters);
-        }
+        //public ICollection<T> SqlQuery<T>(string sql, params object[] parameters)
+        //{
+        //    return Database.SqlQuery<T>(sql, parameters).ToList();
+        //}
 
-        public IEnumerable<T> DeleteRange<T>(IEnumerable<T> item) where T : class, new()
-        {
-            return Set<T>().RemoveRange(item);
-        }
+        //private IQueryable<T> GetQueryable<T>(Expression<Func<T, bool>> expression, bool trackChanges = true)
+        //    where T : class, new()
+        //{
+        //    var query = GetQueryableNonAudit(expression, trackChanges);
 
-        public T Insert<T>(T item) where T : class, new()
-        {
-            return PerformAction(item, EntityState.Added);
-        }
+        //    return query;
+        //}
 
-        public IEnumerable<T> InsertMany<T>(IEnumerable<T> items) where T : class, new()
-        {
-            var result = new List<T>();
-            foreach (var item in items)
-            {
-                result.Add(PerformAction(item, EntityState.Added));
-            }
-            return result;
-        }
+        //private IQueryable<T> GetQueryableNonAudit<T>(Expression<Func<T, bool>> expression, bool trackChanges = true)
+        //    where T : class, new()
+        //{
+        //    var query = trackChanges
+        //        ? Set<T>().AsQueryable()
+        //        : Set<T>().AsNoTracking();
 
-        public T Update<T>(T item) where T : class, new()
-        {
-            return PerformAction(item, EntityState.Modified);
-        }
+        //    if (expression != null)
+        //    {
+        //        query = query.Where(expression);
+        //    }
 
-        protected virtual TItem PerformAction<TItem>(TItem item, EntityState entityState) where TItem : class, new()
-        {
-            Entry(item).State = entityState;
-            return item;
-        }
+        //    return query;
+        //}
 
-        public int Save()
-        {
-            int changes = 0;
-            try
-            {
-                changes = SaveChanges();
-            }
-            catch (Exception e)
-            {
+        //public T Delete<T>(T item) where T : class, new()
+        //{
+        //    return Set<T>().Remove(item);
+        //}
 
-                throw;
-            }
-            return changes;
-        }
+        //public void SqlCommand(string sql, params object[] parameters)
+        //{
+        //    Database.ExecuteSqlCommand(sql, parameters);
+        //}
+
+        //public IEnumerable<T> DeleteRange<T>(IEnumerable<T> item) where T : class, new()
+        //{
+        //    return Set<T>().RemoveRange(item);
+        //}
+
+        //public T Insert<T>(T item) where T : class, new()
+        //{
+        //    return PerformAction(item, EntityState.Added);
+        //}
+
+        //public IEnumerable<T> InsertMany<T>(IEnumerable<T> items) where T : class, new()
+        //{
+        //    var result = new List<T>();
+        //    foreach (var item in items)
+        //    {
+        //        result.Add(PerformAction(item, EntityState.Added));
+        //    }
+        //    return result;
+        //}
+
+        //public T Update<T>(T item) where T : class, new()
+        //{
+        //    return PerformAction(item, EntityState.Modified);
+        //}
+
+        //protected virtual TItem PerformAction<TItem>(TItem item, EntityState entityState) where TItem : class, new()
+        //{
+        //    Entry(item).State = entityState;
+        //    return item;
+        //}
+
+        //public int Save()
+        //{
+        //    int changes = 0;
+        //    try
+        //    {
+        //        changes = SaveChanges();
+        //    }
+        //    catch (Exception e)
+        //    {
+
+        //        throw;
+        //    }
+        //    return changes;
+        //}
 
         //public DbAccount GetAccount(string query)
         //{

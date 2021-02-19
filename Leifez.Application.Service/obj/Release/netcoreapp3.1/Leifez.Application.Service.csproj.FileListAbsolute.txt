@@ -1,0 +1,12 @@
+F:\Source\Leifez\Leifez\Leifez.Application.Service\bin\Release\netcoreapp3.1\Leifez.Application.Service.deps.json
+F:\Source\Leifez\Leifez\Leifez.Application.Service\bin\Release\netcoreapp3.1\Leifez.Application.Service.dll
+F:\Source\Leifez\Leifez\Leifez.Application.Service\bin\Release\netcoreapp3.1\Leifez.Application.Service.pdb
+F:\Source\Leifez\Leifez\Leifez.Application.Service\bin\Release\netcoreapp3.1\Leifez.DataAccess.dll
+F:\Source\Leifez\Leifez\Leifez.Application.Service\bin\Release\netcoreapp3.1\Leifez.DataAccess.pdb
+F:\Source\Leifez\Leifez\Leifez.Application.Service\obj\Release\netcoreapp3.1\Leifez.Application.Service.csprojAssemblyReference.cache
+F:\Source\Leifez\Leifez\Leifez.Application.Service\obj\Release\netcoreapp3.1\Leifez.Application.Service.AssemblyInfoInputs.cache
+F:\Source\Leifez\Leifez\Leifez.Application.Service\obj\Release\netcoreapp3.1\Leifez.Application.Service.AssemblyInfo.cs
+F:\Source\Leifez\Leifez\Leifez.Application.Service\obj\Release\netcoreapp3.1\Leifez.Application.Service.csproj.CoreCompileInputs.cache
+F:\Source\Leifez\Leifez\Leifez.Application.Service\obj\Release\netcoreapp3.1\Leifez.Application.Service.csproj.CopyComplete
+F:\Source\Leifez\Leifez\Leifez.Application.Service\obj\Release\netcoreapp3.1\Leifez.Application.Service.dll
+F:\Source\Leifez\Leifez\Leifez.Application.Service\obj\Release\netcoreapp3.1\Leifez.Application.Service.pdb

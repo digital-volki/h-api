@@ -1,26 +1,29 @@
 ﻿using System.Collections.Generic;
-using System.Data.Entity;
+using System.Linq;
 
 namespace Leifez.DataAccess.Interfaces
 {
     public interface IDataContext
     {
-        Database GetDatabase();
+        //Database GetDatabase();
 
-        T Insert<T>(T item) where T : class, new();
+        IQueryable<T> GetQueryable<T>(bool trackChanges = true, bool disabled = false)
+            where T : class, new();
 
-        IEnumerable<T> InsertMany<T>(IEnumerable<T> items) where T : class, new();
+        //T Insert<T>(T item) where T : class, new();
 
-        T Update<T>(T item) where T : class, new();
+        //IEnumerable<T> InsertMany<T>(IEnumerable<T> items) where T : class, new();
 
-        int Save();
+        //T Update<T>(T item) where T : class, new();
 
-        T Delete<T>(T item) where T : class, new();
+        //int Save();
 
-        IEnumerable<T> DeleteRange<T>(IEnumerable<T> item) where T : class, new();
+        //T Delete<T>(T item) where T : class, new();
 
-        ICollection<T> SqlQuery<T>(string sql, params object[] parameters);
+        //IEnumerable<T> DeleteRange<T>(IEnumerable<T> item) where T : class, new();
 
-        void SqlCommand(string sql, params object[] parameters);
+        //ICollection<T> SqlQuery<T>(string sql, params object[] parameters);
+
+        //void SqlCommand(string sql, params object[] parameters);
     }
 }

@@ -1,33 +1,32 @@
 ﻿using Leifez.DataAccess.PostgreSQL.Configs;
-using Microsoft.AspNet.Identity.EntityFramework;
-using System.Data.Entity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace Leifez.DataAccess.PostgreSQL.Models
 {
     public class IdentityDbContext : IdentityDbContext<DbIdentityUser>
     {
-        public new virtual IDbSet<DbIdentityRole> Roles { get; set; }
-        public virtual IDbSet<DbCollection> Collections { get; set; }
-        public virtual IDbSet<DbTag> Tags { get; set; }
+        public new virtual DbSet<DbIdentityRole> Roles { get; set; }
+        public virtual DbSet<DbCollection> Collections { get; set; }
+        public virtual DbSet<DbTag> Tags { get; set; }
+
+        public IdentityDbContext(DbContextOptions options)
+            : base(options)
+        {
+        }
 
         public IdentityDbContext()
-            : base("site_db", false)
         {
         }
 
-        public IdentityDbContext(string connectionString)
-            : base(connectionString, false)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-        }
+            base.OnModelCreating(builder);
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Configurations.Add(new RoleConfig());
-            modelBuilder.Configurations.Add(new UserRoleConfig());
-            modelBuilder.Configurations.Add(new CollectionConfig());
-            modelBuilder.Configurations.Add(new TagConfig());
+            builder.ApplyConfiguration(new RoleConfig());
+            builder.ApplyConfiguration(new UserRoleConfig());
+            builder.ApplyConfiguration(new CollectionConfig());
+            builder.ApplyConfiguration(new TagConfig());
         }
     }
 }

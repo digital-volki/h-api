@@ -1,0 +1,12 @@
+F:\Source\Leifez\Leifez\Leifez.DataAccess.PostgreSQL\bin\Debug\netcoreapp3.1\Leifez.DataAccess.PostgreSQL.deps.json
+F:\Source\Leifez\Leifez\Leifez.DataAccess.PostgreSQL\bin\Debug\netcoreapp3.1\Leifez.DataAccess.PostgreSQL.dll
+F:\Source\Leifez\Leifez\Leifez.DataAccess.PostgreSQL\bin\Debug\netcoreapp3.1\Leifez.DataAccess.dll
+F:\Source\Leifez\Leifez\Leifez.DataAccess.PostgreSQL\bin\Debug\netcoreapp3.1\Leifez.DataAccess.pdb
+F:\Source\Leifez\Leifez\Leifez.DataAccess.PostgreSQL\obj\Debug\netcoreapp3.1\Leifez.DataAccess.PostgreSQL.csprojAssemblyReference.cache
+F:\Source\Leifez\Leifez\Leifez.DataAccess.PostgreSQL\obj\Debug\netcoreapp3.1\Leifez.DataAccess.PostgreSQL.AssemblyInfoInputs.cache
+F:\Source\Leifez\Leifez\Leifez.DataAccess.PostgreSQL\obj\Debug\netcoreapp3.1\Leifez.DataAccess.PostgreSQL.AssemblyInfo.cs
+F:\Source\Leifez\Leifez\Leifez.DataAccess.PostgreSQL\obj\Debug\netcoreapp3.1\Leifez.DataAccess.PostgreSQL.csproj.CopyComplete
+F:\Source\Leifez\Leifez\Leifez.DataAccess.PostgreSQL\bin\Debug\netcoreapp3.1\Leifez.DataAccess.PostgreSQL.pdb
+F:\Source\Leifez\Leifez\Leifez.DataAccess.PostgreSQL\obj\Debug\netcoreapp3.1\Leifez.DataAccess.PostgreSQL.dll
+F:\Source\Leifez\Leifez\Leifez.DataAccess.PostgreSQL\obj\Debug\netcoreapp3.1\Leifez.DataAccess.PostgreSQL.pdb
+F:\Source\Leifez\Leifez\Leifez.DataAccess.PostgreSQL\obj\Debug\netcoreapp3.1\Leifez.DataAccess.PostgreSQL.csproj.CoreCompileInputs.cache

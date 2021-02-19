@@ -1,16 +1,17 @@
 ﻿using Leifez.DataAccess.PostgreSQL.Models;
-using System.Data.Entity.ModelConfiguration;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Leifez.DataAccess.PostgreSQL.Configs
 {
-    public class CollectionConfig : EntityTypeConfiguration<DbCollection>
+    public class CollectionConfig : IEntityTypeConfiguration<DbCollection>
     {
-        public CollectionConfig()
+        public void Configure(EntityTypeBuilder<DbCollection> builder)
         {
-            HasKey(x => x.CollectionId);
-            Property(x => x.Title).IsOptional();
-            Property(x => x.Description).IsOptional();
-            Property(x => x.Author).IsOptional();
+            builder.HasKey(x => x.CollectionId);
+            builder.Property(x => x.Title);
+            builder.Property(x => x.Description);
+            builder.Property(x => x.Author);
         }
     }
 }

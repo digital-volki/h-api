@@ -1,23 +1,32 @@
 ﻿using Leifez.Infrastructure.Unity;
-using System.Web.Http;
-using System.Web.Http.Dependencies;
-using Microsoft.Practices.Unity;
+using System;
+using Unity;
 
 namespace Leifez.AppStart
 {
     public static class LeifezUnityConfig
     {
-        public static IUnityContainer RegisterComponents(HttpConfiguration httpConfiguration)
+        private static readonly IUnityContainer _container = new UnityContainer();
+        public static IUnityContainer GetConfiguredContainer()
         {
-            IUnityContainer container = new UnityContainer();
-
-            httpConfiguration.DependencyResolver = new UnityResolver(container);
-
-            container.RegisterType<IDependencyResolver, UnityResolver>(new PerResolveLifetimeManager());
-
-            UnityConfig.Initialize(container);
-
-            return container;
+            return Container.Value;
         }
+
+        public static IUnityContainer RegisterComponents()
+        {
+            UnityConfig.Initialize(_container);
+
+            return _container;
+        }
+
+        private static readonly Lazy<IUnityContainer> Container = new Lazy<IUnityContainer>(() =>
+        {
+            if (_container != null)
+            {
+                return _container;
+            }
+
+            return RegisterComponents();
+        });
     }
 }

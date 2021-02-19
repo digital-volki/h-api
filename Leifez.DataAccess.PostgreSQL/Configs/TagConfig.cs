@@ -1,17 +1,22 @@
 ﻿using Leifez.DataAccess.PostgreSQL.Models;
-using System.Data.Entity.ModelConfiguration;
+using Leifez.DataAccess.PostgreSQL.Models.Enums;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
 
 namespace Leifez.DataAccess.PostgreSQL.Configs
 {
-    public class TagConfig : EntityTypeConfiguration<DbTag>
+    public class TagConfig : IEntityTypeConfiguration<DbTag>
     {
-        public TagConfig()
+        public void Configure(EntityTypeBuilder<DbTag> builder)
         {
-            HasKey(x => x.TagId);
-            Property(x => x.Title).IsOptional();
-            Property(x => x.Type).IsOptional();
-            Property(x => x.Quantity).IsOptional();
-            Property(x => x.Danger).IsOptional();
+            builder.HasKey(x => x.TagId);
+            builder.Property(x => x.Title);
+            builder.Property(x => x.Type).HasConversion(
+                v => v.ToString(),
+                v => (TagsType)Enum.Parse(typeof(TagsType), v));
+            builder.Property(x => x.Quantity);
+            builder.Property(x => x.Danger);
         }
     }
 }

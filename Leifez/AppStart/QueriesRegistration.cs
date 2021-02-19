@@ -1,4 +1,4 @@
-﻿using Leifez.Queries;
+﻿using Leifez.GraphQL.Queries;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Leifez.AppStart
@@ -10,8 +10,8 @@ namespace Leifez.AppStart
             services
                 .AddGraphQLServer()
                 .AddQueryType(d => d.Name("Query"))
-                    .AddTypeExtension<AccountQuery>().AddAuthorization()
-                    .AddTypeExtension<CollectionQuery>().AddAuthorization();
+                    .AddTypeExtension<AccountQuery>()//.AddAuthorization()
+                    .AddTypeExtension<CollectionQuery>();//.AddAuthorization();
         }
     }
 }

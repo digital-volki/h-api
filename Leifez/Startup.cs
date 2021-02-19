@@ -1,11 +1,14 @@
 using System.Threading.Tasks;
-using System.Web.Http;
 using Leifez.AppStart;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using HotChocolate.Types;
+using Unity;
+using Leifez.DataAccess.Interfaces;
+using Leifez.Application.Service.Interfaces;
 
 namespace Leifez
 {
@@ -14,12 +17,15 @@ namespace Leifez
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            LeifezUnityConfig.RegisterComponents();
         }
 
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddDbContext<DataContext>();
+            //services.AddSingleton(LeifezUnityConfig.GetConfiguredContainer().Resolve<ICollectionService>());
             QueriesRegistration.Register(services);
 
             services.AddControllers();
@@ -31,7 +37,9 @@ namespace Leifez
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors(builder => builder.AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod());
             app.UseHttpsRedirection();
             app.UseWebSockets();
             
@@ -40,14 +48,10 @@ namespace Leifez
             app.UseAuthentication();
             app.UseAuthorization();
 
-            var httpConfiguration = new HttpConfiguration();
-            WebApiConfig.Register(httpConfiguration);
-            LeifezUnityConfig.RegisterComponents(httpConfiguration);
-
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGraphQL()
-                .RequireAuthorization();
+                endpoints.MapGraphQL();
+                //.RequireAuthorization();
 
                 endpoints.MapGet("/", context =>
                 {
@@ -55,8 +59,8 @@ namespace Leifez
                     return Task.CompletedTask;
                 });
 
-                endpoints.MapControllers()
-                .RequireAuthorization();
+                endpoints.MapControllers();
+                //.RequireAuthorization();
             });
         }
     }

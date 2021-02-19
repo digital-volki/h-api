@@ -1,15 +1,16 @@
 ﻿using Leifez.DataAccess.PostgreSQL.Models;
-using System.Data.Entity.ModelConfiguration;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Leifez.DataAccess.PostgreSQL.Configs
 {
-    public class UserRoleConfig : EntityTypeConfiguration<UserRole>
+    public class UserRoleConfig : IEntityTypeConfiguration<UserRole>
     {
-        public UserRoleConfig()
+        public void Configure(EntityTypeBuilder<UserRole> builder)
         {
-            HasKey(x => x.Id);
-            Property(x => x.UserId).IsUnicode().IsMaxLength().IsRequired();
-            Property(x => x.RoleId).IsRequired();
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.UserId).IsUnicode().HasMaxLength(36).IsRequired();
+            builder.Property(x => x.RoleId).IsRequired();
         }
     }
 }
