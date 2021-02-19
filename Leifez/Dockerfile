@@ -15,7 +15,7 @@ COPY ["Leifez.Common.Mapping/Leifez.Common.Mapping.csproj", "Leifez.Common.Mappi
 COPY ["Leifez.DataAccess.PostgreSQL/Leifez.DataAccess.PostgreSQL.csproj", "Leifez.DataAccess.PostgreSQL/"]
 COPY ["Leifez.DataAccess/Leifez.DataAccess.csproj", "Leifez.DataAccess/"]
 COPY ["Leifez.Application.Service/Leifez.Application.Service.csproj", "Leifez.Application.Service/"]
-RUN dotnet restore "Leifez/Leifez.csproj"
+RUN dotnet restore "Leifez/Leifez.csproj" -r linux-arm64-v8
 COPY . .
 WORKDIR "/src/Leifez"
 RUN dotnet build "Leifez.csproj" -c Release -o /app/build -r linux-arm64-v8
