@@ -14,33 +14,33 @@ using Unity;
 namespace Leifez.GraphQL.Queries
 {
     [ExtendObjectType(Name = "Query")]
-    public class CollectionQuery : DataAccess.PostgreSQL.ICollectionService
+    public class CollectionQuery//: DataAccess.PostgreSQL.ICollectionService
     {
-        private readonly ICollectionService _collectionService;
+        //private readonly ICollectionService _collectionService;
 
-        public CollectionQuery()
-        {
-            _collectionService = LeifezUnityConfig.GetConfiguredContainer().Resolve<ICollectionService>();
-        }
+        //public CollectionQuery()
+        //{
+        //    _collectionService = LeifezUnityConfig.GetConfiguredContainer().Resolve<ICollectionService>();
+        //}
 
-        public Collection GetCollectionTest(int collectionId)
-        {
-            return _collectionService.GetCollectionTest(collectionId); 
-        }
+        //public Collection GetCollectionTest(int collectionId)
+        //{
+        //    return _collectionService.GetCollectionTest(collectionId); 
+        //}
 
-        public Collection GetCollectionDb(int collectionId)
-        {
-            var dbModel = LeifezUnityConfig.GetConfiguredContainer().Resolve<IDataContext>().GetQueryable<DbCollection>().Where(c => c.CollectionId == collectionId).FirstOrDefault();
-            //var dbModel = _dataContext.GetQueryable<DbCollection>().Where(c => c.CollectionId == collectionId).FirstOrDefault();
-            Collection collection = new Collection()
-            {
-                Id = dbModel.CollectionId,
-                Author = dbModel.Author,
-                Description = dbModel.Description,
-                Title = dbModel.Title
-            };
-            return collection;
-        }
+        //public Collection GetCollectionDb(int collectionId)
+        //{
+        //    var dbModel = LeifezUnityConfig.GetConfiguredContainer().Resolve<IDataContext>().GetQueryable<DbCollection>().Where(c => c.CollectionId == collectionId).FirstOrDefault();
+        //    //var dbModel = _dataContext.GetQueryable<DbCollection>().Where(c => c.CollectionId == collectionId).FirstOrDefault();
+        //    Collection collection = new Collection()
+        //    {
+        //        Id = dbModel.CollectionId,
+        //        Author = dbModel.Author,
+        //        Description = dbModel.Description,
+        //        Title = dbModel.Title
+        //    };
+        //    return collection;
+        //}
 
         public Collection GetCollection(int collectionId)
         {
@@ -80,15 +80,15 @@ namespace Leifez.GraphQL.Queries
             };
         }
 
-        public List<Collection> GetCollectionsNews(int limit, int offset, int page, FilterType type, string search, List<Tag> tags)
-        {
-            List<Collection> collectionsResult = new List<Collection>();
-            for (int i = 1; i <= limit; i++)
-            {
-                collectionsResult.Add(GetCollection(i + limit * page));
-            }
+        //public List<Collection> GetCollectionsNews(int limit, int offset, int page, FilterType type, string search, List<Tag> tags)
+        //{
+        //    List<Collection> collectionsResult = new List<Collection>();
+        //    for (int i = 1; i <= limit; i++)
+        //    {
+        //        collectionsResult.Add(GetCollection(i + limit * page));
+        //    }
 
-            return collectionsResult;
-        }
+        //    return collectionsResult;
+        //}
     }
 }
