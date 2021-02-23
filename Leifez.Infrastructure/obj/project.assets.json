@@ -15,47 +15,6 @@
           "lib/netstandard2.0/AutoMapper.dll": {}
         }
       },
-      "Microsoft.AspNet.Mvc/5.2.7": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNet.Razor": "[3.2.7, 3.3.0)",
-          "Microsoft.AspNet.WebPages": "[3.2.7, 3.3.0)"
-        },
-        "compile": {
-          "lib/net45/System.Web.Mvc.dll": {}
-        },
-        "runtime": {
-          "lib/net45/System.Web.Mvc.dll": {}
-        }
-      },
-      "Microsoft.AspNet.Razor/3.2.7": {
-        "type": "package",
-        "compile": {
-          "lib/net45/System.Web.Razor.dll": {}
-        },
-        "runtime": {
-          "lib/net45/System.Web.Razor.dll": {}
-        }
-      },
-      "Microsoft.AspNet.WebPages/3.2.7": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNet.Razor": "[3.2.7, 3.3.0)",
-          "Microsoft.Web.Infrastructure": "1.0.0"
-        },
-        "compile": {
-          "lib/net45/System.Web.Helpers.dll": {},
-          "lib/net45/System.Web.WebPages.Deployment.dll": {},
-          "lib/net45/System.Web.WebPages.Razor.dll": {},
-          "lib/net45/System.Web.WebPages.dll": {}
-        },
-        "runtime": {
-          "lib/net45/System.Web.Helpers.dll": {},
-          "lib/net45/System.Web.WebPages.Deployment.dll": {},
-          "lib/net45/System.Web.WebPages.Razor.dll": {},
-          "lib/net45/System.Web.WebPages.dll": {}
-        }
-      },
       "Microsoft.AspNetCore.Cryptography.Internal/5.0.3": {
         "type": "package",
         "compile": {
@@ -295,15 +254,6 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Microsoft.Web.Infrastructure/1.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/net40/Microsoft.Web.Infrastructure.dll": {}
-        },
-        "runtime": {
-          "lib/net40/Microsoft.Web.Infrastructure.dll": {}
-        }
-      },
       "Microsoft.Win32.SystemEvents/5.0.0": {
         "type": "package",
         "dependencies": {
@@ -513,58 +463,19 @@
           }
         }
       },
-      "Unity/5.11.10": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime.CompilerServices.Unsafe": "4.5.2"
-        },
-        "compile": {
-          "lib/netcoreapp3.0/Unity.Abstractions.dll": {},
-          "lib/netcoreapp3.0/Unity.Container.dll": {}
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/Unity.Abstractions.dll": {},
-          "lib/netcoreapp3.0/Unity.Container.dll": {}
-        }
-      },
-      "Unity.Mvc/5.11.1": {
-        "type": "package",
-        "compile": {
-          "lib/net46/Unity.Mvc.dll": {}
-        },
-        "runtime": {
-          "lib/net46/Unity.Mvc.dll": {}
-        }
-      },
       "Leifez.Application.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "AutoMapper": "10.1.1",
           "Leifez.Common.Mapping": "1.0.0",
-          "Leifez.DataAccess.PostgreSQL": "1.0.0"
+          "Leifez.Core.PostgreSQL": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Leifez.Application.Domain.dll": {}
         },
         "runtime": {
           "bin/placeholder/Leifez.Application.Domain.dll": {}
-        }
-      },
-      "Leifez.Application.Service/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
-        "dependencies": {
-          "AutoMapper": "10.1.1",
-          "Leifez.Application.Domain": "1.0.0",
-          "Leifez.DataAccess": "1.0.0",
-          "Leifez.DataAccess.PostgreSQL": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/Leifez.Application.Service.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Leifez.Application.Service.dll": {}
         }
       },
       "Leifez.Common.Mapping/1.0.0": {
@@ -580,31 +491,21 @@
           "bin/placeholder/Leifez.Common.Mapping.dll": {}
         }
       },
-      "Leifez.DataAccess/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
-        "compile": {
-          "bin/placeholder/Leifez.DataAccess.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Leifez.DataAccess.dll": {}
-        }
-      },
-      "Leifez.DataAccess.PostgreSQL/1.0.0": {
+      "Leifez.Core.PostgreSQL/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
-          "Leifez.DataAccess": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.3",
           "Microsoft.EntityFrameworkCore": "5.0.3",
           "Npgsql": "5.0.3",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "5.0.2"
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "5.0.2",
+          "System.Configuration.ConfigurationManager": "5.0.0"
         },
         "compile": {
-          "bin/placeholder/Leifez.DataAccess.PostgreSQL.dll": {}
+          "bin/placeholder/Leifez.Core.PostgreSQL.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Leifez.DataAccess.PostgreSQL.dll": {}
+          "bin/placeholder/Leifez.Core.PostgreSQL.dll": {}
         }
       }
     }
@@ -624,55 +525,6 @@
         "lib/net461/AutoMapper.xml",
         "lib/netstandard2.0/AutoMapper.dll",
         "lib/netstandard2.0/AutoMapper.xml"
-      ]
-    },
-    "Microsoft.AspNet.Mvc/5.2.7": {
-      "sha512": "m3hUsn48k6Qb5El9A8naTwGTLCdSQKGSpGweqIfiVKltGJzAJJxuXvhhaQQtLCGg3i5V88iGjz0JG72/tlFKlg==",
-      "type": "package",
-      "path": "microsoft.aspnet.mvc/5.2.7",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Content/Web.config.install.xdt",
-        "Content/Web.config.uninstall.xdt",
-        "lib/net45/System.Web.Mvc.dll",
-        "lib/net45/System.Web.Mvc.xml",
-        "microsoft.aspnet.mvc.5.2.7.nupkg.sha512",
-        "microsoft.aspnet.mvc.nuspec"
-      ]
-    },
-    "Microsoft.AspNet.Razor/3.2.7": {
-      "sha512": "BpWEZ+Ys7g9VAkbAfpG5jr5A1fKcmadCCXv3fYfps5YfTVABJIGV4uc9yvmXKxsNsjL+BzDld2gs+xtgT2gg1g==",
-      "type": "package",
-      "path": "microsoft.aspnet.razor/3.2.7",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net45/System.Web.Razor.dll",
-        "lib/net45/System.Web.Razor.xml",
-        "microsoft.aspnet.razor.3.2.7.nupkg.sha512",
-        "microsoft.aspnet.razor.nuspec"
-      ]
-    },
-    "Microsoft.AspNet.WebPages/3.2.7": {
-      "sha512": "2jwZFB7PvY+tbdz0ZP4iEo7gMrJxkCQUzoGLh6swUc6ZXl6DoKyDslmGcC/j9PFmJXCRMVIqtRorlPSMU2DuRA==",
-      "type": "package",
-      "path": "microsoft.aspnet.webpages/3.2.7",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Content/Web.config.install.xdt",
-        "Content/Web.config.uninstall.xdt",
-        "lib/net45/System.Web.Helpers.dll",
-        "lib/net45/System.Web.Helpers.xml",
-        "lib/net45/System.Web.WebPages.Deployment.dll",
-        "lib/net45/System.Web.WebPages.Deployment.xml",
-        "lib/net45/System.Web.WebPages.Razor.dll",
-        "lib/net45/System.Web.WebPages.Razor.xml",
-        "lib/net45/System.Web.WebPages.dll",
-        "lib/net45/System.Web.WebPages.xml",
-        "microsoft.aspnet.webpages.3.2.7.nupkg.sha512",
-        "microsoft.aspnet.webpages.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Cryptography.Internal/5.0.3": {
@@ -1099,18 +951,6 @@
         "runtime.json",
         "useSharedDesignerContext.txt",
         "version.txt"
-      ]
-    },
-    "Microsoft.Web.Infrastructure/1.0.0": {
-      "sha512": "FNmvLn5m2LTU/Rs2KWVo0SIIh9Ek+U0ojex7xeDaSHw/zgEP77A8vY5cVWgUtBGS8MJfDGNn8rpXJWEIQaPwTg==",
-      "type": "package",
-      "path": "microsoft.web.infrastructure/1.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net40/Microsoft.Web.Infrastructure.dll",
-        "microsoft.web.infrastructure.1.0.0.nupkg.sha512",
-        "microsoft.web.infrastructure.nuspec"
       ]
     },
     "Microsoft.Win32.SystemEvents/5.0.0": {
@@ -1665,121 +1505,27 @@
         "version.txt"
       ]
     },
-    "Unity/5.11.10": {
-      "sha512": "B4+Ps3oqI78hJ+dAFsJhPkJT6qycsNExgLbtw7CEHSzKc2ac3YyUR8SHQ+ZyTwld/y5IbDx/aNOHnKE9Em1zWA==",
-      "type": "package",
-      "path": "unity/5.11.10",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net40/Unity.Abstractions.dll",
-        "lib/net40/Unity.Abstractions.pdb",
-        "lib/net40/Unity.Container.dll",
-        "lib/net40/Unity.Container.pdb",
-        "lib/net45/Unity.Abstractions.dll",
-        "lib/net45/Unity.Abstractions.pdb",
-        "lib/net45/Unity.Container.dll",
-        "lib/net45/Unity.Container.pdb",
-        "lib/net46/Unity.Abstractions.dll",
-        "lib/net46/Unity.Abstractions.pdb",
-        "lib/net46/Unity.Container.dll",
-        "lib/net46/Unity.Container.pdb",
-        "lib/net47/Unity.Abstractions.dll",
-        "lib/net47/Unity.Abstractions.pdb",
-        "lib/net47/Unity.Container.dll",
-        "lib/net47/Unity.Container.pdb",
-        "lib/net48/Unity.Abstractions.dll",
-        "lib/net48/Unity.Abstractions.pdb",
-        "lib/net48/Unity.Container.dll",
-        "lib/net48/Unity.Container.pdb",
-        "lib/netcoreapp1.0/Unity.Abstractions.dll",
-        "lib/netcoreapp1.0/Unity.Abstractions.pdb",
-        "lib/netcoreapp1.0/Unity.Container.dll",
-        "lib/netcoreapp1.0/Unity.Container.pdb",
-        "lib/netcoreapp2.0/Unity.Abstractions.dll",
-        "lib/netcoreapp2.0/Unity.Abstractions.pdb",
-        "lib/netcoreapp2.0/Unity.Container.dll",
-        "lib/netcoreapp2.0/Unity.Container.pdb",
-        "lib/netcoreapp3.0/Unity.Abstractions.dll",
-        "lib/netcoreapp3.0/Unity.Abstractions.pdb",
-        "lib/netcoreapp3.0/Unity.Container.dll",
-        "lib/netcoreapp3.0/Unity.Container.pdb",
-        "lib/netstandard1.0/Unity.Abstractions.dll",
-        "lib/netstandard1.0/Unity.Abstractions.pdb",
-        "lib/netstandard1.0/Unity.Container.dll",
-        "lib/netstandard1.0/Unity.Container.pdb",
-        "lib/netstandard2.0/Unity.Abstractions.dll",
-        "lib/netstandard2.0/Unity.Abstractions.pdb",
-        "lib/netstandard2.0/Unity.Container.dll",
-        "lib/netstandard2.0/Unity.Container.pdb",
-        "unity.5.11.10.nupkg.sha512",
-        "unity.nuspec"
-      ]
-    },
-    "Unity.Mvc/5.11.1": {
-      "sha512": "vfmbrOaLhb5xnIxFNTX2xbydTSpwqD0Dx7f1b8AkjfgrMlnrUTu1bIw1KPFfVlHamMNZmkzbPVM1nJmCr9/MEw==",
-      "type": "package",
-      "path": "unity.mvc/5.11.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "content/App_Start/UnityConfig.cs.pp",
-        "content/App_Start/UnityMvcActivator.cs.pp",
-        "contentFiles/any/net45/App_Start/UnityConfig.cs.pp",
-        "contentFiles/any/net45/App_Start/UnityMvcActivator.cs.pp",
-        "contentFiles/any/net46/App_Start/UnityConfig.cs.pp",
-        "contentFiles/any/net46/App_Start/UnityMvcActivator.cs.pp",
-        "contentFiles/any/net47/App_Start/UnityConfig.cs.pp",
-        "contentFiles/any/net47/App_Start/UnityMvcActivator.cs.pp",
-        "lib/net45/Unity.Mvc.dll",
-        "lib/net45/Unity.Mvc.pdb",
-        "lib/net45/Unity.Mvc.xml",
-        "lib/net46/Unity.Mvc.dll",
-        "lib/net46/Unity.Mvc.pdb",
-        "lib/net47/Unity.Mvc.dll",
-        "lib/net47/Unity.Mvc.pdb",
-        "lib/net47/Unity.Mvc.xml",
-        "unity.mvc.5.11.1.nupkg.sha512",
-        "unity.mvc.nuspec"
-      ]
-    },
     "Leifez.Application.Domain/1.0.0": {
       "type": "project",
       "path": "../Leifez.Application.Domain/Leifez.Application.Domain.csproj",
       "msbuildProject": "../Leifez.Application.Domain/Leifez.Application.Domain.csproj"
-    },
-    "Leifez.Application.Service/1.0.0": {
-      "type": "project",
-      "path": "../Leifez.Application.Service/Leifez.Application.Service.csproj",
-      "msbuildProject": "../Leifez.Application.Service/Leifez.Application.Service.csproj"
     },
     "Leifez.Common.Mapping/1.0.0": {
       "type": "project",
       "path": "../Leifez.Common.Mapping/Leifez.Common.Mapping.csproj",
       "msbuildProject": "../Leifez.Common.Mapping/Leifez.Common.Mapping.csproj"
     },
-    "Leifez.DataAccess/1.0.0": {
+    "Leifez.Core.PostgreSQL/1.0.0": {
       "type": "project",
-      "path": "../Leifez.DataAccess/Leifez.DataAccess.csproj",
-      "msbuildProject": "../Leifez.DataAccess/Leifez.DataAccess.csproj"
-    },
-    "Leifez.DataAccess.PostgreSQL/1.0.0": {
-      "type": "project",
-      "path": "../Leifez.DataAccess.PostgreSQL/Leifez.DataAccess.PostgreSQL.csproj",
-      "msbuildProject": "../Leifez.DataAccess.PostgreSQL/Leifez.DataAccess.PostgreSQL.csproj"
+      "path": "../Leifez.Core.PostgreSQL/Leifez.Core.PostgreSQL.csproj",
+      "msbuildProject": "../Leifez.Core.PostgreSQL/Leifez.Core.PostgreSQL.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "AutoMapper >= 10.1.1",
       "Leifez.Application.Domain >= 1.0.0",
-      "Leifez.Application.Service >= 1.0.0",
-      "Leifez.DataAccess >= 1.0.0",
-      "Leifez.DataAccess.PostgreSQL >= 1.0.0",
-      "Microsoft.AspNet.Mvc >= 5.2.7",
-      "System.Configuration.ConfigurationManager >= 5.0.0",
-      "Unity >= 5.11.10",
-      "Unity.Mvc >= 5.11.1"
+      "System.Configuration.ConfigurationManager >= 5.0.0"
     ]
   },
   "packageFolders": {
@@ -1788,9 +1534,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Source\\Leifez\\Leifez\\Leifez.Infrastructure\\Leifez.Infrastructure.csproj",
-      "projectName": "Leifez.Infrastructure",
-      "projectPath": "F:\\Source\\Leifez\\Leifez\\Leifez.Infrastructure\\Leifez.Infrastructure.csproj",
+      "projectUniqueName": "F:\\Source\\Leifez\\Leifez\\Leifez.Infrastructure\\Leifez.Core.Infrastructure.csproj",
+      "projectName": "Leifez.Core.Infrastructure",
+      "projectPath": "F:\\Source\\Leifez\\Leifez\\Leifez.Infrastructure\\Leifez.Core.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\cherv\\.nuget\\packages\\",
       "outputPath": "F:\\Source\\Leifez\\Leifez\\Leifez.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
@@ -1807,18 +1553,10 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
             "F:\\Source\\Leifez\\Leifez\\Leifez.Application.Domain\\Leifez.Application.Domain.csproj": {
               "projectPath": "F:\\Source\\Leifez\\Leifez\\Leifez.Application.Domain\\Leifez.Application.Domain.csproj"
-            },
-            "F:\\Source\\Leifez\\Leifez\\Leifez.Application.Service\\Leifez.Application.Service.csproj": {
-              "projectPath": "F:\\Source\\Leifez\\Leifez\\Leifez.Application.Service\\Leifez.Application.Service.csproj"
-            },
-            "F:\\Source\\Leifez\\Leifez\\Leifez.DataAccess.PostgreSQL\\Leifez.DataAccess.PostgreSQL.csproj": {
-              "projectPath": "F:\\Source\\Leifez\\Leifez\\Leifez.DataAccess.PostgreSQL\\Leifez.DataAccess.PostgreSQL.csproj"
-            },
-            "F:\\Source\\Leifez\\Leifez\\Leifez.DataAccess\\Leifez.DataAccess.csproj": {
-              "projectPath": "F:\\Source\\Leifez\\Leifez\\Leifez.DataAccess\\Leifez.DataAccess.csproj"
             }
           }
         }
@@ -1831,26 +1569,15 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "AutoMapper": {
             "target": "Package",
             "version": "[10.1.1, )"
           },
-          "Microsoft.AspNet.Mvc": {
-            "target": "Package",
-            "version": "[5.2.7, )"
-          },
           "System.Configuration.ConfigurationManager": {
             "target": "Package",
             "version": "[5.0.0, )"
-          },
-          "Unity": {
-            "target": "Package",
-            "version": "[5.11.10, )"
-          },
-          "Unity.Mvc": {
-            "target": "Package",
-            "version": "[5.11.1, )"
           }
         },
         "imports": [
@@ -1868,60 +1595,8 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.406\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Пакет \"Microsoft.AspNet.Mvc 5.2.7\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\", а не целевой платформы проекта \".NETCoreApp,Version=v3.1\". Этот пакет может быть не полностью совместим с вашим проектом.",
-      "libraryId": "Microsoft.AspNet.Mvc",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v3.1"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Пакет \"Microsoft.AspNet.Razor 3.2.7\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\", а не целевой платформы проекта \".NETCoreApp,Version=v3.1\". Этот пакет может быть не полностью совместим с вашим проектом.",
-      "libraryId": "Microsoft.AspNet.Razor",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v3.1"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Пакет \"Microsoft.AspNet.WebPages 3.2.7\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\", а не целевой платформы проекта \".NETCoreApp,Version=v3.1\". Этот пакет может быть не полностью совместим с вашим проектом.",
-      "libraryId": "Microsoft.AspNet.WebPages",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v3.1"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Пакет \"Microsoft.Web.Infrastructure 1.0.0\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\", а не целевой платформы проекта \".NETCoreApp,Version=v3.1\". Этот пакет может быть не полностью совместим с вашим проектом.",
-      "libraryId": "Microsoft.Web.Infrastructure",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v3.1"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Пакет \"Unity.Mvc 5.11.1\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\", а не целевой платформы проекта \".NETCoreApp,Version=v3.1\". Этот пакет может быть не полностью совместим с вашим проектом.",
-      "libraryId": "Unity.Mvc",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v3.1"
-      ]
-    }
-  ]
+  }
 }

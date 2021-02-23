@@ -26,12 +26,13 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {
               "F:\\Source\\Leifez\\Leifez\\Leifez.Common.Mapping\\Leifez.Common.Mapping.csproj": {
                 "projectPath": "F:\\Source\\Leifez\\Leifez\\Leifez.Common.Mapping\\Leifez.Common.Mapping.csproj"
               },
-              "F:\\Source\\Leifez\\Leifez\\Leifez.DataAccess.PostgreSQL\\Leifez.DataAccess.PostgreSQL.csproj": {
-                "projectPath": "F:\\Source\\Leifez\\Leifez\\Leifez.DataAccess.PostgreSQL\\Leifez.DataAccess.PostgreSQL.csproj"
+              "F:\\Source\\Leifez\\Leifez\\Leifez.Core.PostgreSQL\\Leifez.Core.PostgreSQL.csproj": {
+                "projectPath": "F:\\Source\\Leifez\\Leifez\\Leifez.Core.PostgreSQL\\Leifez.Core.PostgreSQL.csproj"
               }
             }
           }
@@ -44,6 +45,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
@@ -65,75 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.406\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "F:\\Source\\Leifez\\Leifez\\Leifez.Application.Service\\Leifez.Application.Service.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "F:\\Source\\Leifez\\Leifez\\Leifez.Application.Service\\Leifez.Application.Service.csproj",
-        "projectName": "Leifez.Application.Service",
-        "projectPath": "F:\\Source\\Leifez\\Leifez\\Leifez.Application.Service\\Leifez.Application.Service.csproj",
-        "packagesPath": "C:\\Users\\cherv\\.nuget\\packages\\",
-        "outputPath": "F:\\Source\\Leifez\\Leifez\\Leifez.Application.Service\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\cherv\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "netcoreapp3.1"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "netcoreapp3.1": {
-            "projectReferences": {
-              "F:\\Source\\Leifez\\Leifez\\Leifez.Application.Domain\\Leifez.Application.Domain.csproj": {
-                "projectPath": "F:\\Source\\Leifez\\Leifez\\Leifez.Application.Domain\\Leifez.Application.Domain.csproj"
-              },
-              "F:\\Source\\Leifez\\Leifez\\Leifez.DataAccess.PostgreSQL\\Leifez.DataAccess.PostgreSQL.csproj": {
-                "projectPath": "F:\\Source\\Leifez\\Leifez\\Leifez.DataAccess.PostgreSQL\\Leifez.DataAccess.PostgreSQL.csproj"
-              },
-              "F:\\Source\\Leifez\\Leifez\\Leifez.DataAccess\\Leifez.DataAccess.csproj": {
-                "projectPath": "F:\\Source\\Leifez\\Leifez\\Leifez.DataAccess\\Leifez.DataAccess.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "netcoreapp3.1": {
-          "dependencies": {
-            "AutoMapper": {
-              "target": "Package",
-              "version": "[10.1.1, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.406\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -159,6 +93,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -170,6 +105,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
@@ -191,18 +127,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.406\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "F:\\Source\\Leifez\\Leifez\\Leifez.DataAccess.PostgreSQL\\Leifez.DataAccess.PostgreSQL.csproj": {
+    "F:\\Source\\Leifez\\Leifez\\Leifez.Core.PostgreSQL\\Leifez.Core.PostgreSQL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Source\\Leifez\\Leifez\\Leifez.DataAccess.PostgreSQL\\Leifez.DataAccess.PostgreSQL.csproj",
-        "projectName": "Leifez.DataAccess.PostgreSQL",
-        "projectPath": "F:\\Source\\Leifez\\Leifez\\Leifez.DataAccess.PostgreSQL\\Leifez.DataAccess.PostgreSQL.csproj",
+        "projectUniqueName": "F:\\Source\\Leifez\\Leifez\\Leifez.Core.PostgreSQL\\Leifez.Core.PostgreSQL.csproj",
+        "projectName": "Leifez.Core.PostgreSQL",
+        "projectPath": "F:\\Source\\Leifez\\Leifez\\Leifez.Core.PostgreSQL\\Leifez.Core.PostgreSQL.csproj",
         "packagesPath": "C:\\Users\\cherv\\.nuget\\packages\\",
-        "outputPath": "F:\\Source\\Leifez\\Leifez\\Leifez.DataAccess.PostgreSQL\\obj\\",
+        "outputPath": "F:\\Source\\Leifez\\Leifez\\Leifez.Core.PostgreSQL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\cherv\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -217,11 +153,8 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "projectReferences": {
-              "F:\\Source\\Leifez\\Leifez\\Leifez.DataAccess\\Leifez.DataAccess.csproj": {
-                "projectPath": "F:\\Source\\Leifez\\Leifez\\Leifez.DataAccess\\Leifez.DataAccess.csproj"
-              }
-            }
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
           }
         },
         "warningProperties": {
@@ -232,6 +165,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
@@ -265,59 +199,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.406\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "F:\\Source\\Leifez\\Leifez\\Leifez.DataAccess\\Leifez.DataAccess.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "F:\\Source\\Leifez\\Leifez\\Leifez.DataAccess\\Leifez.DataAccess.csproj",
-        "projectName": "Leifez.DataAccess",
-        "projectPath": "F:\\Source\\Leifez\\Leifez\\Leifez.DataAccess\\Leifez.DataAccess.csproj",
-        "packagesPath": "C:\\Users\\cherv\\.nuget\\packages\\",
-        "outputPath": "F:\\Source\\Leifez\\Leifez\\Leifez.DataAccess\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\cherv\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "netcoreapp3.1"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "netcoreapp3.1": {
-            "projectReferences": {}
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "netcoreapp3.1": {
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.406\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -343,18 +225,10 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {
               "F:\\Source\\Leifez\\Leifez\\Leifez.Application.Domain\\Leifez.Application.Domain.csproj": {
                 "projectPath": "F:\\Source\\Leifez\\Leifez\\Leifez.Application.Domain\\Leifez.Application.Domain.csproj"
-              },
-              "F:\\Source\\Leifez\\Leifez\\Leifez.Application.Service\\Leifez.Application.Service.csproj": {
-                "projectPath": "F:\\Source\\Leifez\\Leifez\\Leifez.Application.Service\\Leifez.Application.Service.csproj"
-              },
-              "F:\\Source\\Leifez\\Leifez\\Leifez.DataAccess.PostgreSQL\\Leifez.DataAccess.PostgreSQL.csproj": {
-                "projectPath": "F:\\Source\\Leifez\\Leifez\\Leifez.DataAccess.PostgreSQL\\Leifez.DataAccess.PostgreSQL.csproj"
-              },
-              "F:\\Source\\Leifez\\Leifez\\Leifez.DataAccess\\Leifez.DataAccess.csproj": {
-                "projectPath": "F:\\Source\\Leifez\\Leifez\\Leifez.DataAccess\\Leifez.DataAccess.csproj"
               }
             }
           }
@@ -367,26 +241,15 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
               "version": "[10.1.1, )"
             },
-            "Microsoft.AspNet.Mvc": {
-              "target": "Package",
-              "version": "[5.2.7, )"
-            },
             "System.Configuration.ConfigurationManager": {
               "target": "Package",
               "version": "[5.0.0, )"
-            },
-            "Unity": {
-              "target": "Package",
-              "version": "[5.11.10, )"
-            },
-            "Unity.Mvc": {
-              "target": "Package",
-              "version": "[5.11.1, )"
             }
           },
           "imports": [
@@ -404,7 +267,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.406\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }

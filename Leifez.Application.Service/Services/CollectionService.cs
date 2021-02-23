@@ -2,6 +2,8 @@
 using Leifez.Application.Domain.Interfaces;
 using Leifez.Application.Domain.Models;
 using Leifez.Application.Service.Interfaces;
+using Leifez.Core.Infrastructure.Exceptions;
+using System.Linq;
 
 namespace Leifez.Application.Service.Services
 {
@@ -17,9 +19,32 @@ namespace Leifez.Application.Service.Services
             _collectionDomain = collectionDomain;
             _mapper = mapper;
         }
-        public Collection GetCollectionTest(int collectionId)
+        public Collection GetCollection(int collectionId)
         {
-            return _collectionDomain.GetCollection(collectionId);
+            var collection = _collectionDomain.GetCollection(collectionId);
+            if (collection == null)
+            {
+                throw new QueryException
+                (
+                    message: $"Collection by {collectionId} not found.",
+                    code: "404"
+                );
+            }
+            return collection;
+        }
+
+        public IQueryable<Collection> GetCollections()
+        {
+            var collections = _collectionDomain.GetCollections();
+            if (collections == null)
+            {
+                throw new QueryException
+                (
+                    message: "No collections found.",
+                    code: "404"
+                );
+            }
+            return collections;
         }
     }
 }

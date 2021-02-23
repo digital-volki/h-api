@@ -2,8 +2,8 @@
 using Leifez.Application.Domain.Interfaces;
 using Leifez.Application.Domain.Models;
 using Leifez.Common.Mapping;
-using Leifez.DataAccess.Interfaces;
-using Leifez.DataAccess.PostgreSQL.Models;
+using Leifez.Core.PostgreSQL;
+using Leifez.Core.PostgreSQL.Models;
 using System.Linq;
 
 namespace Leifez.Application.Domain
@@ -23,7 +23,12 @@ namespace Leifez.Application.Domain
 
         public Collection GetCollection(int collectionId)
         {
-            return _dataContext.GetQueryable<DbCollection>().Where(c => c.CollectionId == collectionId).FirstOrDefault().Map<DbCollection, Collection>(_mapper);
+            return _dataContext.GetQueryable<DbCollection>().Where(c => c.Id == collectionId).FirstOrDefault().Map<DbCollection, Collection>(_mapper);
+        }
+
+        public IQueryable<Collection> GetCollections()
+        {
+            return _dataContext.GetQueryable<DbCollection>().MapToList<DbCollection, Collection>(_mapper).AsQueryable();
         }
     }
 }

@@ -2,7 +2,7 @@
 using Leifez.Application.Domain.Mapping;
 using System.Collections.Generic;
 
-namespace Leifez.Infrastructure.Mapper
+namespace Leifez.Core.Infrastructure.Mapper
 {
     public static class MapperConfig
     {
@@ -25,7 +25,9 @@ namespace Leifez.Infrastructure.Mapper
 
         private static void InitializeDomain(ICollection<Profile> profiles)
         {
-            profiles.Add(new CollectionDomainMapping());
+            profiles.Add(new TagMapping());
+            profiles.Add(new CollectionMapping());
+            profiles.Add(new AccountMapping());
         }
     }
 }

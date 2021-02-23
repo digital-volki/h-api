@@ -1,15 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>netcoreapp5.0</TargetFramework>
     <UserSecretsId>68326ab0-f5e1-4bfa-9aa7-ca5e38b6ece6</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <Configurations>Debug;Release;Local;Prod</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="HotChocolate.AspNetCore" Version="11.0.9" />
     <PackageReference Include="HotChocolate.AspNetCore.Authorization" Version="11.0.9" />
-    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
+    <PackageReference Include="HotChocolate.AspNetCore.Playground" Version="10.5.5" />
+    <PackageReference Include="HotChocolate.Data" Version="11.0.9" />
+    <PackageReference Include="HotChocolate.Types.Filters" Version="11.0.9" />
+    <PackageReference Include="HotChocolate.Types.Sorting" Version="11.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.3">
@@ -19,18 +23,13 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.2" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
-    <PackageReference Include="Unity" Version="5.11.10" />
-    <PackageReference Include="Unity.AspNet.WebApi" Version="5.11.2" />
-    <PackageReference Include="Unity.Microsoft.DependencyInjection" Version="5.11.5" />
-    <PackageReference Include="Unity.Mvc" Version="5.11.1" />
-    <PackageReference Include="WebActivatorEx" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Leifez.Application.Service\Leifez.Application.Service.csproj" />
     <ProjectReference Include="..\Leifez.Common.Web\Leifez.Common.Web.csproj" />
-    <ProjectReference Include="..\Leifez.DataAccess.PostgreSQL\Leifez.DataAccess.PostgreSQL.csproj" />
-    <ProjectReference Include="..\Leifez.Infrastructure\Leifez.Infrastructure.csproj" />
+    <ProjectReference Include="..\Leifez.Core.PostgreSQL\Leifez.Core.PostgreSQL.csproj" />
+    <ProjectReference Include="..\Leifez.Infrastructure\Leifez.Core.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,7 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Domains\" />
+    <Folder Include="Accounts\Payload\" />
   </ItemGroup>
 
 

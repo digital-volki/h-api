@@ -1,0 +1,14 @@
+F:\Source\Leifez\Leifez\Leifez.Domain.Account\bin\Local\netcoreapp3.1\Leifez.Domain.Account.deps.json
+F:\Source\Leifez\Leifez\Leifez.Domain.Account\bin\Local\netcoreapp3.1\Leifez.Domain.Account.dll
+F:\Source\Leifez\Leifez\Leifez.Domain.Account\bin\Local\netcoreapp3.1\Leifez.Domain.Account.pdb
+F:\Source\Leifez\Leifez\Leifez.Domain.Account\bin\Local\netcoreapp3.1\Leifez.DataAccess.dll
+F:\Source\Leifez\Leifez\Leifez.Domain.Account\bin\Local\netcoreapp3.1\Leifez.DataAccess.PostgreSQL.dll
+F:\Source\Leifez\Leifez\Leifez.Domain.Account\bin\Local\netcoreapp3.1\Leifez.DataAccess.PostgreSQL.pdb
+F:\Source\Leifez\Leifez\Leifez.Domain.Account\bin\Local\netcoreapp3.1\Leifez.DataAccess.pdb
+F:\Source\Leifez\Leifez\Leifez.Domain.Account\obj\Local\netcoreapp3.1\Leifez.Domain.Account.csprojAssemblyReference.cache
+F:\Source\Leifez\Leifez\Leifez.Domain.Account\obj\Local\netcoreapp3.1\Leifez.Domain.Account.AssemblyInfoInputs.cache
+F:\Source\Leifez\Leifez\Leifez.Domain.Account\obj\Local\netcoreapp3.1\Leifez.Domain.Account.AssemblyInfo.cs
+F:\Source\Leifez\Leifez\Leifez.Domain.Account\obj\Local\netcoreapp3.1\Leifez.Domain.Account.csproj.CoreCompileInputs.cache
+F:\Source\Leifez\Leifez\Leifez.Domain.Account\obj\Local\netcoreapp3.1\Leifez.Domain.Account.csproj.CopyComplete
+F:\Source\Leifez\Leifez\Leifez.Domain.Account\obj\Local\netcoreapp3.1\Leifez.Domain.Account.dll
+F:\Source\Leifez\Leifez\Leifez.Domain.Account\obj\Local\netcoreapp3.1\Leifez.Domain.Account.pdb

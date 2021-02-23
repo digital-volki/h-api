@@ -9,11 +9,10 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["Leifez/Leifez.csproj", "Leifez/"]
 COPY ["Leifez.Common.Web/Leifez.Common.Web.csproj", "Leifez.Common.Web/"]
-COPY ["Leifez.Infrastructure/Leifez.Infrastructure.csproj", "Leifez.Infrastructure/"]
+COPY ["Leifez.Core.Infrastructure/Leifez.Core.Infrastructure.csproj", "Leifez.Core.Infrastructure/"]
 COPY ["Leifez.Application.Domain/Leifez.Application.Domain.csproj", "Leifez.Application.Domain/"]
 COPY ["Leifez.Common.Mapping/Leifez.Common.Mapping.csproj", "Leifez.Common.Mapping/"]
-COPY ["Leifez.DataAccess.PostgreSQL/Leifez.DataAccess.PostgreSQL.csproj", "Leifez.DataAccess.PostgreSQL/"]
-COPY ["Leifez.DataAccess/Leifez.DataAccess.csproj", "Leifez.DataAccess/"]
+COPY ["Leifez.Core.PostgreSQL/Leifez.Core.PostgreSQL.csproj", "Leifez.Core.PostgreSQL/"]
 COPY ["Leifez.Application.Service/Leifez.Application.Service.csproj", "Leifez.Application.Service/"]
 RUN dotnet restore "Leifez/Leifez.csproj" -r linux-arm64
 COPY . .

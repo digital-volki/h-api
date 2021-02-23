@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Configurations>Debug;Release;Local;Prod</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,7 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Leifez.Common.Mapping\Leifez.Common.Mapping.csproj" />
-    <ProjectReference Include="..\Leifez.DataAccess.PostgreSQL\Leifez.DataAccess.PostgreSQL.csproj" />
+    <ProjectReference Include="..\Leifez.Core.PostgreSQL\Leifez.Core.PostgreSQL.csproj" />
   </ItemGroup>
 
 </Project>

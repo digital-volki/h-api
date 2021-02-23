@@ -2,16 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Configurations>Debug;Release;Local;Prod</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Leifez.Application.Domain\Leifez.Application.Domain.csproj" />
-    <ProjectReference Include="..\Leifez.DataAccess.PostgreSQL\Leifez.DataAccess.PostgreSQL.csproj" />
-    <ProjectReference Include="..\Leifez.DataAccess\Leifez.DataAccess.csproj" />
+    <ProjectReference Include="..\Leifez.Core.PostgreSQL\Leifez.Core.PostgreSQL.csproj" />
+    <ProjectReference Include="..\Leifez.Infrastructure\Leifez.Core.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

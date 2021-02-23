@@ -1,4 +1,4 @@
-﻿using Leifez.DataAccess.PostgreSQL.Models.Enums;
+﻿using Leifez.Core.PostgreSQL.Models.Enums;
 
 namespace Leifez.Application.Domain.Models
 {
