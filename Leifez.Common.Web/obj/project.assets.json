@@ -7594,8 +7594,8 @@
     },
     "Leifez.Core.Infrastructure/1.0.0": {
       "type": "project",
-      "path": "../Leifez.Infrastructure/Leifez.Core.Infrastructure.csproj",
-      "msbuildProject": "../Leifez.Infrastructure/Leifez.Core.Infrastructure.csproj"
+      "path": "../Leifez.Core.Infrastructure/Leifez.Core.Infrastructure.csproj",
+      "msbuildProject": "../Leifez.Core.Infrastructure/Leifez.Core.Infrastructure.csproj"
     },
     "Leifez.Core.PostgreSQL/1.0.0": {
       "type": "project",

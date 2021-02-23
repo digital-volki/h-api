@@ -2332,8 +2332,8 @@
     },
     "Leifez.Core.Infrastructure/1.0.0": {
       "type": "project",
-      "path": "../Leifez.Infrastructure/Leifez.Core.Infrastructure.csproj",
-      "msbuildProject": "../Leifez.Infrastructure/Leifez.Core.Infrastructure.csproj"
+      "path": "../Leifez.Core.Infrastructure/Leifez.Core.Infrastructure.csproj",
+      "msbuildProject": "../Leifez.Core.Infrastructure/Leifez.Core.Infrastructure.csproj"
     },
     "Leifez.Core.PostgreSQL/1.0.0": {
       "type": "project",
@@ -2380,11 +2380,11 @@
             "F:\\Source\\Leifez\\Leifez\\Leifez.Application.Domain\\Leifez.Application.Domain.csproj": {
               "projectPath": "F:\\Source\\Leifez\\Leifez\\Leifez.Application.Domain\\Leifez.Application.Domain.csproj"
             },
+            "F:\\Source\\Leifez\\Leifez\\Leifez.Core.Infrastructure\\Leifez.Core.Infrastructure.csproj": {
+              "projectPath": "F:\\Source\\Leifez\\Leifez\\Leifez.Core.Infrastructure\\Leifez.Core.Infrastructure.csproj"
+            },
             "F:\\Source\\Leifez\\Leifez\\Leifez.Core.PostgreSQL\\Leifez.Core.PostgreSQL.csproj": {
               "projectPath": "F:\\Source\\Leifez\\Leifez\\Leifez.Core.PostgreSQL\\Leifez.Core.PostgreSQL.csproj"
-            },
-            "F:\\Source\\Leifez\\Leifez\\Leifez.Infrastructure\\Leifez.Core.Infrastructure.csproj": {
-              "projectPath": "F:\\Source\\Leifez\\Leifez\\Leifez.Infrastructure\\Leifez.Core.Infrastructure.csproj"
             }
           }
         }
