@@ -47,18 +47,18 @@ namespace Leifez.General
                 .AddHttpContextAccessor()
                 .AddCors()
 
-                //.AddAuthorization(x =>
-                //{
-                //    x.AddPolicy("hr-department", builder =>
-                //        builder
-                //            .RequireAuthenticatedUser()
-                //            .RequireRole("hr")
-                //    );
+                .AddAuthorization(x =>
+                {
+                    x.AddPolicy("hr-department", builder =>
+                        builder
+                            .RequireAuthenticatedUser()
+                            .RequireRole("hr")
+                    );
 
-                //    x.AddPolicy("DevDepartment", builder =>
-                //        builder.RequireRole("dev")
-                //    );
-                //})
+                    x.AddPolicy("DevDepartment", builder =>
+                        builder.RequireRole("dev")
+                    );
+                })
 
                 .AddAuthentication(options =>
                 {
