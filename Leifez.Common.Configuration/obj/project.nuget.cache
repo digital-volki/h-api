@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "AwQDCZhLWK2VhRLAi14Ze8SeE9jl1NUWiYE9b1x2RoNoQtV49oEFhruELqkuQN0dRY0pbAj+nyekWFpkGgwn6A==",
+  "success": true,
+  "projectFilePath": "F:\\Source\\Leifez\\Leifez\\Leifez.Common.Configuration\\Leifez.Common.Configuration.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\cherv\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",
+    "C:\\Users\\cherv\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

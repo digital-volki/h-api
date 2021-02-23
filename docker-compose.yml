@@ -14,8 +14,6 @@ services:
       - ./db_data:/var/lib/postgresql/data
 
   web:
-    environment: 
-      ASPNETCORE_ENVIRONMENT: Prod
     ports:
       - "80:80"
     restart: always

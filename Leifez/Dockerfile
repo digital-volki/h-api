@@ -17,7 +17,8 @@ COPY ["Leifez.Application.Service/Leifez.Application.Service.csproj", "Leifez.Ap
 RUN dotnet restore "Leifez/Leifez.csproj" -r linux-arm64
 COPY . .
 WORKDIR "/src/Leifez"
-RUN dotnet build "Leifez.csproj" -c Release -o /app/build -r linux-musl-arm64
+RUN ASPNETCORE_ENVIRONMENT="Production" \
+	dotnet build "Leifez.csproj" -c Release -o /app/build -r linux-musl-arm64
 
 FROM build AS publish
 RUN dotnet publish "Leifez.csproj" -c Release -o /app/publish -r linux-musl-arm64

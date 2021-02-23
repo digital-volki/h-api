@@ -6,11 +6,11 @@ F:\Source\Leifez\Leifez\Leifez.Application.Domain\obj\Debug\netcoreapp3.1\Leifez
 F:\Source\Leifez\Leifez\Leifez.Application.Domain\obj\Debug\netcoreapp3.1\Leifez.Application.Domain.csproj.CoreCompileInputs.cache
 F:\Source\Leifez\Leifez\Leifez.Application.Domain\bin\Debug\netcoreapp3.1\Leifez.Application.Domain.pdb
 F:\Source\Leifez\Leifez\Leifez.Application.Domain\bin\Debug\netcoreapp3.1\Leifez.Common.Mapping.dll
-F:\Source\Leifez\Leifez\Leifez.Application.Domain\bin\Debug\netcoreapp3.1\Leifez.DataAccess.dll
-F:\Source\Leifez\Leifez\Leifez.Application.Domain\bin\Debug\netcoreapp3.1\Leifez.DataAccess.PostgreSQL.dll
 F:\Source\Leifez\Leifez\Leifez.Application.Domain\bin\Debug\netcoreapp3.1\Leifez.Common.Mapping.pdb
-F:\Source\Leifez\Leifez\Leifez.Application.Domain\bin\Debug\netcoreapp3.1\Leifez.DataAccess.PostgreSQL.pdb
-F:\Source\Leifez\Leifez\Leifez.Application.Domain\bin\Debug\netcoreapp3.1\Leifez.DataAccess.pdb
 F:\Source\Leifez\Leifez\Leifez.Application.Domain\obj\Debug\netcoreapp3.1\Leifez.Application.Domain.csproj.CopyComplete
 F:\Source\Leifez\Leifez\Leifez.Application.Domain\obj\Debug\netcoreapp3.1\Leifez.Application.Domain.dll
 F:\Source\Leifez\Leifez\Leifez.Application.Domain\obj\Debug\netcoreapp3.1\Leifez.Application.Domain.pdb
+F:\Source\Leifez\Leifez\Leifez.Application.Domain\bin\Debug\netcoreapp3.1\Leifez.Common.Configuration.dll
+F:\Source\Leifez\Leifez\Leifez.Application.Domain\bin\Debug\netcoreapp3.1\Leifez.Core.PostgreSQL.dll
+F:\Source\Leifez\Leifez\Leifez.Application.Domain\bin\Debug\netcoreapp3.1\Leifez.Core.PostgreSQL.pdb
+F:\Source\Leifez\Leifez\Leifez.Application.Domain\bin\Debug\netcoreapp3.1\Leifez.Common.Configuration.pdb

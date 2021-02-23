@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Leifez.Common.Configuration;
 
 namespace Leifez.Core.PostgreSQL
 {
@@ -18,7 +19,7 @@ namespace Leifez.Core.PostgreSQL
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder
-                .UseNpgsql("Server=192.168.31.235;User Id=site_db;Password=JGJS89ydhnflsar312h89HLFDF2;Port=5432;Database=site_db;"));
+                .UseNpgsql(AppConfiguration.Configuration.GetSection("ConnectionStrings")["DefaultConnection"]));
         }
 
         public IQueryable<T> GetQueryable<T>(bool trackChanges = true, bool disabled = false) where T : class, new()

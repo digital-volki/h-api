@@ -3,6 +3,7 @@ using HotChocolate.AspNetCore.Authorization;
 using HotChocolate.Types;
 using Leifez.Accounts.Inputs;
 using Leifez.Application.Service.Interfaces;
+using Leifez.Common.Configuration;
 using Leifez.Common.Web.Auth;
 using Leifez.Common.Web.Auth.Models;
 using Leifez.Core.Infrastructure.Exceptions;
@@ -92,6 +93,12 @@ namespace Leifez.Accounts
             }
 
             return new PayloadBase<IEnumerable<string>>(roles.Select(r => r.Value));
+        }
+
+
+        public string GetEnvironment()
+        {
+            return AppConfiguration.EnvironmentName;
         }
     }
 }

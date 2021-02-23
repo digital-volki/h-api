@@ -10,3 +10,6 @@ F:\Source\Leifez\Leifez\Leifez.core.PostgreSQL\obj\Debug\netcoreapp3.1\Leifez.Co
 F:\Source\Leifez\Leifez\Leifez.Core.PostgreSQL\bin\Debug\netcoreapp3.1\Leifez.Core.PostgreSQL.runtimeconfig.json
 F:\Source\Leifez\Leifez\Leifez.Core.PostgreSQL\bin\Debug\netcoreapp3.1\Leifez.Core.PostgreSQL.runtimeconfig.dev.json
 F:\Source\Leifez\Leifez\Leifez.Core.PostgreSQL\obj\Debug\netcoreapp3.1\Leifez.Core.PostgreSQL.genruntimeconfig.cache
+F:\Source\Leifez\Leifez\Leifez.Core.PostgreSQL\bin\Debug\netcoreapp3.1\Leifez.Common.Configuration.dll
+F:\Source\Leifez\Leifez\Leifez.Core.PostgreSQL\bin\Debug\netcoreapp3.1\Leifez.Common.Configuration.pdb
+F:\Source\Leifez\Leifez\Leifez.Core.PostgreSQL\obj\Debug\netcoreapp3.1\Leifez.Core.PostgreSQL.csproj.CopyComplete

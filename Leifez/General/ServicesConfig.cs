@@ -6,20 +6,17 @@ using Leifez.Application.Domain.Interfaces;
 using Leifez.Application.Service.Interfaces;
 using Leifez.Application.Service.Services;
 using Leifez.Collections;
-using Leifez.Common;
+using Leifez.Common.Configuration;
 using Leifez.Common.Web.Auth;
 using Leifez.Core.Infrastructure.Mapper;
 using Leifez.Core.PostgreSQL;
-using Leifez.DataAccess.PostgreSQL;
 using Leifez.General.Errors;
 using Leifez.Types;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Configuration;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -31,7 +28,6 @@ namespace Leifez.General
     {
         public static void Register(IServiceCollection services)
         {
-            services.AddSingleton(MapperConfig.Initialize());
             CommonRegistration(services);
             DbRegistration(services);
             AccountRegistration(services);
@@ -71,11 +67,11 @@ namespace Leifez.General
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuer = true,
-                        ValidIssuer = ConfigurationManager.AppSettings.Get("jwt-issuer"),
+                        ValidIssuer = AppConfiguration.Configuration.GetSection("JwtSettings").GetSection("jwt-issuer").Value,
                         ValidateAudience = true,
-                        ValidAudience = ConfigurationManager.AppSettings.Get("jwt-audience"),
+                        ValidAudience = AppConfiguration.Configuration.GetSection("JwtSettings").GetSection("jwt-audience").Value,
                         ValidateLifetime = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(ConfigurationManager.AppSettings.Get("jwt-secret"))),
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(AppConfiguration.Configuration.GetSection("JwtSettings").GetSection("jwt-secret").Value)),
                         ValidateIssuerSigningKey = true,
                     };
                 });
@@ -83,7 +79,7 @@ namespace Leifez.General
 
         private static void DbRegistration(IServiceCollection services)
         {
-            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            var connectionString = AppConfiguration.Configuration.GetSection("ConnectionStrings")["DefaultConnection"];
 
             services
                 .AddDbContext<IDataContext, DataContext>(options =>

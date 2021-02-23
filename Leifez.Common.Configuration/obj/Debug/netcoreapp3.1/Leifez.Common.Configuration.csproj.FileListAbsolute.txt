@@ -1,0 +1,9 @@
+F:\Source\Leifez\Leifez\Leifez.Common.Configuration\bin\Debug\netcoreapp3.1\Leifez.Common.Configuration.deps.json
+F:\Source\Leifez\Leifez\Leifez.Common.Configuration\bin\Debug\netcoreapp3.1\Leifez.Common.Configuration.dll
+F:\Source\Leifez\Leifez\Leifez.Common.Configuration\bin\Debug\netcoreapp3.1\Leifez.Common.Configuration.pdb
+F:\Source\Leifez\Leifez\Leifez.Common.Configuration\obj\Debug\netcoreapp3.1\Leifez.Common.Configuration.csprojAssemblyReference.cache
+F:\Source\Leifez\Leifez\Leifez.Common.Configuration\obj\Debug\netcoreapp3.1\Leifez.Common.Configuration.AssemblyInfoInputs.cache
+F:\Source\Leifez\Leifez\Leifez.Common.Configuration\obj\Debug\netcoreapp3.1\Leifez.Common.Configuration.AssemblyInfo.cs
+F:\Source\Leifez\Leifez\Leifez.Common.Configuration\obj\Debug\netcoreapp3.1\Leifez.Common.Configuration.csproj.CoreCompileInputs.cache
+F:\Source\Leifez\Leifez\Leifez.Common.Configuration\obj\Debug\netcoreapp3.1\Leifez.Common.Configuration.dll
+F:\Source\Leifez\Leifez\Leifez.Common.Configuration\obj\Debug\netcoreapp3.1\Leifez.Common.Configuration.pdb

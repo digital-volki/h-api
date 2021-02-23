@@ -466,6 +466,19 @@
             "rid": "win"
           }
         }
+      },
+      "Leifez.Common.Configuration/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "5.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Leifez.Common.Configuration.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Leifez.Common.Configuration.dll": {}
+        }
       }
     }
   },
@@ -1424,10 +1437,16 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "Leifez.Common.Configuration/1.0.0": {
+      "type": "project",
+      "path": "../Leifez.Common.Configuration/Leifez.Common.Configuration.csproj",
+      "msbuildProject": "../Leifez.Common.Configuration/Leifez.Common.Configuration.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "Leifez.Common.Configuration >= 1.0.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 5.0.3",
       "Microsoft.EntityFrameworkCore >= 5.0.3",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.3",
@@ -1462,7 +1481,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "projectReferences": {}
+          "projectReferences": {
+            "F:\\Source\\Leifez\\Leifez\\Leifez.Common.Configuration\\Leifez.Common.Configuration.csproj": {
+              "projectPath": "F:\\Source\\Leifez\\Leifez\\Leifez.Common.Configuration\\Leifez.Common.Configuration.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

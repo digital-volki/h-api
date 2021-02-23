@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.Security.Claims;
 using System.Text;
 using System.IdentityModel.Tokens.Jwt;
@@ -7,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Collections.Generic;
 using System.Linq;
 using Leifez.Application.Domain.Models;
+using Leifez.Common.Configuration;
 
 namespace Leifez.Common.Web.BearerAuth
 {
@@ -27,15 +27,15 @@ namespace Leifez.Common.Web.BearerAuth
             claimsList.AddRange(claims);
 
             var jwt = new JwtSecurityToken(
-                issuer: ConfigurationManager.AppSettings.Get("jwt-issuer"),
-                audience: ConfigurationManager.AppSettings.Get("jwt-audience"),
+                issuer: AppConfiguration.Configuration.GetSection("JwtSettings").GetSection("jwt-issuer").Value,
+                audience: AppConfiguration.Configuration.GetSection("JwtSettings").GetSection("jwt-audience").Value,
                 notBefore: DateTime.UtcNow,
                 claims: claimsList,
-                expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(int.Parse(ConfigurationManager.AppSettings.Get("jwt-ttl")))),
+                expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(int.Parse(AppConfiguration.Configuration.GetSection("JwtSettings").GetSection("jwt-ttl").Value))),
                 signingCredentials: new SigningCredentials(
                     new SymmetricSecurityKey(
                         Encoding.ASCII.GetBytes(
-                            ConfigurationManager.AppSettings.Get("jwt-secret"))),
+                            AppConfiguration.Configuration.GetSection("JwtSettings").GetSection("jwt-secret").Value)),
                     SecurityAlgorithms.HmacSha256));
 
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);

@@ -463,6 +463,19 @@
           }
         }
       },
+      "Leifez.Common.Configuration/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "5.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Leifez.Common.Configuration.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Leifez.Common.Configuration.dll": {}
+        }
+      },
       "Leifez.Common.Mapping/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -480,6 +493,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
+          "Leifez.Common.Configuration": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.3",
           "Microsoft.EntityFrameworkCore": "5.0.3",
           "Npgsql": "5.0.3",
@@ -1489,6 +1503,11 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "Leifez.Common.Configuration/1.0.0": {
+      "type": "project",
+      "path": "../Leifez.Common.Configuration/Leifez.Common.Configuration.csproj",
+      "msbuildProject": "../Leifez.Common.Configuration/Leifez.Common.Configuration.csproj"
     },
     "Leifez.Common.Mapping/1.0.0": {
       "type": "project",

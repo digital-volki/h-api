@@ -1,7 +1,12 @@
+using System.Configuration;
 using System.Threading.Tasks;
+using Leifez.Common.Configuration;
+using Leifez.Common.Web;
+using Leifez.Core.Infrastructure;
 using Leifez.General;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -9,6 +14,19 @@ namespace Leifez
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; set; }
+        public IWebHostEnvironment Environment { get; set; }
+
+        public Startup(IWebHostEnvironment environment)
+        {
+            Environment = environment;
+            Configuration = new ConfigurationBuilder()
+                     .AddJsonFile($"AppSettings.{Environment.EnvironmentName}.json")
+                     .Build();
+
+            new AppConfiguration(Configuration, Environment.EnvironmentName);
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
             ServicesConfig.Register(services);
