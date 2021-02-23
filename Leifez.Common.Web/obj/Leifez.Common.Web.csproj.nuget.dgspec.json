@@ -294,6 +294,9 @@
               },
               "F:\\Source\\Leifez\\Leifez\\Leifez.Application.Service\\Leifez.Application.Service.csproj": {
                 "projectPath": "F:\\Source\\Leifez\\Leifez\\Leifez.Application.Service\\Leifez.Application.Service.csproj"
+              },
+              "F:\\Source\\Leifez\\Leifez\\Leifez.Common.Configuration\\Leifez.Common.Configuration.csproj": {
+                "projectPath": "F:\\Source\\Leifez\\Leifez\\Leifez.Common.Configuration\\Leifez.Common.Configuration.csproj"
               }
             }
           }
@@ -315,10 +318,6 @@
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[3.1.12, )"
-            },
-            "System.Configuration.ConfigurationManager": {
-              "target": "Package",
-              "version": "[5.0.0, )"
             }
           },
           "imports": [
@@ -472,10 +471,6 @@
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[5.0.2, )"
-            },
-            "System.Configuration.ConfigurationManager": {
-              "target": "Package",
-              "version": "[5.0.0, )"
             }
           },
           "imports": [

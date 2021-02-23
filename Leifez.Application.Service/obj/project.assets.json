@@ -875,8 +875,7 @@
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.3",
           "Microsoft.EntityFrameworkCore": "5.0.3",
           "Npgsql": "5.0.3",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "5.0.2",
-          "System.Configuration.ConfigurationManager": "5.0.0"
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "5.0.2"
         },
         "compile": {
           "bin/placeholder/Leifez.Core.PostgreSQL.dll": {}

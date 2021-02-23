@@ -22,11 +22,11 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.2" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Leifez.Application.Service\Leifez.Application.Service.csproj" />
+    <ProjectReference Include="..\Leifez.Common.Configuration\Leifez.Common.Configuration.csproj" />
     <ProjectReference Include="..\Leifez.Common.Web\Leifez.Common.Web.csproj" />
     <ProjectReference Include="..\Leifez.Core.PostgreSQL\Leifez.Core.PostgreSQL.csproj" />
     <ProjectReference Include="..\Leifez.Core.Infrastructure\Leifez.Core.Infrastructure.csproj" />

@@ -10,9 +10,9 @@
         "dependencies": {
           "Leifez.Application.Domain": "1.0.0",
           "Leifez.Application.Service": "1.0.0",
+          "Leifez.Common.Configuration": "1.0.0",
           "Microsoft.AspNet.WebApi.Core": "5.2.7",
-          "Microsoft.AspNetCore.Authentication.JwtBearer": "3.1.12",
-          "System.Configuration.ConfigurationManager": "5.0.0"
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "3.1.12"
         },
         "runtime": {
           "Leifez.Common.Web.dll": {}
@@ -1499,8 +1499,7 @@
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.3",
           "Microsoft.EntityFrameworkCore": "5.0.3",
           "Npgsql": "5.0.3",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "5.0.2",
-          "System.Configuration.ConfigurationManager": "5.0.0"
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "5.0.2"
         },
         "runtime": {
           "Leifez.Core.PostgreSQL.dll": {}
