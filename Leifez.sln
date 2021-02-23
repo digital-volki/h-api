@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leifez", "Leifez\Leifez.csproj", "{70C429D4-A50F-4B19-8E69-72B74246EFD3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leifez.Core.Infrastructure", "Leifez.Infrastructure\Leifez.Core.Infrastructure.csproj", "{63B1710C-E819-4CA1-90C7-A99527BF3DD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leifez.Core.Infrastructure", "Leifez.Core.Infrastructure\Leifez.Core.Infrastructure.csproj", "{63B1710C-E819-4CA1-90C7-A99527BF3DD3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{D900ADF6-7A6A-4F78-888A-9A183C12117C}"
 EndProject

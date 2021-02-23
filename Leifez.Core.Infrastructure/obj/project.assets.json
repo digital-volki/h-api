@@ -1534,11 +1534,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Source\\Leifez\\Leifez\\Leifez.Infrastructure\\Leifez.Core.Infrastructure.csproj",
+      "projectUniqueName": "F:\\Source\\Leifez\\Leifez\\Leifez.Core.Infrastructure\\Leifez.Core.Infrastructure.csproj",
       "projectName": "Leifez.Core.Infrastructure",
-      "projectPath": "F:\\Source\\Leifez\\Leifez\\Leifez.Infrastructure\\Leifez.Core.Infrastructure.csproj",
+      "projectPath": "F:\\Source\\Leifez\\Leifez\\Leifez.Core.Infrastructure\\Leifez.Core.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\cherv\\.nuget\\packages\\",
-      "outputPath": "F:\\Source\\Leifez\\Leifez\\Leifez.Infrastructure\\obj\\",
+      "outputPath": "F:\\Source\\Leifez\\Leifez\\Leifez.Core.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\cherv\\AppData\\Roaming\\NuGet\\NuGet.Config",
