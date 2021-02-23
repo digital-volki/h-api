@@ -6,3 +6,4 @@ F:\Source\Leifez\Leifez\Leifez.Common.Configuration\obj\Release\netcoreapp3.1\Le
 F:\Source\Leifez\Leifez\Leifez.Common.Configuration\obj\Release\netcoreapp3.1\Leifez.Common.Configuration.csproj.CoreCompileInputs.cache
 F:\Source\Leifez\Leifez\Leifez.Common.Configuration\obj\Release\netcoreapp3.1\Leifez.Common.Configuration.dll
 F:\Source\Leifez\Leifez\Leifez.Common.Configuration\obj\Release\netcoreapp3.1\Leifez.Common.Configuration.pdb
+F:\Source\Leifez\Leifez\Leifez.Common.Configuration\obj\Release\netcoreapp3.1\Leifez.Common.Configuration.csprojAssemblyReference.cache
