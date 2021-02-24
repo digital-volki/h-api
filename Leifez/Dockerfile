@@ -8,6 +8,7 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["Leifez/Leifez.csproj", "Leifez/"]
+COPY ["Leifez.Common.Configuration/Leifez.Common.Configuration.csproj", "Leifez.Common.Configuration/"]
 COPY ["Leifez.Common.Web/Leifez.Common.Web.csproj", "Leifez.Common.Web/"]
 COPY ["Leifez.Core.Infrastructure/Leifez.Core.Infrastructure.csproj", "Leifez.Core.Infrastructure/"]
 COPY ["Leifez.Application.Domain/Leifez.Application.Domain.csproj", "Leifez.Application.Domain/"]
