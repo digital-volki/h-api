@@ -51,7 +51,7 @@ namespace Leifez.Application.Domain
         /// <returns></returns>
         public Account CreateAccount(DbIdentityUser account, bool isFindingExist = false)
         {
-            if (account != null)
+            if (account == null)
             {
                 return null;
             }
