@@ -7,4 +7,4 @@ jobs:
     runs-on: self-hosted
     steps:
     - name: executing remote ssh commands using password
-      run: cd h-api && docker-compose up -d
+      run: cd h-api && git pull && docker-compose up -d
