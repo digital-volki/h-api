@@ -1,0 +1,10 @@
+name: remote ssh command
+on: [push]
+jobs:
+
+  build:
+    name: Build
+    runs-on: self-hosted
+    steps:
+    - name: executing remote ssh commands using password
+      run: cd h-api && git pull && docker-compose up -d
