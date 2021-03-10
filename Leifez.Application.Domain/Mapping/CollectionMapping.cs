@@ -13,8 +13,8 @@ namespace Leifez.Application.Domain.Mapping
                 .ForMember(a => a.Title, opt => opt.MapFrom(b => b.Title))
                 .ForMember(a => a.Description, opt => opt.MapFrom(b => b.Description))
                 .ForMember(a => a.Author, opt => opt.MapFrom(b => b.Author))
-                .ForMember(a => a.Image, opt => opt.MapFrom(b => b.Image))
-                .ForMember(a => a.Tags, opt => opt.MapFrom(b => b.Tags));
+                .ForMember(a => a.Image, opt => opt.MapFrom(b => b.Image));
+                //.ForMember(a => a.Tags, opt => opt.MapFrom(b => b.Tags));
         }
     }
 }

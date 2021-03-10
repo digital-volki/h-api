@@ -1,4 +1,4 @@
-﻿namespace Leifez.Types
+﻿namespace Leifez.Models
 {
     public enum FilterType
     {

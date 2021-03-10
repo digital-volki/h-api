@@ -11,6 +11,8 @@ using Leifez.Common.Web.Auth;
 using Leifez.Core.Infrastructure.Mapper;
 using Leifez.Core.PostgreSQL;
 using Leifez.General.Errors;
+using Leifez.Images;
+using Leifez.Tags;
 using Leifez.Types;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -99,7 +101,11 @@ namespace Leifez.General
         {
             services
                 .AddScoped<ICollectionDomain, CollectionDomain>()
-                .AddScoped<ICollectionService, CollectionService>();
+                .AddScoped<ICollectionService, CollectionService>()
+                .AddScoped<IImageDomain, ImageDomain>()
+                .AddScoped<IImageService, ImageService>()
+                .AddScoped<ITagDomain, TagDomain>()
+                .AddScoped<ITagService, TagService>();
         }
 
         private static void GraphQLRegistration(IServiceCollection services)
@@ -112,9 +118,12 @@ namespace Leifez.General
                     .AddQueryType(t => t.Name("Query"))
                         .AddTypeExtension<CollectionQueries>()
                         .AddTypeExtension<AccountQueries>()
+                        .AddTypeExtension<ImageQueries>()
+                        .AddTypeExtension<TagQueries>()
 
                     .AddMutationType(t => t.Name("Mutation"))
-                        .AddTypeExtension<AccountMutation>()
+                        .AddTypeExtension<AccountMutations>()
+                        .AddTypeExtension<ImageMutations>()
 
                     .AddType<CollectionType>()
 

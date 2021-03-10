@@ -109,6 +109,22 @@ namespace Leifez.Core.PostgreSQL.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("Leifez.Core.PostgreSQL.Models.DbImage", b =>
+                {
+                    b.Property<string>("Guid")
+                        .HasMaxLength(36)
+                        .HasColumnType("character varying(36)");
+
+                    b.Property<string>("Hash")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("character varying(32)");
+
+                    b.HasKey("Guid");
+
+                    b.ToTable("Images");
+                });
+
             modelBuilder.Entity("Leifez.Core.PostgreSQL.Models.DbTag", b =>
                 {
                     b.Property<int>("Id")
@@ -119,22 +135,14 @@ namespace Leifez.Core.PostgreSQL.Migrations
                     b.Property<bool>("Danger")
                         .HasColumnType("boolean");
 
-                    b.Property<int?>("DbCollectionId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Name")
                         .HasColumnType("text");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("integer");
 
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DbCollectionId");
 
                     b.ToTable("Tags");
                 });
@@ -282,13 +290,6 @@ namespace Leifez.Core.PostgreSQL.Migrations
                     b.HasDiscriminator().HasValue("DbIdentityRole");
                 });
 
-            modelBuilder.Entity("Leifez.Core.PostgreSQL.Models.DbTag", b =>
-                {
-                    b.HasOne("Leifez.Core.PostgreSQL.Models.DbCollection", null)
-                        .WithMany("Tags")
-                        .HasForeignKey("DbCollectionId");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -338,11 +339,6 @@ namespace Leifez.Core.PostgreSQL.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Leifez.Core.PostgreSQL.Models.DbCollection", b =>
-                {
-                    b.Navigation("Tags");
                 });
 #pragma warning restore 612, 618
         }

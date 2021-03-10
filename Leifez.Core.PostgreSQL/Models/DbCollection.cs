@@ -9,6 +9,6 @@ namespace Leifez.Core.PostgreSQL.Models
         public string Description { get; set; }
         public string Author { get; set; }
         public string Image { get; set; }
-        public ICollection<DbTag> Tags { get; set; }
+        //public ICollection<DbTag> Tags { get; set; }
     }
 }

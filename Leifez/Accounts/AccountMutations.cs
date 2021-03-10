@@ -4,6 +4,8 @@ using HotChocolate.Types;
 using Leifez.Accounts.Inputs;
 using Leifez.Application.Domain.Models;
 using Leifez.Application.Service.Interfaces;
+using Leifez.Common.Web.Auth;
+using Leifez.Common.Web.Auth.Models;
 using Leifez.Core.Infrastructure.Exceptions;
 using Leifez.General;
 using System.Collections.Generic;
@@ -11,10 +13,11 @@ using System.Collections.Generic;
 namespace Leifez.Accounts
 {
     [ExtendObjectType(Name = "Mutation")]
-    public class AccountMutation
+    public class AccountMutations
     {
-        public PayloadBase<Account> CreateAccount(
+        public PayloadBase<string> CreateAccount(
             [Service] IAccountService accountService,
+            [Service] LeifezAuthenticator authenticator,
             CreateAccountInput input)
         {
             var errors = new List<UserError>();
@@ -27,7 +30,7 @@ namespace Leifez.Accounts
                     code: "400"
                 );
                 errors.Add(error);
-                return new PayloadBase<Account>(errors);
+                return new PayloadBase<string>(errors);
             }
 
             if (accountService.FindAccountByEmail(input.Email) != null)
@@ -38,7 +41,7 @@ namespace Leifez.Accounts
                     code: "409"
                 );
                 errors.Add(error);
-                return new PayloadBase<Account>(errors);
+                return new PayloadBase<string>(errors);
             }
 
             var account = new Account
@@ -57,10 +60,20 @@ namespace Leifez.Accounts
                     code: "500"
                 );
                 errors.Add(error);
-                return new PayloadBase<Account>(errors);
+                return new PayloadBase<string>(errors);
             }
 
-            return new PayloadBase<Account>(account);
+            var token = authenticator.AuthByCredentials
+                (
+                    new TokenRequest
+                    {
+                        Login = input.Email,
+                        Password = input.Password,
+                        GrantType = GrantType.Password
+                    }
+                );
+
+            return new PayloadBase<string>(token);
         }
 
         [Authorize(Roles = new[] { "Admin" })]

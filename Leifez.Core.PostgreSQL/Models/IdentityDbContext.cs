@@ -9,6 +9,7 @@ namespace Leifez.Core.PostgreSQL.Models
         public new virtual DbSet<DbIdentityRole> Roles { get; set; }
         public virtual DbSet<DbCollection> Collections { get; set; }
         public virtual DbSet<DbTag> Tags { get; set; }
+        public virtual DbSet<DbImage> Images { get; set; }
 
         public IdentityDbContext(DbContextOptions<DataContext> options)
             : base(options)
@@ -21,6 +22,7 @@ namespace Leifez.Core.PostgreSQL.Models
 
             builder.ApplyConfiguration(new CollectionConfig());
             builder.ApplyConfiguration(new TagConfig());
+            builder.ApplyConfiguration(new ImageConfig());
         }
     }
 }

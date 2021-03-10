@@ -15,7 +15,6 @@ namespace Leifez.Core.PostgreSQL.Configs
             builder.Property(x => x.Type).HasConversion(
                 v => v.ToString(),
                 v => (TagsType)Enum.Parse(typeof(TagsType), v));
-            builder.Property(x => x.Quantity);
             builder.Property(x => x.Danger);
         }
     }

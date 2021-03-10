@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leifez.Application.Domain",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leifez.Common.Mapping", "Leifez.Common.Mapping\Leifez.Common.Mapping.csproj", "{00BBEF13-2B10-4AEE-A773-8A16B7927DAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leifez.Common.Configuration", "Leifez.Common.Configuration\Leifez.Common.Configuration.csproj", "{6AF18914-72B0-4E0B-AF0C-D4B78FBBE1B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leifez.Common.Configuration", "Leifez.Common.Configuration\Leifez.Common.Configuration.csproj", "{6AF18914-72B0-4E0B-AF0C-D4B78FBBE1B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
