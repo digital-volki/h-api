@@ -1,8 +1,7 @@
-*.vs
+.vs/
 *.csproj.user
 **/bin/
 **/obj/
-/db_data
-*.idea
-*.git
-*.vs
+db_data/
+.idea/
+.git/
