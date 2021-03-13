@@ -1,9 +1,0 @@
-F:\Source\Leifez\Leifez\Leifez.Common.Mapping\bin\Prod\netcoreapp3.1\Leifez.Common.Mapping.deps.json
-F:\Source\Leifez\Leifez\Leifez.Common.Mapping\bin\Prod\netcoreapp3.1\Leifez.Common.Mapping.dll
-F:\Source\Leifez\Leifez\Leifez.Common.Mapping\bin\Prod\netcoreapp3.1\Leifez.Common.Mapping.pdb
-F:\Source\Leifez\Leifez\Leifez.Common.Mapping\obj\Prod\netcoreapp3.1\Leifez.Common.Mapping.csprojAssemblyReference.cache
-F:\Source\Leifez\Leifez\Leifez.Common.Mapping\obj\Prod\netcoreapp3.1\Leifez.Common.Mapping.AssemblyInfoInputs.cache
-F:\Source\Leifez\Leifez\Leifez.Common.Mapping\obj\Prod\netcoreapp3.1\Leifez.Common.Mapping.AssemblyInfo.cs
-F:\Source\Leifez\Leifez\Leifez.Common.Mapping\obj\Prod\netcoreapp3.1\Leifez.Common.Mapping.csproj.CoreCompileInputs.cache
-F:\Source\Leifez\Leifez\Leifez.Common.Mapping\obj\Prod\netcoreapp3.1\Leifez.Common.Mapping.dll
-F:\Source\Leifez\Leifez\Leifez.Common.Mapping\obj\Prod\netcoreapp3.1\Leifez.Common.Mapping.pdb

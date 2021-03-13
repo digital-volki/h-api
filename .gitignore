@@ -1,5 +1,8 @@
 *.vs
 *.csproj.user
-Leifez/bin
-Leifez/obj
+**/bin/
+**/obj/
 /db_data
+*.idea
+*.git
+*.vs

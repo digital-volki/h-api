@@ -6,6 +6,7 @@ namespace Leifez.Core.PostgreSQL.Models
 {
     public class IdentityDbContext : IdentityDbContext<DbUser>
     {
+        public new virtual DbSet<DbUser> Users { get; set; }
         public new virtual DbSet<DbRole> Roles { get; set; }
         public virtual DbSet<DbCollection> Collections { get; set; }
         public virtual DbSet<DbImage> Images { get; set; }
