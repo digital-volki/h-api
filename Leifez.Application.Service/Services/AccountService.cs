@@ -30,7 +30,7 @@ namespace Leifez.Application.Service.Services
             var sha256 = SHA256.Create();
             var passwordHash = Encoding.ASCII.GetString(sha256.ComputeHash(Encoding.ASCII.GetBytes(password)));
 
-            DbIdentityUser user = account.Map<Account, DbIdentityUser>(_mapper);
+            DbUser user = account.Map<Account, DbUser>(_mapper);
             user.PasswordHash = passwordHash;
             user.Id = Guid.NewGuid().ToString();
 
@@ -41,7 +41,7 @@ namespace Leifez.Application.Service.Services
 
         public Account FindAccountByEmail(string email)
         {
-            return _accountDomain.GetAccountByEmail(email).Map<DbIdentityUser, Account>(_mapper);
+            return _accountDomain.GetAccountByEmail(email).Map<DbUser, Account>(_mapper);
         }
 
         public List<Claim> GetRolesByAccountId(string accountId)
@@ -51,7 +51,7 @@ namespace Leifez.Application.Service.Services
 
         public bool AddRole(string roleName)
         {
-            return _accountDomain.AddRole(new DbIdentityRole() { Name = roleName });
+            return _accountDomain.AddRole(new DbRole() { Name = roleName });
         }
 
         public bool AddRolesToAccount(string accountId, IEnumerable<string> roles)

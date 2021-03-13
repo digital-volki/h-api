@@ -11,8 +11,7 @@ namespace Leifez.Core.PostgreSQL.Configs
             builder.ToTable("Images");
             builder.HasKey(x => x.Guid);
             builder.Property(x => x.Guid).HasMaxLength(36);
-            builder.Property(x => x.Hash).IsRequired();
-            builder.Property(x => x.Hash).HasMaxLength(32);
+            builder.Property(x => x.Hash).HasMaxLength(32).IsRequired();
         }
     }
 }

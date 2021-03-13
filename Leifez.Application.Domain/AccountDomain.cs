@@ -23,14 +23,14 @@ namespace Leifez.Application.Domain
             _mapper = mapper;
         }
 
-        public DbIdentityUser GetAccountByEmail(string email)
+        public DbUser GetAccountByEmail(string email)
         {
             if (string.IsNullOrEmpty(email))
             {
                 return null;
             }
 
-            return _dataContext.GetQueryable<DbIdentityUser>().Where(c => c.Email == email).FirstOrDefault();
+            return _dataContext.GetQueryable<DbUser>().Where(c => c.Email == email).FirstOrDefault();
         }
 
         public Account GetAccountById(string accountId)
@@ -40,7 +40,7 @@ namespace Leifez.Application.Domain
                 return null;
             }
 
-            return _dataContext.GetQueryable<DbIdentityUser>().Where(c => c.Id == accountId).FirstOrDefault().Map<DbIdentityUser, Account>(_mapper);
+            return _dataContext.GetQueryable<DbUser>().Where(c => c.Id == accountId).FirstOrDefault().Map<DbUser, Account>(_mapper);
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Leifez.Application.Domain
         /// <param name="account"></param>
         /// <param name="isFindingExist">Была ли до вызова проверка на существование Аккаунта с таким Email</param>
         /// <returns></returns>
-        public Account CreateAccount(DbIdentityUser account, bool isFindingExist = false)
+        public Account CreateAccount(DbUser account, bool isFindingExist = false)
         {
             if (account == null)
             {
@@ -78,10 +78,10 @@ namespace Leifez.Application.Domain
                 return null;
             }
 
-            return dbAccount.Map<DbIdentityUser, Account>(_mapper);
+            return dbAccount.Map<DbUser, Account>(_mapper);
         }
 
-        public IEnumerable<DbIdentityRole> GetRolesByAccountId(string accountId)
+        public IEnumerable<DbRole> GetRolesByAccountId(string accountId)
         {
             if (string.IsNullOrEmpty(accountId))
             {
@@ -89,10 +89,10 @@ namespace Leifez.Application.Domain
             }
 
             var roleIds = _dataContext.GetQueryable<IdentityUserRole<string>>().Where(a => a.UserId == accountId).Select(a => a.RoleId).ToList();
-            return _dataContext.GetQueryable<DbIdentityRole>().Where(r => roleIds.Contains(r.Id));
+            return _dataContext.GetQueryable<DbRole>().Where(r => roleIds.Contains(r.Id));
         }
 
-        public bool AddRolesToAccount(string accountId, IEnumerable<DbIdentityRole> roles)
+        public bool AddRolesToAccount(string accountId, IEnumerable<DbRole> roles)
         {
             if (string.IsNullOrEmpty(accountId) || roles == null || roles.Count() <= 0)
             {
@@ -119,7 +119,7 @@ namespace Leifez.Application.Domain
             return _dataContext.Save() != 0;
         }
 
-        public bool AddRole(DbIdentityRole role)
+        public bool AddRole(DbRole role)
         {
             if (role == null)
             {
@@ -136,24 +136,24 @@ namespace Leifez.Application.Domain
             return _dataContext.Save() != 0;
         }
 
-        public DbIdentityRole GetRoleByName(string nameRole)
+        public DbRole GetRoleByName(string nameRole)
         {
             if (string.IsNullOrEmpty(nameRole))
             {
                 return null;
             }
 
-            return _dataContext.GetQueryable<DbIdentityRole>().Where(r => r.Name == nameRole).FirstOrDefault();
+            return _dataContext.GetQueryable<DbRole>().Where(r => r.Name == nameRole).FirstOrDefault();
         }
 
-        public IEnumerable<DbIdentityRole> GetRolesByNames(IEnumerable<string> nameRoles)
+        public IEnumerable<DbRole> GetRolesByNames(IEnumerable<string> nameRoles)
         {
             if (nameRoles == null || nameRoles.Count() <= 0)
             {
                 return null;
             }
 
-            return _dataContext.GetQueryable<DbIdentityRole>().Where(r => nameRoles.Contains(r.Name));
+            return _dataContext.GetQueryable<DbRole>().Where(r => nameRoles.Contains(r.Name));
         }
     }
 }

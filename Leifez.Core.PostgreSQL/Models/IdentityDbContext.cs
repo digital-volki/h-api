@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Leifez.Core.PostgreSQL.Models
 {
-    public class IdentityDbContext : IdentityDbContext<DbIdentityUser>
+    public class IdentityDbContext : IdentityDbContext<DbUser>
     {
-        public new virtual DbSet<DbIdentityRole> Roles { get; set; }
+        public new virtual DbSet<DbRole> Roles { get; set; }
         public virtual DbSet<DbCollection> Collections { get; set; }
-        public virtual DbSet<DbTag> Tags { get; set; }
         public virtual DbSet<DbImage> Images { get; set; }
+        public virtual DbSet<DbTag> Tags { get; set; }
 
         public IdentityDbContext(DbContextOptions<DataContext> options)
             : base(options)

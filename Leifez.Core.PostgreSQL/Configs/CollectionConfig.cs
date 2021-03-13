@@ -9,10 +9,7 @@ namespace Leifez.Core.PostgreSQL.Configs
         public void Configure(EntityTypeBuilder<DbCollection> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Title).IsUnicode().HasMaxLength(100);
-            builder.Property(x => x.Description);
-            builder.Property(x => x.Author);
-            builder.Property(x => x.Image);
+            builder.Property(x => x.Title).HasMaxLength(100);
         }
     }
 }

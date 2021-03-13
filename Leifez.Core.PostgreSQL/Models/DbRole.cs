@@ -2,8 +2,8 @@
 
 namespace Leifez.Core.PostgreSQL.Models
 {
-    public class DbIdentityUser : IdentityUser
+    public class DbRole : IdentityRole
     {
-        
+
     }
 }

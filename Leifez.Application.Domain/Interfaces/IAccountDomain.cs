@@ -6,13 +6,13 @@ namespace Leifez.Application.Domain.Interfaces
 {
     public interface IAccountDomain
     {
-        DbIdentityUser GetAccountByEmail(string userName);
+        DbUser GetAccountByEmail(string userName);
         Account GetAccountById(string accountId);
-        Account CreateAccount(DbIdentityUser account, bool isFindingExist = false);
-        IEnumerable<DbIdentityRole> GetRolesByAccountId(string accountId);
-        bool AddRolesToAccount(string accountId, IEnumerable<DbIdentityRole> roles);
-        bool AddRole(DbIdentityRole role);
-        DbIdentityRole GetRoleByName(string nameRole);
-        IEnumerable<DbIdentityRole> GetRolesByNames(IEnumerable<string> nameRoles);
+        Account CreateAccount(DbUser account, bool isFindingExist = false);
+        IEnumerable<DbRole> GetRolesByAccountId(string accountId);
+        bool AddRolesToAccount(string accountId, IEnumerable<DbRole> roles);
+        bool AddRole(DbRole role);
+        DbRole GetRoleByName(string nameRole);
+        IEnumerable<DbRole> GetRolesByNames(IEnumerable<string> nameRoles);
     }
 }

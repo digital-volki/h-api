@@ -5,15 +5,16 @@ using Leifez.Core.Infrastructure.Exceptions;
 using Leifez.General;
 using Leifez.Images.Inputs;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Leifez.Images
 {
     [ExtendObjectType(Name = "Query")]
     public class ImageQueries
     {
-        public PayloadBase<string> GetImage(
+        public PayloadBase<IEnumerable<string>> GetImages(
             [Service] IImageService imageService,
-            GetImageInput input)
+            GetImagesInput input)
         {
             var errors = new List<UserError>();
 
@@ -25,22 +26,22 @@ namespace Leifez.Images
                     code: "400"
                 );
                 errors.Add(error);
-                return new PayloadBase<string>(errors);
+                return new PayloadBase<IEnumerable<string>>(errors);
             }
 
-            var result = imageService.GetImage(input.Guid);
-            if (string.IsNullOrEmpty(result))
+            var result = imageService.GetImages(input.Guids);
+            if (!result.Any())
             {
                 var error = new UserError
                 (
-                    message: "Image not exitst.",
+                    message: "Images not exitst.",
                     code: "404"
                 );
                 errors.Add(error);
-                return new PayloadBase<string>(errors);
+                return new PayloadBase<IEnumerable<string>>(errors);
             }
 
-            return new PayloadBase<string>(result);
+            return new PayloadBase<IEnumerable<string>>(result);
         }
     }
 }

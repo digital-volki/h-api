@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Leifez.Core.PostgreSQL.Models
 {
@@ -7,8 +8,9 @@ namespace Leifez.Core.PostgreSQL.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public string Author { get; set; }
-        public string Image { get; set; }
-        //public ICollection<DbTag> Tags { get; set; }
+        public DbUser Author { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
+        public ICollection<DbTag> Tags { get; set; } = new List<DbTag>();
     }
 }

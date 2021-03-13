@@ -11,13 +11,11 @@ namespace Leifez.Collections
     [ExtendObjectType(Name = "Query")]
     public class CollectionQueries
     {
-        [Authorize]
         [UsePaging]
         public IQueryable<Collection> GetCollections(
             [Service] ICollectionService collectionService) =>
             collectionService.GetCollections();
 
-        [Authorize]
         public Collection GetCollectionById(
             [ID(nameof(Collection))] int id,
             [Service] ICollectionService collectionService) =>

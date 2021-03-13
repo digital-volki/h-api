@@ -47,11 +47,11 @@ namespace Leifez.Common.Web.Auth
                 return null;
             }
             
-            var accessToken = LeifezJwtAuthenticator.GenerateJwtToken(account.Map<DbIdentityUser, Account>(_mapper), roles);
+            var accessToken = LeifezJwtAuthenticator.GenerateJwtToken(account.Map<DbUser, Account>(_mapper), roles);
             return new Access(accessToken);
         }
 
-        private bool ValidatePassword(string password, DbIdentityUser account)
+        private bool ValidatePassword(string password, DbUser account)
         {
             if (string.IsNullOrEmpty(password) || account == null)
             {

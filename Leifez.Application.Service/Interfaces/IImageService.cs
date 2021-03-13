@@ -1,9 +1,11 @@
-﻿namespace Leifez.Application.Service.Interfaces
+﻿using System.Collections.Generic;
+
+namespace Leifez.Application.Service.Interfaces
 {
     public interface IImageService
     {
-        string AddImage(string image);
-        string GetImage(string guid);
+        List<string> AddImages(IEnumerable<string> base64Images);
+        List<string> GetImages(IEnumerable<string> guids);
         bool DeleteImage(string guid);
     }
 }

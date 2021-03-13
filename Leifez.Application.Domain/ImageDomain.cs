@@ -2,6 +2,7 @@
 using Leifez.Application.Domain.Interfaces;
 using Leifez.Core.PostgreSQL;
 using Leifez.Core.PostgreSQL.Models;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Leifez.Application.Domain
@@ -19,7 +20,7 @@ namespace Leifez.Application.Domain
             _mapper = mapper;
         }
 
-        public bool AddImage(DbImage imageModel)
+        public bool Add(DbImage imageModel)
         {
             if (imageModel == null)
             {
@@ -41,7 +42,7 @@ namespace Leifez.Application.Domain
             return _dataContext.Save() != 0;
         }
 
-        public bool DeleteImage(string guid)
+        public bool Delete(string guid)
         {
             var dbImage = _dataContext.GetQueryable<DbImage>().Where(x => x.Guid == guid).FirstOrDefault();
             var deleteImage = _dataContext.Delete(dbImage);
@@ -49,9 +50,14 @@ namespace Leifez.Application.Domain
             return _dataContext.Save() != 0;
         }
 
-        public DbImage GetImage(string guid)
+        public List<DbImage> Get(IEnumerable<string> guids)
         {
-            return _dataContext.GetQueryable<DbImage>().Where(x => x.Guid == guid).FirstOrDefault();
+            return _dataContext.GetQueryable<DbImage>().Where(x => guids.Contains(x.Guid)).ToList();
+        }
+
+        public string FindByHash(string hash)
+        {
+            return _dataContext.GetQueryable<DbImage>().Where(x => x.Hash == hash).FirstOrDefault().Guid;
         }
     }
 }

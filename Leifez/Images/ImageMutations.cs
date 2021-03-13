@@ -5,15 +5,16 @@ using Leifez.Core.Infrastructure.Exceptions;
 using Leifez.General;
 using Leifez.Images.Inputs;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Leifez.Images
 {
     [ExtendObjectType(Name = "Mutation")]
     public class ImageMutations
     {
-        public PayloadBase<string> CreateImage(
+        public PayloadBase<IEnumerable<string>> CreateImages(
             [Service] IImageService imageService,
-            CreateImageInput input)
+            CreateImagesInput input)
         {
             var errors = new List<UserError>();
 
@@ -25,22 +26,22 @@ namespace Leifez.Images
                     code: "400"
                 );
                 errors.Add(error);
-                return new PayloadBase<string>(errors);
+                return new PayloadBase<IEnumerable<string>>(errors);
             }
 
-            var result = imageService.AddImage(input.ContentImage);
-            if (string.IsNullOrEmpty(result))
+            var result = imageService.AddImages(input.Base64Images);
+            if (!result.Any())
             {
                 var error = new UserError
                 (
-                    message: "Failed to create image.",
+                    message: "Failed to create images.",
                     code: "500"
                 );
                 errors.Add(error);
-                return new PayloadBase<string>(errors);
+                return new PayloadBase<IEnumerable<string>>(errors);
             }
 
-            return new PayloadBase<string>(result);
+            return new PayloadBase<IEnumerable<string>>(result);
         }
     }
 }

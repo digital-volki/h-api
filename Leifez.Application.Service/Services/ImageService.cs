@@ -9,6 +9,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Leifez.Application.Service.Services
 {
@@ -150,37 +151,51 @@ namespace Leifez.Application.Service.Services
             return currentDirectoryInfo;
         }
 
-        public string AddImage(string imageBase64)
+        public List<string> AddImages(IEnumerable<string> base64Images)
         {
-            var image = Base64ToImage(imageBase64);
-            var imageModel = new DbImage()
+            var result = new List<string>();
+            foreach (var base64Image in base64Images)
             {
-                Guid = Guid.NewGuid().ToString(),
-                Hash = ImageToMd5(image)
-            };
-
-            if (!_imageDomain.AddImage(imageModel))
-            {
-                return string.Empty;
-            }
-
-            try
-            {
-                var result = RecursiveSearch(RootDirectoryInfo, imageModel.Hash);
-                if (result is DirectoryInfo)
+                var image = Base64ToImage(base64Image);
+                var imageModel = new DbImage()
                 {
-                    var directoryInfo = result as DirectoryInfo;
-                    var extension = image.RawFormat.ToString().ToLower();
-                    image.Save($@"{directoryInfo.FullName}\{imageModel.Hash}.{extension}");
+                    Hash = ImageToMd5(image)
+                };
+
+                try
+                {
+                    var guid = _imageDomain.FindByHash(imageModel.Hash);
+                    if (!string.IsNullOrEmpty(guid))
+                    {
+                        imageModel.Guid = guid;
+                        result.Add(imageModel.Guid);
+                        continue;
+                    }
+
+                    var findImage = RecursiveSearch(RootDirectoryInfo, imageModel.Hash);
+                    if (findImage is DirectoryInfo)
+                    {
+                        var directoryInfo = findImage as DirectoryInfo;
+                        var extension = image.RawFormat.ToString().ToLower();
+                        image.Save($@"{directoryInfo.FullName}\{imageModel.Hash}.{extension}");
+                    }
+
+                    imageModel.Guid = Guid.NewGuid().ToString();
+                    if (!_imageDomain.Add(imageModel))
+                    {
+                        continue;
+                    }
+
+                    result.Add(imageModel.Guid);
+                }
+                catch (Exception e)
+                {
+                    _logger.LogError(e, e.Message);
+                    return new List<string>();
                 }
             }
-            catch (Exception e)
-            {
-                _logger.LogError(e, e.Message);
-                return string.Empty;
-            }
 
-            return imageModel.Guid;
+            return result;
         }
 
         public bool DeleteImage(string guid)
@@ -188,19 +203,22 @@ namespace Leifez.Application.Service.Services
             throw new System.NotImplementedException();
         }
 
-        public string GetImage(string guid)
+        public List<string> GetImages(IEnumerable<string> guids)
         {
-            var dbImage = _imageDomain.GetImage(guid);
-            var result = RecursiveSearch(RootDirectoryInfo, dbImage.Hash);
-
-            if (result is FileInfo)
+            var result = new List<string>();
+            var dbImages = _imageDomain.Get(guids);
+            foreach (var dbImage in dbImages)
             {
-                var fileInfo = result as FileInfo;
-                var image = Image.FromFile(fileInfo.FullName);
-                return ImageToBase64(image);
+                var findImage = RecursiveSearch(RootDirectoryInfo, dbImage.Hash);
+                if (findImage is FileInfo)
+                {
+                    var fileInfo = findImage as FileInfo;
+                    var image = Image.FromFile(fileInfo.FullName);
+                    result.Add(ImageToBase64(image));
+                }
             }
 
-            return string.Empty;
+            return result;
         }
     }
 }
