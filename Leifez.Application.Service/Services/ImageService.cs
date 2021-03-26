@@ -162,41 +162,53 @@ namespace Leifez.Application.Service.Services
             foreach (var base64Image in base64Images)
             {
                 _logger.LogInformation("Converting base64 to image");
-                DrawingImage image = Base64ToImage(base64Image);
-                var imageModel = new DbImage()
-                {
-                    Hash = ImageToMd5(image)
-                };
-
                 try
                 {
-                    var guid = _imageDomain.FindByHash(imageModel.Hash);
-                    if (!string.IsNullOrEmpty(guid))
+                    DrawingImage image = Base64ToImage(base64Image);
+                    DbImage imageModel = new DbImage()
                     {
-                        imageModel.Guid = guid;
-                        result.Add(imageModel.Guid);
-                        continue;
-                    }
+                        Hash = ImageToMd5(image)
+                    };
+    
+                    _logger.LogInformation("Converting base64 to image end");
+                    _logger.LogInformation("Search and Create image");
 
-                    var findImage = RecursiveSearch(RootDirectoryInfo, imageModel.Hash);
-                    if (findImage is DirectoryInfo)
+                    try
                     {
-                        var directoryInfo = findImage as DirectoryInfo;
-                        var extension = image.RawFormat.ToString().ToLower();
-                        var path = $@"{directoryInfo.FullName}\{imageModel.Hash}.{extension}";
-                        _logger.LogInformation($"Image create in directory. Path: {path}");
-                        image.Save(path);
-                    }
+                        var guid = _imageDomain.FindByHash(imageModel.Hash);
+                        if (!string.IsNullOrEmpty(guid))
+                        {
+                            imageModel.Guid = guid;
+                            result.Add(imageModel.Guid);
+                            continue;
+                        }
 
-                    imageModel.Guid = Guid.NewGuid().ToString();
-                    imageModel.CreatedAt = DateTime.UtcNow;
-                    imageModel.UpdatedAt = DateTime.UtcNow;
-                    imagesToCreate.Add(imageModel);
+                        _logger.LogInformation("RecursiveSearch image");
+                        var findImage = RecursiveSearch(RootDirectoryInfo, imageModel.Hash);
+                        _logger.LogInformation("RecursiveSearch image end");
+                        if (findImage is DirectoryInfo)
+                        {
+                            var directoryInfo = findImage as DirectoryInfo;
+                            var extension = image.RawFormat.ToString().ToLower();
+                            var path = $@"{directoryInfo.FullName}\{imageModel.Hash}.{extension}";
+                            _logger.LogInformation($"Image create in directory. Path: {path}");
+                            image.Save(path);
+                        }
+
+                        imageModel.Guid = Guid.NewGuid().ToString();
+                        imageModel.CreatedAt = DateTime.UtcNow;
+                        imageModel.UpdatedAt = DateTime.UtcNow;
+                        imagesToCreate.Add(imageModel);
+                    }
+                    catch (Exception e)
+                    {
+                        _logger.LogError(e, e.Message);
+                        return new List<string>();
+                    }
                 }
                 catch (Exception e)
                 {
                     _logger.LogError(e, e.Message);
-                    return new List<string>();
                 }
             }
 
