@@ -34,10 +34,9 @@ RUN dotnet restore -r linux-arm64
 COPY . /source/
 WORKDIR /source/Leifez
 RUN dotnet publish -c release -o /app -r linux-arm64 --self-contained false --no-restore
-
+RUN apt-get update && apt-get install -y libgdiplus
 # final stage/image
 FROM mcr.microsoft.com/dotnet/aspnet:3.1.11-buster-slim-arm64v8
 WORKDIR /app
 COPY --from=build /app ./
-RUN apt-get update && apt-get install -y libgdiplus
 ENTRYPOINT ["./Leifez"]
