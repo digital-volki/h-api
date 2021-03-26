@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore.Infrastructure;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Leifez.Core.PostgreSQL
 {
     public interface IDataContext
     {
+        DatabaseFacade GetDatabase();
         IQueryable<T> GetQueryable<T>(bool trackChanges = true, bool disabled = false)
             where T : class, new();
 

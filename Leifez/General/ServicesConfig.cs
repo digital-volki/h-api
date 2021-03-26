@@ -32,8 +32,7 @@ namespace Leifez.General
         {
             CommonRegistration(services);
             DbRegistration(services);
-            AccountRegistration(services);
-            CollectionRegistration(services);
+            ServicesRegistration(services);
             GraphQLRegistration(services);
         }
 
@@ -85,27 +84,21 @@ namespace Leifez.General
 
             services
                 .AddDbContext<IDataContext, DataContext>(options =>
-                    options.UseNpgsql(connectionString), ServiceLifetime.Transient);
-            //options.UseNpgsql("Server=192.168.31.235;User Id=site_db;Password=JGJS89ydhnflsar312h89HLFDF2;Port=5432;Database=site_db;"));
+                    options.UseNpgsql(connectionString), ServiceLifetime.Scoped);
         }
 
-        private static void AccountRegistration(IServiceCollection services)
+        private static void ServicesRegistration(IServiceCollection services)
         {
             services
-                .AddScoped<IAccountDomain, AccountDomain>()
+                .AddScoped<LeifezAuthenticator>()
                 .AddScoped<IAccountService, AccountService>()
-                .AddScoped<LeifezAuthenticator>();
-        }
-
-        private static void CollectionRegistration(IServiceCollection services)
-        {
-            services
-                .AddScoped<ICollectionDomain, CollectionDomain>()
                 .AddScoped<ICollectionService, CollectionService>()
-                .AddScoped<IImageDomain, ImageDomain>()
                 .AddScoped<IImageService, ImageService>()
-                .AddScoped<ITagDomain, TagDomain>()
-                .AddScoped<ITagService, TagService>();
+                .AddScoped<ITagService, TagService>()
+                .AddScoped<IAccountDomain, AccountDomain>()
+                .AddScoped<ICollectionDomain, CollectionDomain>()
+                .AddScoped<IImageDomain, ImageDomain>()
+                .AddScoped<ITagDomain, TagDomain>();
         }
 
         private static void GraphQLRegistration(IServiceCollection services)
@@ -123,9 +116,11 @@ namespace Leifez.General
 
                     .AddMutationType(t => t.Name("Mutation"))
                         .AddTypeExtension<AccountMutations>()
+                        .AddTypeExtension<CollectionMutations>()
                         .AddTypeExtension<ImageMutations>()
 
                     .AddType<CollectionType>()
+                    .AddType<TagType>()
 
                     .AddFiltering()
                     .AddSorting()

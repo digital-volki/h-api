@@ -7,7 +7,8 @@ namespace Leifez.Application.Service.Interfaces
     public interface IAccountService
     {
         Account RegisterAccount(Account account, string password, bool isFindingExist = false);
-        Account FindAccountByEmail(string email);
+        Account GetAccountByEmail(string email);
+        Account GetAccount(string id);
         List<Claim> GetRolesByAccountId(string accountId);
         bool AddRolesToAccount(string accountId, IEnumerable<string> roles);
         bool AddRole(string roleName);

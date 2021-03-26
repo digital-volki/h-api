@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leifez.Common.Mapping", "Le
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leifez.Common.Configuration", "Leifez.Common.Configuration\Leifez.Common.Configuration.csproj", "{6AF18914-72B0-4E0B-AF0C-D4B78FBBE1B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leifez.Common", "Leifez.Common\Leifez.Common.csproj", "{64C530E6-1700-4AEB-B2E3-16E75991A2EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +99,14 @@ Global
 		{6AF18914-72B0-4E0B-AF0C-D4B78FBBE1B7}.Prod|Any CPU.Build.0 = Debug|Any CPU
 		{6AF18914-72B0-4E0B-AF0C-D4B78FBBE1B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6AF18914-72B0-4E0B-AF0C-D4B78FBBE1B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64C530E6-1700-4AEB-B2E3-16E75991A2EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64C530E6-1700-4AEB-B2E3-16E75991A2EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64C530E6-1700-4AEB-B2E3-16E75991A2EB}.Local|Any CPU.ActiveCfg = Debug|Any CPU
+		{64C530E6-1700-4AEB-B2E3-16E75991A2EB}.Local|Any CPU.Build.0 = Debug|Any CPU
+		{64C530E6-1700-4AEB-B2E3-16E75991A2EB}.Prod|Any CPU.ActiveCfg = Debug|Any CPU
+		{64C530E6-1700-4AEB-B2E3-16E75991A2EB}.Prod|Any CPU.Build.0 = Debug|Any CPU
+		{64C530E6-1700-4AEB-B2E3-16E75991A2EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64C530E6-1700-4AEB-B2E3-16E75991A2EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -109,6 +119,7 @@ Global
 		{5330F528-662E-4F51-8F94-7FC15526353F} = {0DD65971-F4D9-4AB1-B765-4768E8AA1851}
 		{00BBEF13-2B10-4AEE-A773-8A16B7927DAC} = {A43B7DD6-6752-479F-9D79-3FADCB3A8945}
 		{6AF18914-72B0-4E0B-AF0C-D4B78FBBE1B7} = {A43B7DD6-6752-479F-9D79-3FADCB3A8945}
+		{64C530E6-1700-4AEB-B2E3-16E75991A2EB} = {A43B7DD6-6752-479F-9D79-3FADCB3A8945}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {23354920-A38D-4793-9929-D634B33FF557}

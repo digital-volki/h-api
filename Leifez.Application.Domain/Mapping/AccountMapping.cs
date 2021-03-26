@@ -11,14 +11,10 @@ namespace Leifez.Application.Domain.Mapping
         public AccountMapping()
         {
             CreateMap<DbUser, Account>()
-                .ForMember(a => a.AccountId, opt => opt.MapFrom(b => b.Id))
-                .ForMember(a => a.Email, opt => opt.MapFrom(b => b.Email))
-                .ForMember(a => a.UserName, opt => opt.MapFrom(b => b.UserName));
+                .ForMember(a => a.AccountId, opt => opt.MapFrom(b => b.Id));
 
             CreateMap<Account, DbUser>()
-                .ForMember(a => a.Id, opt => opt.MapFrom(b => b.AccountId))
-                .ForMember(a => a.Email, opt => opt.MapFrom(b => b.Email))
-                .ForMember(a => a.UserName, opt => opt.MapFrom(b => b.UserName));
+                .ForMember(a => a.Id, opt => opt.MapFrom(b => b.AccountId));
         }
     }
 }

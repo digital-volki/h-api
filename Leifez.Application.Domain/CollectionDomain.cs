@@ -4,6 +4,7 @@ using Leifez.Application.Domain.Models;
 using Leifez.Common.Mapping;
 using Leifez.Core.PostgreSQL;
 using Leifez.Core.PostgreSQL.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace Leifez.Application.Domain
@@ -11,7 +12,7 @@ namespace Leifez.Application.Domain
     public class CollectionDomain : ICollectionDomain
     {
         private readonly IDataContext _dataContext;
-        private readonly IMapper _mapper;
+         readonly IMapper _mapper;
 
         public CollectionDomain(
             IDataContext dataContext,
@@ -21,14 +22,60 @@ namespace Leifez.Application.Domain
             _mapper = mapper;
         }
 
-        public Collection GetCollection(int collectionId)
+        public int Create(DbCollection dbCollection)
         {
-            return _dataContext.GetQueryable<DbCollection>().Where(c => c.Id == collectionId).FirstOrDefault().Map<DbCollection, Collection>(_mapper);
+            var result = -1;
+            if (dbCollection == null)
+            {
+                return result;
+            }
+
+            var dbCollectionResult = _dataContext.Insert(dbCollection);
+
+            if (dbCollectionResult == null)
+            {
+                return result;
+            }
+
+            if (_dataContext.Save() != 0)
+            {
+                result = dbCollectionResult.Id;
+            }
+
+            return result;
+        }
+
+        public DbCollection GetCollection(int collectionId)
+        {
+            return _dataContext.GetQueryable<DbCollection>()
+                .Include(c => c.Tags)
+                .Include(c => c.Images)
+                .Where(c => c.Id == collectionId).FirstOrDefault();
         }
 
         public IQueryable<Collection> GetCollections()
         {
-            return _dataContext.GetQueryable<DbCollection>().MapToList<DbCollection, Collection>(_mapper).AsQueryable();
+            return _dataContext.GetQueryable<DbCollection>()
+                .Include(c => c.Tags)
+                .Include(c => c.Images)
+                .MapToList<DbCollection, Collection>(_mapper).AsQueryable();
+        }
+
+        public bool Update(DbCollection collection)
+        {
+            if (collection == null)
+            {
+                return false;
+            }
+
+            DbCollection dbCollection = _dataContext.Update(collection);
+
+            if (dbCollection == null)
+            {
+                return false;
+            }
+
+            return _dataContext.Save() != 0;
         }
     }
 }

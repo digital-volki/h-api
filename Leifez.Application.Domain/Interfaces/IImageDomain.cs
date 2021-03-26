@@ -5,9 +5,11 @@ namespace Leifez.Application.Domain.Interfaces
 {
     public interface IImageDomain
     {
-        bool Add(DbImage imageModel);
+        bool Add(IEnumerable<DbImage> imageModels);
         List<DbImage> Get(IEnumerable<string> guids);
+        DbImage Get(string guid);
         bool Delete(string guid);
+        bool Update(DbImage dbImage);
         string FindByHash(string hash);
     }
 }

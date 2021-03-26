@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Leifez.Core.PostgreSQL.Models
+namespace Leifez.Application.Domain.Models
 {
-    public class DbImage
+    public class Image
     {
         public string Guid { get; set; }
         public string Hash { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-        public List<DbTag> Tags { get; set; } = new List<DbTag>();
-        public List<DbCollection> Collections { get; set; } = new List<DbCollection>();
+        public ICollection<Tag> Tags { get; set; } = new List<Tag>();
     }
 }

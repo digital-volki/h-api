@@ -3,15 +3,17 @@ using System;
 using Leifez.Core.PostgreSQL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Leifez.Core.PostgreSQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210320132109_TestWithCollection")]
+    partial class TestWithCollection
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,12 +80,11 @@ namespace Leifez.Core.PostgreSQL.Migrations
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(400)
-                        .HasColumnType("character varying(400)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Title")
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp without time zone");
@@ -394,7 +395,7 @@ namespace Leifez.Core.PostgreSQL.Migrations
             modelBuilder.Entity("Leifez.Core.PostgreSQL.Models.DbCollection", b =>
                 {
                     b.HasOne("Leifez.Core.PostgreSQL.Models.DbUser", "Author")
-                        .WithMany()
+                        .WithMany("Collections")
                         .HasForeignKey("AuthorId");
 
                     b.Navigation("Author");
@@ -449,6 +450,11 @@ namespace Leifez.Core.PostgreSQL.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Leifez.Core.PostgreSQL.Models.DbUser", b =>
+                {
+                    b.Navigation("Collections");
                 });
 #pragma warning restore 612, 618
         }

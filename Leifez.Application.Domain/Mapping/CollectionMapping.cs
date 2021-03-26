@@ -9,10 +9,11 @@ namespace Leifez.Application.Domain.Mapping
         public CollectionMapping()
         {
             CreateMap<DbCollection, Collection>()
-                .ForMember(a => a.Id, opt => opt.MapFrom(b => b.Id))
-                .ForMember(a => a.Title, opt => opt.MapFrom(b => b.Title))
-                .ForMember(a => a.Description, opt => opt.MapFrom(b => b.Description))
-                .ForMember(a => a.Author, opt => opt.MapFrom(b => b.Author.UserName));
+                .ForMember(c => c.AuthorId, opt => opt.MapFrom(dc => dc.Author.UserName));
+
+            CreateMap<Collection, DbCollection>()
+                .ForMember(c => c.Images, opt => opt.Ignore())
+                .ForMember(c => c.Tags, opt => opt.Ignore());
         }
     }
 }

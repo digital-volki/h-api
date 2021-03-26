@@ -39,9 +39,14 @@ namespace Leifez.Application.Service.Services
             return result;
         }
 
-        public Account FindAccountByEmail(string email)
+        public Account GetAccountByEmail(string email)
         {
             return _accountDomain.GetAccountByEmail(email).Map<DbUser, Account>(_mapper);
+        }
+
+        public Account GetAccount(string id)
+        {
+            return _accountDomain.GetAccount(id).Map<DbUser, Account>(_mapper);
         }
 
         public List<Claim> GetRolesByAccountId(string accountId)

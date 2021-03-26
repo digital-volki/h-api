@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Leifez.Application.Domain.Interfaces;
 using Leifez.Application.Domain.Models;
 using Leifez.Application.Service.Interfaces;
+using Leifez.Common.Mapping;
+using Leifez.Core.PostgreSQL.Models;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 
@@ -23,9 +26,19 @@ namespace Leifez.Application.Service.Services
             _logger = logger;
         }
 
-        public IEnumerable<Tag> GetTags()
+        public IEnumerable<Tag> GetAll()
         {
-            return _tagDomain.GetTags();
+            return _tagDomain.GetAll();
+        }
+
+        public IEnumerable<Tag> Get(IEnumerable<int> ids)
+        {
+            return _tagDomain.Get(ids).MapToList<DbTag, Tag>(_mapper);
+        }
+
+        public Tag Get(int id)
+        {
+            return _tagDomain.Get(id).Map<DbTag, Tag>(_mapper);
         }
     }
 }

@@ -14,8 +14,8 @@ namespace Leifez.Types
                 .IdField(t => t.Id)
                 .ResolveNode((ctx, id) =>
                     Task<Collection>.Factory.StartNew(() =>
-                    { 
-                        return ctx.Service<ICollectionService>().GetCollection(id); 
+                    {
+                        return ctx.Service<ICollectionService>().GetCollection(id);
                     }, ctx.RequestAborted));
 
         }

@@ -33,7 +33,7 @@ namespace Leifez.Accounts
                 return new PayloadBase<string>(errors);
             }
 
-            if (accountService.FindAccountByEmail(input.Email) != null)
+            if (accountService.GetAccountByEmail(input.Email) != null)
             {
                 var error = new UserError
                 (

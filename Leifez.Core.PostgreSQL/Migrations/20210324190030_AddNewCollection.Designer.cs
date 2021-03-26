@@ -3,36 +3,23 @@ using System;
 using Leifez.Core.PostgreSQL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Leifez.Core.PostgreSQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210324190030_AddNewCollection")]
+    partial class AddNewCollection
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-            modelBuilder.Entity("DbCollectionDbImage", b =>
-                {
-                    b.Property<int>("CollectionsId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("ImagesGuid")
-                        .HasColumnType("character varying(36)");
-
-                    b.HasKey("CollectionsId", "ImagesGuid");
-
-                    b.HasIndex("ImagesGuid");
-
-                    b.ToTable("DbCollectionDbImage");
-                });
 
             modelBuilder.Entity("DbCollectionDbTag", b =>
                 {
@@ -71,9 +58,6 @@ namespace Leifez.Core.PostgreSQL.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("AuthorId")
-                        .HasColumnType("text");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp without time zone");
 
@@ -89,8 +73,6 @@ namespace Leifez.Core.PostgreSQL.Migrations
                         .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
 
                     b.ToTable("Collections");
                 });
@@ -346,21 +328,6 @@ namespace Leifez.Core.PostgreSQL.Migrations
                     b.HasDiscriminator().HasValue("DbRole");
                 });
 
-            modelBuilder.Entity("DbCollectionDbImage", b =>
-                {
-                    b.HasOne("Leifez.Core.PostgreSQL.Models.DbCollection", null)
-                        .WithMany()
-                        .HasForeignKey("CollectionsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Leifez.Core.PostgreSQL.Models.DbImage", null)
-                        .WithMany()
-                        .HasForeignKey("ImagesGuid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("DbCollectionDbTag", b =>
                 {
                     b.HasOne("Leifez.Core.PostgreSQL.Models.DbCollection", null)
@@ -389,15 +356,6 @@ namespace Leifez.Core.PostgreSQL.Migrations
                         .HasForeignKey("TagsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Leifez.Core.PostgreSQL.Models.DbCollection", b =>
-                {
-                    b.HasOne("Leifez.Core.PostgreSQL.Models.DbUser", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId");
-
-                    b.Navigation("Author");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

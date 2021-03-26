@@ -7,5 +7,7 @@ namespace Leifez.Application.Service.Interfaces
     {
         Collection GetCollection(int collectionId);
         IQueryable<Collection> GetCollections();
+        int Create(Collection collection);
+        bool Update(Collection collection);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Leifez.Application.Domain.Interfaces;
 using Leifez.Core.PostgreSQL;
 using Leifez.Core.PostgreSQL.Models;
@@ -20,21 +21,16 @@ namespace Leifez.Application.Domain
             _mapper = mapper;
         }
 
-        public bool Add(DbImage imageModel)
+        public bool Add(IEnumerable<DbImage> imageModels)
         {
-            if (imageModel == null)
+            if (imageModels == null || !imageModels.Any())
             {
                 return false;
             }
 
-            if (string.IsNullOrEmpty(imageModel.Guid) || string.IsNullOrEmpty(imageModel.Hash))
-            {
-                return false;
-            }
+            var dbImages = _dataContext.InsertMany(imageModels);
 
-            var dbImage = _dataContext.Insert(imageModel);
-
-            if (dbImage == null)
+            if (dbImages == null || !dbImages.Any())
             {
                 return false;
             }
@@ -52,12 +48,36 @@ namespace Leifez.Application.Domain
 
         public List<DbImage> Get(IEnumerable<string> guids)
         {
-            return _dataContext.GetQueryable<DbImage>().Where(x => guids.Contains(x.Guid)).ToList();
+            return _dataContext.GetQueryable<DbImage>()
+                .Include(i => i.Tags).ToList()
+                .Where(x => guids.Contains(x.Guid)).ToList();
+        }
+        public DbImage Get(string guid)
+        {
+            return _dataContext.GetQueryable<DbImage>()
+                .Include(i => i.Tags).ToList()
+                .Where(x => x.Guid == guid).FirstOrDefault();
         }
 
         public string FindByHash(string hash)
         {
             return _dataContext.GetQueryable<DbImage>().Where(x => x.Hash == hash).FirstOrDefault().Guid;
+        }
+
+        public bool Update(DbImage dbImage)
+        {
+            if (dbImage == null)
+            {
+                return false;
+            }
+
+            var resImage = _dataContext.Update(dbImage);
+            if (resImage == null)
+            {
+                return false;
+            }
+
+            return _dataContext.Save() != 0;
         }
     }
 }

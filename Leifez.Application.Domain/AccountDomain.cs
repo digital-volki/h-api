@@ -33,6 +33,16 @@ namespace Leifez.Application.Domain
             return _dataContext.GetQueryable<DbUser>().Where(c => c.Email == email).FirstOrDefault();
         }
 
+        public DbUser GetAccount(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return null;
+            }
+
+            return _dataContext.GetQueryable<DbUser>().Where(c => c.Id == id).FirstOrDefault();
+        }
+
         public Account GetAccountById(string accountId)
         {
             if (string.IsNullOrEmpty(accountId))

@@ -17,7 +17,7 @@ namespace Leifez.Tags
         {
             var errors = new List<UserError>();
 
-            var result = tagService.GetTags().ToList();
+            var result = tagService.GetAll().ToList();
             
             if (result == null || !result.Any())
             {

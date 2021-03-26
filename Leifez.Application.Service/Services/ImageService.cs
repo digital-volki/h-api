@@ -4,12 +4,14 @@ using Leifez.Application.Service.Interfaces;
 using Leifez.Core.PostgreSQL.Models;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Drawing;
+using DrawingImage = System.Drawing.Image;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using System.Linq;
 using System.Collections.Generic;
+using Leifez.Common.Mapping;
+using Leifez.Application.Domain.Models;
 
 namespace Leifez.Application.Service.Services
 {
@@ -33,17 +35,17 @@ namespace Leifez.Application.Service.Services
             _logger = logger;
         }
 
-        private Image Base64ToImage(string base64string)
+        private DrawingImage Base64ToImage(string base64string)
         {
             byte[] imageBytes = Convert.FromBase64String(base64string);
             using (var ms = new MemoryStream(imageBytes, 0, imageBytes.Length))
             {
-                var image = Image.FromStream(ms, true);
+                var image = DrawingImage.FromStream(ms, true);
                 return image;
             }
         }
 
-        private string ImageToBase64(Image image)
+        private string ImageToBase64(DrawingImage image)
         {
             using (MemoryStream m = new MemoryStream())
             {
@@ -55,7 +57,7 @@ namespace Leifez.Application.Service.Services
             }
         }
 
-        private string ImageToMd5(Image image)
+        private string ImageToMd5(DrawingImage image)
         {
             using (MD5 md5 = MD5.Create())
             {
@@ -151,12 +153,13 @@ namespace Leifez.Application.Service.Services
             return currentDirectoryInfo;
         }
 
-        public List<string> AddImages(IEnumerable<string> base64Images)
+        public List<string> Add(IEnumerable<string> base64Images)
         {
             var result = new List<string>();
+            var imagesToCreate = new List<DbImage>();
             foreach (var base64Image in base64Images)
             {
-                var image = Base64ToImage(base64Image);
+                DrawingImage image = Base64ToImage(base64Image);
                 var imageModel = new DbImage()
                 {
                     Hash = ImageToMd5(image)
@@ -181,12 +184,7 @@ namespace Leifez.Application.Service.Services
                     }
 
                     imageModel.Guid = Guid.NewGuid().ToString();
-                    if (!_imageDomain.Add(imageModel))
-                    {
-                        continue;
-                    }
-
-                    result.Add(imageModel.Guid);
+                    imagesToCreate.Add(imageModel);
                 }
                 catch (Exception e)
                 {
@@ -195,15 +193,20 @@ namespace Leifez.Application.Service.Services
                 }
             }
 
+            if (_imageDomain.Add(imagesToCreate))
+            {
+                result.AddRange(imagesToCreate.Select(i => i.Guid));
+            }
+
             return result;
         }
 
-        public bool DeleteImage(string guid)
+        public bool Delete(string guid)
         {
             throw new System.NotImplementedException();
         }
 
-        public List<string> GetImages(IEnumerable<string> guids)
+        public List<string> Get(IEnumerable<string> guids)
         {
             var result = new List<string>();
             var dbImages = _imageDomain.Get(guids);
@@ -213,12 +216,21 @@ namespace Leifez.Application.Service.Services
                 if (findImage is FileInfo)
                 {
                     var fileInfo = findImage as FileInfo;
-                    var image = Image.FromFile(fileInfo.FullName);
+                    var image = DrawingImage.FromFile(fileInfo.FullName);
                     result.Add(ImageToBase64(image));
                 }
             }
 
             return result;
+        }
+
+        public bool Change(Image image)
+        {
+            DbImage dbImage = _imageDomain.Get(image.Guid);
+            dbImage.Tags.AddRange(image.Tags.MapToList<Tag, DbTag>(_mapper));
+            image.UpdatedAt = DateTime.UtcNow;
+
+            return _imageDomain.Update(dbImage);
         }
     }
 }

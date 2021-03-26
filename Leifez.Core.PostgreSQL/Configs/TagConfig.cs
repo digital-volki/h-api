@@ -11,11 +11,9 @@ namespace Leifez.Core.PostgreSQL.Configs
         public void Configure(EntityTypeBuilder<DbTag> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Name);
             builder.Property(x => x.Type).HasConversion(
                 v => v.ToString(),
                 v => (TagsType)Enum.Parse(typeof(TagsType), v));
-            builder.Property(x => x.Danger);
         }
     }
 }

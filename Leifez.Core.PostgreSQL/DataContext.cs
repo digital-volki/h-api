@@ -5,15 +5,22 @@ using System.Linq.Expressions;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Leifez.Common.Configuration;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace Leifez.Core.PostgreSQL
 {
     public class DataContext : IdentityDbContext, IDataContext
     {
+        public Guid Guid { get; set; } = Guid.NewGuid();
         public DataContext(DbContextOptions<DataContext> options)
             : base(options)
         {
             Database.EnsureCreated();
+        }
+
+        public DatabaseFacade GetDatabase()
+        {
+            return Database;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

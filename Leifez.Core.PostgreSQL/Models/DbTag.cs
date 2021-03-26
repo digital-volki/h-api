@@ -9,6 +9,7 @@ namespace Leifez.Core.PostgreSQL.Models
         public string Name { get; set; }
         public TagsType Type { get; set; }
         public bool Danger { get; set; }
+        public List<DbImage> Images { get; set; } = new List<DbImage>();
         public ICollection<DbCollection> Collections { get; set; } = new List<DbCollection>();
     }
 }

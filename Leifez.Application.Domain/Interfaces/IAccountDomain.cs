@@ -7,6 +7,7 @@ namespace Leifez.Application.Domain.Interfaces
     public interface IAccountDomain
     {
         DbUser GetAccountByEmail(string userName);
+        DbUser GetAccount(string id);
         Account GetAccountById(string accountId);
         Account CreateAccount(DbUser account, bool isFindingExist = false);
         IEnumerable<DbRole> GetRolesByAccountId(string accountId);
