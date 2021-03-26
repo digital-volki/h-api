@@ -33,4 +33,4 @@ services:
       context: .
       dockerfile: Leifez/Dockerfile
     volumes:
-      - ./Leifez/files:./Leifez/files 
+      - /source/Leifez:./Leifez
