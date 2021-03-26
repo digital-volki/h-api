@@ -48,6 +48,7 @@ namespace Leifez.Application.Domain
         public DbCollection GetCollection(int collectionId)
         {
             return _dataContext.GetQueryable<DbCollection>()
+                .Include(c => c.Author)
                 .Include(c => c.Tags)
                 .Include(c => c.Images)
                 .Where(c => c.Id == collectionId).FirstOrDefault();
@@ -56,6 +57,7 @@ namespace Leifez.Application.Domain
         public IQueryable<Collection> GetCollections()
         {
             return _dataContext.GetQueryable<DbCollection>()
+                .Include(c => c.Author)
                 .Include(c => c.Tags)
                 .Include(c => c.Images)
                 .MapToList<DbCollection, Collection>(_mapper).AsQueryable();
