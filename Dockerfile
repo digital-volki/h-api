@@ -25,6 +25,8 @@
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /source
 
+RUN apt-get update && apt-get install -y libgdiplus
+
 # copy csproj and restore as distinct layers
 COPY *.sln .
 COPY */*.csproj /source/
