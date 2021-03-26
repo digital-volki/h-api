@@ -61,7 +61,7 @@ namespace Leifez.Application.Domain
 
         public string FindByHash(string hash)
         {
-            return _dataContext.GetQueryable<DbImage>().Where(x => x.Hash == hash).FirstOrDefault().Guid;
+            return _dataContext.GetQueryable<DbImage>().Where(x => x.Hash == hash).FirstOrDefault()?.Guid;
         }
 
         public bool Update(DbImage dbImage)

@@ -37,7 +37,8 @@ namespace Leifez.Application.Service.Services
 
         private DrawingImage Base64ToImage(string base64string)
         {
-            byte[] imageBytes = Convert.FromBase64String(base64string);
+            var base64stringCut = base64string.Substring(base64string.IndexOf(',') + 1);
+            byte[] imageBytes = Convert.FromBase64String(base64stringCut);
             using (var ms = new MemoryStream(imageBytes, 0, imageBytes.Length))
             {
                 var image = DrawingImage.FromStream(ms, true);
@@ -104,6 +105,7 @@ namespace Leifez.Application.Service.Services
 
             if (currentDirectoryInfo.FullName == RootDirectoryInfo.FullName)
             {
+                _logger.LogInformation($"Files directory create. Path: {currentDirectoryInfo.FullName}");
                 currentDirectoryInfo.Create();
                 var directoryInfo = currentDirectoryInfo.GetDirectories().Where(d => d.Name == md5Part).FirstOrDefault();
 
@@ -159,6 +161,7 @@ namespace Leifez.Application.Service.Services
             var imagesToCreate = new List<DbImage>();
             foreach (var base64Image in base64Images)
             {
+                _logger.LogInformation("Converting base64 to image");
                 DrawingImage image = Base64ToImage(base64Image);
                 var imageModel = new DbImage()
                 {
@@ -180,10 +183,14 @@ namespace Leifez.Application.Service.Services
                     {
                         var directoryInfo = findImage as DirectoryInfo;
                         var extension = image.RawFormat.ToString().ToLower();
-                        image.Save($@"{directoryInfo.FullName}\{imageModel.Hash}.{extension}");
+                        var path = $@"{directoryInfo.FullName}\{imageModel.Hash}.{extension}";
+                        _logger.LogInformation($"Image create in directory. Path: {path}");
+                        image.Save(path);
                     }
 
                     imageModel.Guid = Guid.NewGuid().ToString();
+                    imageModel.CreatedAt = DateTime.UtcNow;
+                    imageModel.UpdatedAt = DateTime.UtcNow;
                     imagesToCreate.Add(imageModel);
                 }
                 catch (Exception e)
