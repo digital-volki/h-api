@@ -1,12 +1,12 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
 FROM mcr.microsoft.com/dotnet/runtime:5.0-alpine-arm64v8 AS base
+RUN apk add --no-cache libgdiplus-dev
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
-RUN apk add --no-cache libgdiplus-dev
 WORKDIR /src
 COPY ["Leifez/Leifez.csproj", "Leifez/"]
 COPY ["Leifez.Common.Configuration/Leifez.Common.Configuration.csproj", "Leifez.Common.Configuration/"]
