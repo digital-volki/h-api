@@ -2,6 +2,7 @@
 
 FROM mcr.microsoft.com/dotnet/runtime:5.0-alpine-arm64v8 AS base
 WORKDIR /app
+#RUN cd /usr/lib && ln -s libgdiplus.so gdiplus.dll && ln -s libhostpolicy.so /app/libhostpolicy.so 
 EXPOSE 80
 EXPOSE 443
 
@@ -27,4 +28,5 @@ RUN dotnet publish "Leifez.csproj" -c Release -o /app/publish -r linux-musl-arm6
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+RUN apk add libgdiplus --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted
 ENTRYPOINT ["dotnet", "Leifez.dll"]
