@@ -127,7 +127,7 @@ namespace Leifez.Application.Service.Services
                 {
                     var localMd5Part = GetHashPart(Path.GetFileNameWithoutExtension(f.Name), offset);
                     var localDirectory = currentDirectoryInfo.CreateSubdirectory(localMd5Part);
-                    f.MoveTo($@"{localDirectory.FullName}\{f.Name}");
+                    f.MoveTo($@"{localDirectory.FullName}{Path.DirectorySeparatorChar}{f.Name}");
                 });
             }
 
@@ -190,7 +190,7 @@ namespace Leifez.Application.Service.Services
                         {
                             var directoryInfo = findImage as DirectoryInfo;
                             var extension = image.RawFormat.ToString().ToLower();
-                            var path = $@"{directoryInfo.FullName}\{imageModel.Hash}.{extension}";
+                            var path = $@"{directoryInfo.FullName}{Path.DirectorySeparatorChar}{imageModel.Hash}.{extension}";
                             _logger.LogInformation($"Image create in directory. Path: {path}");
                             image.Save(path);
                         }
