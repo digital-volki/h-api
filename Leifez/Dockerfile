@@ -6,6 +6,7 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+RUN apk add --no-cache libgdiplus-dev
 WORKDIR /src
 COPY ["Leifez/Leifez.csproj", "Leifez/"]
 COPY ["Leifez.Common.Configuration/Leifez.Common.Configuration.csproj", "Leifez.Common.Configuration/"]
