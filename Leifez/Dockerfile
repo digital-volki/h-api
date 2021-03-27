@@ -27,8 +27,5 @@ RUN dotnet publish "Leifez.csproj" -c Release -o /app/publish -r linux-musl-arm6
 
 FROM base AS final
 WORKDIR /app
-RUN apt-get update && apt-get install -y libgdiplus musl-dev
-RUN ln -s /usr/lib/libgdiplus.so /app/libgdiplus.dll
-RUN ln -s /src/Leifez/bin/Release/netcoreapp5.0/linux-musl-arm64/libhostpolicy.so /app/libhostpolicy.so
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Leifez.dll"]
