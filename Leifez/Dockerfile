@@ -2,8 +2,8 @@
 
 FROM mcr.microsoft.com/dotnet/runtime:5.0-buster-slim-arm64v8 AS base
 RUN apt-get update && apt-get install -y libgdiplus
-RUN cd /usr/lib && ln -s libgdiplus.so gdiplus.dll
 WORKDIR /app
+RUN cd /usr/lib && ln -s libgdiplus.so gdiplus.dll
 EXPOSE 80
 EXPOSE 443
 
