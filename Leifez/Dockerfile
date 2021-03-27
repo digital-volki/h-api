@@ -27,8 +27,8 @@ RUN dotnet publish "Leifez.csproj" -c Release -o /app/publish -r linux-musl-arm6
 
 FROM base AS final
 WORKDIR /app
-RUN apt-get update && apt-get install -y libgdiplus
+RUN apt-get update && apt-get install -y libgdiplus musl-dev
 RUN ln -s /usr/lib/libgdiplus.so /app/libgdiplus.dll	
-RUN ln -s /usr/lib64/libc.so.6 /usr/lib64/libc.musl-x86_64.so.1
+#RUN ln -s /usr/lib64/libc.so.6 /usr/lib64/libc.musl-x86_64.so.1
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Leifez.dll"]
