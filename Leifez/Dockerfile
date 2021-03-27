@@ -3,7 +3,7 @@
 FROM mcr.microsoft.com/dotnet/runtime:5.0-buster-slim-arm64v8 AS base
 RUN apt-get update && apt-get install -y libgdiplus
 WORKDIR /app
-RUN cd /usr/lib && ln -s libgdiplus.so gdiplus.dll
+RUN cd /usr/lib && ln -s libgdiplus.so gdiplus.dll && ln -s libhostpolicy.so /app/libhostpolicy.so 
 EXPOSE 80
 EXPOSE 443
 
