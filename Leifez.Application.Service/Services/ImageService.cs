@@ -54,7 +54,7 @@ namespace Leifez.Application.Service.Services
                 byte[] imageBytes = m.ToArray();
 
                 string base64String = Convert.ToBase64String(imageBytes);
-                return base64String;
+                return $"data:image/{image.RawFormat.ToString().ToLower()};base64,{base64String}";
             }
         }
 
