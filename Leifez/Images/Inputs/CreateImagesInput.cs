@@ -6,7 +6,7 @@ namespace Leifez.Images.Inputs
 {
     public record CreateImagesInput(
         IEnumerable<string> Base64Images,
-        int CollectionId) : IInput
+        int? CollectionId) : IInput
     {
         public bool Validate()
         {

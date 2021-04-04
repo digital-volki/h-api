@@ -30,7 +30,7 @@ namespace Leifez.Images
                 return new PayloadBase<IEnumerable<string>>(errors);
             }
 
-            var result = imageService.Add(input.Base64Images, input.CollectionId);
+            var result = imageService.Add(input.Base64Images, input.CollectionId.HasValue ? input.CollectionId.Value : 0);
             if (!result.Any())
             {
                 var error = new UserError
