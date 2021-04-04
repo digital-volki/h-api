@@ -5,8 +5,8 @@ namespace Leifez.Application.Service.Interfaces
 {
     public interface IImageService
     {
-        List<string> Add(IEnumerable<string> base64Images);
-        List<string> Get(IEnumerable<string> guids);
+        List<string> Add(IEnumerable<string> base64Images, int collectionId);
+        List<Image> Get(IEnumerable<string> guids);
         bool Delete(string guid);
         bool Change(Image image);
     }

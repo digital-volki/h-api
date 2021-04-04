@@ -5,7 +5,8 @@ using System.Linq;
 namespace Leifez.Images.Inputs
 {
     public record CreateImagesInput(
-        IEnumerable<string> Base64Images) : IInput
+        IEnumerable<string> Base64Images,
+        int CollectionId) : IInput
     {
         public bool Validate()
         {

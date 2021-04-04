@@ -16,6 +16,8 @@ namespace Leifez.Core.PostgreSQL
 
         T Update<T>(T item) where T : class, new();
 
+        IEnumerable<T> UpdateMany<T>(IEnumerable<T> items) where T : class, new();
+
         int Save();
 
         T Delete<T>(T item) where T : class, new();

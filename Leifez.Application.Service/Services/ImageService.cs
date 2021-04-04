@@ -22,16 +22,19 @@ namespace Leifez.Application.Service.Services
 
         private readonly DirectoryInfo RootDirectoryInfo = new DirectoryInfo("files");
         private readonly IImageDomain _imageDomain;
+        private readonly ICollectionDomain _collectionDomain;
         private readonly IMapper _mapper;
         private readonly ILogger<ImageService> _logger;
 
         public ImageService(
             IImageDomain imageDomain,
+            ICollectionDomain collectionDomain,
             IMapper mapper,
             ILogger<ImageService> logger)
         {
             _mapper = mapper;
             _imageDomain = imageDomain;
+            _collectionDomain = collectionDomain;
             _logger = logger;
         }
 
@@ -155,9 +158,9 @@ namespace Leifez.Application.Service.Services
             return currentDirectoryInfo;
         }
 
-        public List<string> Add(IEnumerable<string> base64Images)
+        public List<string> Add(IEnumerable<string> base64Images, int collectionId)
         {
-            var result = new List<string>();
+            var result = new List<DbImage>();
             var imagesToCreate = new List<DbImage>();
             foreach (var base64Image in base64Images)
             {
@@ -179,7 +182,7 @@ namespace Leifez.Application.Service.Services
                         if (!string.IsNullOrEmpty(guid))
                         {
                             imageModel.Guid = guid;
-                            result.Add(imageModel.Guid);
+                            result.Add(imageModel);
                             continue;
                         }
 
@@ -212,12 +215,23 @@ namespace Leifez.Application.Service.Services
                 }
             }
 
-            if (_imageDomain.Add(imagesToCreate))
+            if (collectionId > 0)
             {
-                result.AddRange(imagesToCreate.Select(i => i.Guid));
+                DbCollection collection = _collectionDomain.GetCollection(collectionId);
+                if (collection != null)
+                {
+                    imagesToCreate.ForEach(i => i.Collections.Add(collection));
+                    result.ForEach(i => { i.Collections.Add(collection); i.UpdatedAt = DateTime.UtcNow; });
+                    _imageDomain.Update(result);
+                }
             }
 
-            return result;
+            if (_imageDomain.Add(imagesToCreate))
+            {
+                result.AddRange(imagesToCreate);
+            }
+
+            return result.Select(i => i.Guid).ToList();
         }
 
         public bool Delete(string guid)
@@ -225,9 +239,9 @@ namespace Leifez.Application.Service.Services
             throw new System.NotImplementedException();
         }
 
-        public List<string> Get(IEnumerable<string> guids)
+        public List<Image> Get(IEnumerable<string> guids)
         {
-            var result = new List<string>();
+            var result = new List<Image>();
             var dbImages = _imageDomain.Get(guids);
             foreach (var dbImage in dbImages)
             {
@@ -235,8 +249,10 @@ namespace Leifez.Application.Service.Services
                 if (findImage is FileInfo)
                 {
                     var fileInfo = findImage as FileInfo;
-                    var image = DrawingImage.FromFile(fileInfo.FullName);
-                    result.Add(ImageToBase64(image));
+                    var drawingImage = DrawingImage.FromFile(fileInfo.FullName);
+                    Image image = dbImage.Map<Image>(_mapper);
+                    image.Data = ImageToBase64(drawingImage);
+                    result.Add(image);
                 }
             }
 
@@ -249,7 +265,7 @@ namespace Leifez.Application.Service.Services
             dbImage.Tags.AddRange(image.Tags.MapToList<Tag, DbTag>(_mapper));
             image.UpdatedAt = DateTime.UtcNow;
 
-            return _imageDomain.Update(dbImage);
+            return _imageDomain.Update(new List<DbImage> { dbImage });
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Leifez.Application.Domain.Interfaces
         List<DbImage> Get(IEnumerable<string> guids);
         DbImage Get(string guid);
         bool Delete(string guid);
-        bool Update(DbImage dbImage);
+        bool Update(IEnumerable<DbImage> dbImages);
         string FindByHash(string hash);
     }
 }

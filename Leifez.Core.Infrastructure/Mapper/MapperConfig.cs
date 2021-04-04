@@ -27,6 +27,7 @@ namespace Leifez.Core.Infrastructure.Mapper
         {
             profiles.Add(new TagMapping());
             profiles.Add(new CollectionMapping());
+            profiles.Add(new ImageMapping());
             profiles.Add(new AccountMapping());
         }
     }

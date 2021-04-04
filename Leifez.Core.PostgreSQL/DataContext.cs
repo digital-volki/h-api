@@ -91,12 +91,19 @@ namespace Leifez.Core.PostgreSQL
             }
             return result;
         }
-
-#pragma warning disable CS0114 // Член скрывает унаследованный член: отсутствует ключевое слово переопределения
-        public T Update<T>(T item) where T : class, new()
-#pragma warning restore CS0114 // Член скрывает унаследованный член: отсутствует ключевое слово переопределения
+        public new T Update<T>(T item) where T : class, new()
         {
             return PerformAction(item, EntityState.Modified);
+        }
+
+        public IEnumerable<T> UpdateMany<T>(IEnumerable<T> items) where T : class, new()
+        {
+            var result = new List<T>();
+            foreach (var item in items)
+            {
+                result.Add(PerformAction(item, EntityState.Modified));
+            }
+            return result;
         }
 
         protected virtual TItem PerformAction<TItem>(TItem item, EntityState entityState) where TItem : class, new()

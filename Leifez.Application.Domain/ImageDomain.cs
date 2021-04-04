@@ -49,7 +49,7 @@ namespace Leifez.Application.Domain
         public List<DbImage> Get(IEnumerable<string> guids)
         {
             return _dataContext.GetQueryable<DbImage>()
-                .Include(i => i.Tags).ToList()
+                .Include(i => i.Tags)
                 .Where(x => guids.Contains(x.Guid)).ToList();
         }
         public DbImage Get(string guid)
@@ -64,15 +64,15 @@ namespace Leifez.Application.Domain
             return _dataContext.GetQueryable<DbImage>().Where(x => x.Hash == hash).FirstOrDefault()?.Guid;
         }
 
-        public bool Update(DbImage dbImage)
+        public bool Update(IEnumerable<DbImage> dbImages)
         {
-            if (dbImage == null)
+            if (dbImages == null || !dbImages.Any())
             {
                 return false;
             }
 
-            var resImage = _dataContext.Update(dbImage);
-            if (resImage == null)
+            var resImage = _dataContext.UpdateMany(dbImages);
+            if (resImage == null || !resImage.Any())
             {
                 return false;
             }
