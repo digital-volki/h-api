@@ -17,7 +17,7 @@ namespace Leifez.Collections
             collectionService.GetCollections();
 
         public Collection GetCollectionById(
-            [ID(nameof(Collection))] int id,
+            int id,
             [Service] ICollectionService collectionService) =>
             collectionService.GetCollection(id);
     }

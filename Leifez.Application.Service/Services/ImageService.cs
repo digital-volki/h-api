@@ -42,11 +42,9 @@ namespace Leifez.Application.Service.Services
         {
             var base64stringCut = base64string.Substring(base64string.IndexOf(',') + 1);
             byte[] imageBytes = Convert.FromBase64String(base64stringCut);
-            using (var ms = new MemoryStream(imageBytes, 0, imageBytes.Length))
-            {
-                var image = DrawingImage.FromStream(ms, true);
-                return image;
-            }
+            var ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
+            var image = DrawingImage.FromStream(ms, true);
+            return image;
         }
 
         private string ImageToBase64(DrawingImage image)
@@ -66,11 +64,9 @@ namespace Leifez.Application.Service.Services
             using (MD5 md5 = MD5.Create())
             {
                 byte[] inputBytes;
-                using (var ms = new MemoryStream())
-                {
-                    image.Save(ms, image.RawFormat);
-                    inputBytes = ms.ToArray();
-                }
+                var ms = new MemoryStream();
+                image.Save(ms, image.RawFormat);
+                inputBytes = ms.ToArray();
 
                 byte[] hashBytes = md5.ComputeHash(inputBytes);
 
