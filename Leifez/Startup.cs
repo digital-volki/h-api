@@ -1,8 +1,5 @@
-using System.Configuration;
 using System.Threading.Tasks;
 using Leifez.Common.Configuration;
-using Leifez.Common.Web;
-using Leifez.Core.Infrastructure;
 using Leifez.General;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,7 +20,6 @@ namespace Leifez
             Configuration = new ConfigurationBuilder()
                      .AddJsonFile($"AppSettings.{Environment.EnvironmentName}.json")
                      .Build();
-
             new AppConfiguration(Configuration, Environment.EnvironmentName);
         }
 

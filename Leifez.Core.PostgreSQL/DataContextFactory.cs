@@ -10,8 +10,7 @@ namespace Leifez.DataAccess.PostgreSQL
         public DataContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<DataContext>();
-            optionsBuilder.UseNpgsql(AppConfiguration.Configuration.GetSection("ConnectionStrings")["DefaultConnection"]);
-            //optionsBuilder.UseNpgsql("Server=192.168.31.235;User Id=site_db;Password=JGJS89ydhnflsar312h89HLFDF2;Port=5432;Database=site_db;");
+            optionsBuilder.UseNpgsql(AppConfiguration.DatabaseFactoryConnection);
 
             return new DataContext(optionsBuilder.Options);
         }

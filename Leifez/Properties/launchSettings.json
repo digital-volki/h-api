@@ -28,7 +28,6 @@
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": false,
-      //"launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/graphql",
       "launchUrl": "http://192.168.31.101:5000/graphql",
       "publishAllPorts": true,
       "useSSL": false
