@@ -34,3 +34,8 @@ services:
       dockerfile: Leifez/Dockerfile
     volumes:
       - /home/worker/raw_data:/app/files
+
+networks:
+  default:
+    external: 
+      name: orchestr
