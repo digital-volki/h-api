@@ -14,17 +14,12 @@ namespace Leifez.Common.Web.BearerAuth
     {
         public static string GenerateJwtToken(Account account, IEnumerable<Claim> claims)
         {
-            if (claims == null || claims.Count() == 0)
-            {
-                return null;
-            }
-
             var claimsList = new List<Claim>()
             {
                 new Claim(ClaimTypes.NameIdentifier, account.AccountId),
                 new Claim(ClaimTypes.Email, account.Email),
             };
-            claimsList.AddRange(claims);
+            claimsList.AddRange(claims ?? new List<Claim>());
 
             var jwt = new JwtSecurityToken(
                 issuer: AppConfiguration.Configuration.GetSection("JwtSettings").GetSection("jwt-issuer").Value,
