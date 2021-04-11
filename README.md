@@ -1,6 +1,6 @@
 ## Getting Started
 
-Build container and run container:
+Build and run container:
 
 ```bash
 
