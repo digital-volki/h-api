@@ -6,6 +6,7 @@ using Leifez.Application.Service.Interfaces;
 using Leifez.Collections.Inputs;
 using Leifez.Core.Infrastructure.Exceptions;
 using Leifez.General;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,7 +16,7 @@ namespace Leifez.Collections
     public class CollectionMutations
     {
         [Authorize]
-        public PayloadBase<int> CreateCollection(
+        public PayloadBase<string> CreateCollection(
             [Service] ICollectionService collectionService,
             [Service] ITagService tagService,
             [CurrentUserGlobalState] CurrentUser currentUser,
@@ -31,7 +32,7 @@ namespace Leifez.Collections
                     code: "400"
                 );
                 errors.Add(error);
-                return new PayloadBase<int>(errors);
+                return new PayloadBase<string>(errors);
             }
 
             var collection = new Collection()
@@ -42,8 +43,8 @@ namespace Leifez.Collections
                 Tags = input.Tags.ToList()
             };
 
-            var result = collectionService.Create(collection);
-            if (result == -1)
+            string result = collectionService.Create(collection);
+            if (result == Guid.Empty.ToString())
             {
                 var error = new UserError
                 (
@@ -51,14 +52,16 @@ namespace Leifez.Collections
                     code: "500"
                 );
                 errors.Add(error);
-                return new PayloadBase<int>(errors);
+                return new PayloadBase<string>(errors);
             }
 
-            return new PayloadBase<int>(result);
+            return new PayloadBase<string>(result);
         }
 
+        [Authorize]
         public PayloadBase<bool> UpdateCollection(
             [Service] ICollectionService collectionService,
+            [CurrentUserGlobalState] CurrentUser currentUser,
             UpdateCollectionInput input)
         {
             var errors = new List<UserError>();

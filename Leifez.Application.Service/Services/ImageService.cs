@@ -154,7 +154,7 @@ namespace Leifez.Application.Service.Services
             return currentDirectoryInfo;
         }
 
-        public List<string> Add(IEnumerable<string> base64Images, int collectionId)
+        public List<string> Add(IEnumerable<string> base64Images, string collectionId)
         {
             var result = new List<DbImage>();
             var imagesToCreate = new List<DbImage>();
@@ -211,7 +211,7 @@ namespace Leifez.Application.Service.Services
                 }
             }
 
-            if (collectionId > 0)
+            if (collectionId != Guid.Empty.ToString())
             {
                 DbCollection collection = _collectionDomain.GetCollection(collectionId);
                 if (collection != null)

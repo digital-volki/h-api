@@ -5,9 +5,9 @@ namespace Leifez.Application.Service.Interfaces
 {
     public interface ICollectionService
     {
-        Collection GetCollection(int collectionId);
+        Collection GetCollection(string collectionId);
         IQueryable<Collection> GetCollections();
-        int Create(Collection collection);
+        string Create(Collection collection);
         bool Update(Collection collection);
     }
 }

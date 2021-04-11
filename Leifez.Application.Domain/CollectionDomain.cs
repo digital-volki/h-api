@@ -5,6 +5,7 @@ using Leifez.Common.Mapping;
 using Leifez.Core.PostgreSQL;
 using Leifez.Core.PostgreSQL.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 
 namespace Leifez.Application.Domain
@@ -22,9 +23,9 @@ namespace Leifez.Application.Domain
             _mapper = mapper;
         }
 
-        public int Create(DbCollection dbCollection)
+        public string Create(DbCollection dbCollection)
         {
-            var result = -1;
+            string result = Guid.Empty.ToString();
             if (dbCollection == null)
             {
                 return result;
@@ -45,7 +46,7 @@ namespace Leifez.Application.Domain
             return result;
         }
 
-        public DbCollection GetCollection(int collectionId)
+        public DbCollection GetCollection(string collectionId)
         {
             return _dataContext.GetQueryable<DbCollection>()
                 .Include(c => c.Author)

@@ -1,11 +1,11 @@
 ﻿using Leifez.General;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Leifez.Collections.Inputs
 {
     public record UpdateCollectionInput(
-        int Id,
+        string Id,
         string Title = "",
         string Description = "",
         IEnumerable<int> Tags = default,
@@ -14,7 +14,7 @@ namespace Leifez.Collections.Inputs
         public bool Validate()
         {
             return this != null
-                && Id > 0;
+                && Id != Guid.Empty.ToString();
         }
     };
 }

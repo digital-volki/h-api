@@ -34,9 +34,10 @@ namespace Leifez.Application.Service.Services
             _mapper = mapper;
         }
 
-        public int Create(Collection collection)
+        public string Create(Collection collection)
         {
             DbCollection dbCollection = collection.Map<DbCollection>(_mapper);
+            dbCollection.Id = Guid.NewGuid().ToString();
             dbCollection.Author = _accountDomain.GetAccount(collection.AuthorId);
             dbCollection.Tags = _tagDomain.Get(collection.Tags).ToList();
             dbCollection.CreatedAt = DateTime.UtcNow;
@@ -45,7 +46,7 @@ namespace Leifez.Application.Service.Services
             return _collectionDomain.Create(dbCollection);
         }
 
-        public Collection GetCollection(int collectionId)
+        public Collection GetCollection(string collectionId)
         {
             var collection = _collectionDomain.GetCollection(collectionId).Map<Collection>(_mapper);
             if (collection == null)

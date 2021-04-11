@@ -6,9 +6,9 @@ namespace Leifez.Application.Domain.Interfaces
 {
     public interface ICollectionDomain
     {
-        DbCollection GetCollection(int collectionId);
+        DbCollection GetCollection(string collectionId);
         IQueryable<Collection> GetCollections();
-        int Create(DbCollection collection);
+        string Create(DbCollection collection);
         bool Update(DbCollection collection);
     }
 }
