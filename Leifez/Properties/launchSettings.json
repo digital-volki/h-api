@@ -14,14 +14,14 @@
       "launchBrowser": true,
       "launchUrl": "graphql",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Local"
       }
     },
     "Leifez": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Local"
       },
       "applicationUrl": "http://localhost:5000;http://192.168.31.101:5000"
     },
