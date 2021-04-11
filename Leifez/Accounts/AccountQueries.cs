@@ -2,6 +2,7 @@
 using HotChocolate.AspNetCore.Authorization;
 using HotChocolate.Types;
 using Leifez.Accounts.Inputs;
+using Leifez.Application.Domain.Models;
 using Leifez.Application.Service.Interfaces;
 using Leifez.Common.Configuration;
 using Leifez.Common.Web.Auth;
@@ -95,6 +96,43 @@ namespace Leifez.Accounts
             return new PayloadBase<IEnumerable<string>>(roles.Select(r => r.Value));
         }
 
+        [Authorize]
+        public PayloadBase<Account> GetAccount(
+            [Service] IAccountService accountService,
+            [CurrentUserGlobalState] CurrentUser currentUser,
+            GetAccountInput input)
+        {
+            var errors = new List<UserError>();
+
+            if (!input.Validate())
+            {
+                var error = new UserError
+                (
+                    message: "Input empty or incomplete.",
+                    code: "400"
+                );
+                errors.Add(error);
+                return new PayloadBase<Account>(errors);
+            }
+
+            Account account = accountService.GetAccount(
+                string.IsNullOrEmpty(input.UserId) 
+                    ? currentUser.AccountId.ToString() 
+                    : input.UserId);
+
+            if (account == null)
+            {
+                var error = new UserError
+                (
+                    message: "Account not found.",
+                    code: "404"
+                );
+                errors.Add(error);
+                return new PayloadBase<Account>(errors);
+            }
+
+            return new PayloadBase<Account>(account);
+        }
 
         public string GetEnvironment()
         {

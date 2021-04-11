@@ -5,6 +5,7 @@ using Leifez.Common.Mapping;
 using Leifez.Core.PostgreSQL;
 using Leifez.Core.PostgreSQL.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -50,7 +51,9 @@ namespace Leifez.Application.Domain
                 return null;
             }
 
-            return _dataContext.GetQueryable<DbUser>().Where(c => c.Id == accountId).FirstOrDefault().Map<DbUser, Account>(_mapper);
+            return _dataContext.GetQueryable<DbUser>()
+                .Include(u => u.Collections)
+                .Where(u => u.Id == accountId).FirstOrDefault().Map<DbUser, Account>(_mapper);
         }
 
         /// <summary>

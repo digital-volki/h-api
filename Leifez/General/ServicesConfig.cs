@@ -6,6 +6,7 @@ using Leifez.Application.Domain.Interfaces;
 using Leifez.Application.Service.Interfaces;
 using Leifez.Application.Service.Services;
 using Leifez.Collections;
+using Leifez.Common;
 using Leifez.Common.Configuration;
 using Leifez.Common.Web.Auth;
 using Leifez.Core.Infrastructure.Mapper;
@@ -95,10 +96,12 @@ namespace Leifez.General
                 .AddScoped<ICollectionService, CollectionService>()
                 .AddScoped<IImageService, ImageService>()
                 .AddScoped<ITagService, TagService>()
+                .AddScoped<ICommonService, CommonService>()
                 .AddScoped<IAccountDomain, AccountDomain>()
                 .AddScoped<ICollectionDomain, CollectionDomain>()
                 .AddScoped<IImageDomain, ImageDomain>()
-                .AddScoped<ITagDomain, TagDomain>();
+                .AddScoped<ITagDomain, TagDomain>()
+                .AddScoped<ICommonDomain, CommonDomain>();
         }
 
         private static void GraphQLRegistration(IServiceCollection services)
@@ -118,6 +121,7 @@ namespace Leifez.General
                         .AddTypeExtension<AccountMutations>()
                         .AddTypeExtension<CollectionMutations>()
                         .AddTypeExtension<ImageMutations>()
+                        .AddTypeExtension<CommonMutations>()
 
                     .AddType<CollectionType>()
                     .AddType<TagType>()

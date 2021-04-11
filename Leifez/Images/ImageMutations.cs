@@ -1,10 +1,12 @@
 ﻿using HotChocolate;
+using HotChocolate.AspNetCore.Authorization;
 using HotChocolate.Types;
 using Leifez.Application.Domain.Models;
 using Leifez.Application.Service.Interfaces;
 using Leifez.Core.Infrastructure.Exceptions;
 using Leifez.General;
 using Leifez.Images.Inputs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,6 +15,7 @@ namespace Leifez.Images
     [ExtendObjectType(Name = "Mutation")]
     public class ImageMutations
     {
+        [Authorize]
         public PayloadBase<IEnumerable<string>> CreateImages(
             [Service] IImageService imageService,
             CreateImagesInput input)
@@ -30,7 +33,11 @@ namespace Leifez.Images
                 return new PayloadBase<IEnumerable<string>>(errors);
             }
 
-            var result = imageService.Add(input.Base64Images, input.CollectionId.HasValue ? input.CollectionId.Value : 0);
+            var result = imageService.Add(input.Base64Images,
+                string.IsNullOrEmpty(input.CollectionId) 
+                    ? Guid.Empty.ToString() 
+                    : input.CollectionId);
+
             if (!result.Any())
             {
                 var error = new UserError
@@ -45,6 +52,7 @@ namespace Leifez.Images
             return new PayloadBase<IEnumerable<string>>(result);
         }
 
+        [Authorize(Roles = new[] { "Admin" })]
         public PayloadBase<bool> ChangeImage(
             [Service] IImageService imageService,
             [Service] ITagService tagService,

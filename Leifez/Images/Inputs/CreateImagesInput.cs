@@ -1,4 +1,5 @@
 ﻿using Leifez.General;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,7 +7,7 @@ namespace Leifez.Images.Inputs
 {
     public record CreateImagesInput(
         IEnumerable<string> Base64Images,
-        int? CollectionId) : IInput
+        string CollectionId) : IInput
     {
         public bool Validate()
         {

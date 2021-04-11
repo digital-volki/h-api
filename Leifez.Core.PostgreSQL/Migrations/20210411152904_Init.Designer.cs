@@ -10,44 +10,171 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Leifez.Core.PostgreSQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210221005855_InitCreate")]
-    partial class InitCreate
+    [Migration("20210411152904_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
-                .HasAnnotation("ProductVersion", "5.0.3")
+                .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+            modelBuilder.Entity("DbCollectionDbImage", b =>
+                {
+                    b.Property<string>("CollectionsId")
+                        .HasColumnType("character varying(36)");
+
+                    b.Property<string>("ImagesGuid")
+                        .HasColumnType("character varying(36)");
+
+                    b.HasKey("CollectionsId", "ImagesGuid");
+
+                    b.HasIndex("ImagesGuid");
+
+                    b.ToTable("DbCollectionDbImage");
+                });
+
+            modelBuilder.Entity("DbCollectionDbTag", b =>
+                {
+                    b.Property<string>("CollectionsId")
+                        .HasColumnType("character varying(36)");
+
+                    b.Property<int>("TagsId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("CollectionsId", "TagsId");
+
+                    b.HasIndex("TagsId");
+
+                    b.ToTable("DbCollectionDbTag");
+                });
+
+            modelBuilder.Entity("DbCollectionDbUser", b =>
+                {
+                    b.Property<string>("CollectionsId")
+                        .HasColumnType("character varying(36)");
+
+                    b.Property<string>("UsersId")
+                        .HasColumnType("text");
+
+                    b.HasKey("CollectionsId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("DbCollectionDbUser");
+                });
+
+            modelBuilder.Entity("DbImageDbTag", b =>
+                {
+                    b.Property<string>("ImagesGuid")
+                        .HasColumnType("character varying(36)");
+
+                    b.Property<int>("TagsId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ImagesGuid", "TagsId");
+
+                    b.HasIndex("TagsId");
+
+                    b.ToTable("DbImageDbTag");
+                });
+
             modelBuilder.Entity("Leifez.Core.PostgreSQL.Models.DbCollection", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasMaxLength(36)
+                        .HasColumnType("character varying(36)");
+
+                    b.Property<string>("AuthorId")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(400)
+                        .HasColumnType("character varying(400)");
+
+                    b.Property<string>("Title")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.ToTable("Collections");
+                });
+
+            modelBuilder.Entity("Leifez.Core.PostgreSQL.Models.DbImage", b =>
+                {
+                    b.Property<string>("Guid")
+                        .HasMaxLength(36)
+                        .HasColumnType("character varying(36)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Hash")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("character varying(32)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.HasKey("Guid");
+
+                    b.ToTable("Images");
+                });
+
+            modelBuilder.Entity("Leifez.Core.PostgreSQL.Models.DbLike", b =>
+                {
+                    b.Property<string>("HashId")
+                        .HasColumnType("text");
+
+                    b.Property<int>("ContentType")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("EntityId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("HashId");
+
+                    b.ToTable("Likes");
+                });
+
+            modelBuilder.Entity("Leifez.Core.PostgreSQL.Models.DbTag", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("Author")
+                    b.Property<bool>("Danger")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
                         .HasColumnType("text");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("Type")
+                        .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Title")
-                        .HasMaxLength(100)
-                        .IsUnicode(true)
-                        .HasColumnType("character varying(100)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Collections");
+                    b.ToTable("Tags");
                 });
 
-            modelBuilder.Entity("Leifez.Core.PostgreSQL.Models.DbIdentityUser", b =>
+            modelBuilder.Entity("Leifez.Core.PostgreSQL.Models.DbUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -109,75 +236,6 @@ namespace Leifez.Core.PostgreSQL.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("Leifez.Core.PostgreSQL.Models.DbTag", b =>
-                {
-                    b.Property<int>("TagId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<bool>("Danger")
-                        .HasColumnType("boolean");
-
-                    b.Property<int?>("DbCollectionId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("TagId");
-
-                    b.HasIndex("DbCollectionId");
-
-                    b.ToTable("Tags");
-                });
-
-            modelBuilder.Entity("Leifez.Core.PostgreSQL.Models.Role", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .IsUnicode(true)
-                        .HasColumnType("character varying(100)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Role");
-                });
-
-            modelBuilder.Entity("Leifez.Core.PostgreSQL.Models.UserRole", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasMaxLength(36)
-                        .IsUnicode(true)
-                        .HasColumnType("character varying(36)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UserRole");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -316,18 +374,80 @@ namespace Leifez.Core.PostgreSQL.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Leifez.Core.PostgreSQL.Models.DbIdentityRole", b =>
+            modelBuilder.Entity("Leifez.Core.PostgreSQL.Models.DbRole", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityRole");
 
-                    b.HasDiscriminator().HasValue("DbIdentityRole");
+                    b.HasDiscriminator().HasValue("DbRole");
                 });
 
-            modelBuilder.Entity("Leifez.Core.PostgreSQL.Models.DbTag", b =>
+            modelBuilder.Entity("DbCollectionDbImage", b =>
                 {
                     b.HasOne("Leifez.Core.PostgreSQL.Models.DbCollection", null)
-                        .WithMany("Tags")
-                        .HasForeignKey("DbCollectionId");
+                        .WithMany()
+                        .HasForeignKey("CollectionsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Leifez.Core.PostgreSQL.Models.DbImage", null)
+                        .WithMany()
+                        .HasForeignKey("ImagesGuid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("DbCollectionDbTag", b =>
+                {
+                    b.HasOne("Leifez.Core.PostgreSQL.Models.DbCollection", null)
+                        .WithMany()
+                        .HasForeignKey("CollectionsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Leifez.Core.PostgreSQL.Models.DbTag", null)
+                        .WithMany()
+                        .HasForeignKey("TagsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("DbCollectionDbUser", b =>
+                {
+                    b.HasOne("Leifez.Core.PostgreSQL.Models.DbCollection", null)
+                        .WithMany()
+                        .HasForeignKey("CollectionsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Leifez.Core.PostgreSQL.Models.DbUser", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("DbImageDbTag", b =>
+                {
+                    b.HasOne("Leifez.Core.PostgreSQL.Models.DbImage", null)
+                        .WithMany()
+                        .HasForeignKey("ImagesGuid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Leifez.Core.PostgreSQL.Models.DbTag", null)
+                        .WithMany()
+                        .HasForeignKey("TagsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Leifez.Core.PostgreSQL.Models.DbCollection", b =>
+                {
+                    b.HasOne("Leifez.Core.PostgreSQL.Models.DbUser", "Author")
+                        .WithMany("CreatedCollections")
+                        .HasForeignKey("AuthorId");
+
+                    b.Navigation("Author");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -341,7 +461,7 @@ namespace Leifez.Core.PostgreSQL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Leifez.Core.PostgreSQL.Models.DbIdentityUser", null)
+                    b.HasOne("Leifez.Core.PostgreSQL.Models.DbUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -350,7 +470,7 @@ namespace Leifez.Core.PostgreSQL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Leifez.Core.PostgreSQL.Models.DbIdentityUser", null)
+                    b.HasOne("Leifez.Core.PostgreSQL.Models.DbUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -365,7 +485,7 @@ namespace Leifez.Core.PostgreSQL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Leifez.Core.PostgreSQL.Models.DbIdentityUser", null)
+                    b.HasOne("Leifez.Core.PostgreSQL.Models.DbUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -374,16 +494,16 @@ namespace Leifez.Core.PostgreSQL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Leifez.Core.PostgreSQL.Models.DbIdentityUser", null)
+                    b.HasOne("Leifez.Core.PostgreSQL.Models.DbUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Leifez.Core.PostgreSQL.Models.DbCollection", b =>
+            modelBuilder.Entity("Leifez.Core.PostgreSQL.Models.DbUser", b =>
                 {
-                    b.Navigation("Tags");
+                    b.Navigation("CreatedCollections");
                 });
 #pragma warning restore 612, 618
         }

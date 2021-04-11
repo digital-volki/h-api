@@ -7,7 +7,10 @@ namespace Leifez.Application.Service.Interfaces
     {
         Collection GetCollection(string collectionId);
         IQueryable<Collection> GetCollections();
+        IQueryable<Collection> GetCollectionsByUser(string userId);
         string Create(Collection collection);
         bool Update(Collection collection);
+        bool IsBelong(string accountId);
+        bool AddCollectionToUser(string collectionId, string userId);
     }
 }

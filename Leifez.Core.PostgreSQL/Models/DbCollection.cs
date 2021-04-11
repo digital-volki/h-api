@@ -13,5 +13,6 @@ namespace Leifez.Core.PostgreSQL.Models
         public DbUser Author { get; set; }
         public ICollection<DbTag> Tags { get; set; } = new List<DbTag>();
         public ICollection<DbImage> Images { get; set; } = new List<DbImage>();
+        public ICollection<DbUser> Users { get; set; } = new List<DbUser>();
     }
 }

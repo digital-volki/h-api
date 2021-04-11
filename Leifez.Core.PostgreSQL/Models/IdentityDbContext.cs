@@ -11,6 +11,7 @@ namespace Leifez.Core.PostgreSQL.Models
         public DbSet<DbCollection> Collections { get; set; }
         public DbSet<DbImage> Images { get; set; }
         public DbSet<DbTag> Tags { get; set; }
+        public DbSet<DbLike> Likes { get; set; }
 
         public IdentityDbContext(DbContextOptions<DataContext> options)
             : base(options)
@@ -24,6 +25,7 @@ namespace Leifez.Core.PostgreSQL.Models
             builder.ApplyConfiguration(new CollectionConfig());
             builder.ApplyConfiguration(new TagConfig());
             builder.ApplyConfiguration(new ImageConfig());
+            builder.ApplyConfiguration(new LikeConfig());
         }
     }
 }

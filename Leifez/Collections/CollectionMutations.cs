@@ -77,6 +77,17 @@ namespace Leifez.Collections
                 return new PayloadBase<bool>(errors);
             }
 
+            if (!collectionService.IsBelong(currentUser.AccountId.ToString()))
+            {
+                var error = new UserError
+                (
+                    message: "This collection does not belong to you ",
+                    code: "403"
+                );
+                errors.Add(error);
+                return new PayloadBase<bool>(errors);
+            }
+
             var collection = new Collection()
             {
                 Id = input.Id,
@@ -97,6 +108,30 @@ namespace Leifez.Collections
                 errors.Add(error);
                 return new PayloadBase<bool>(errors);
             }
+
+            return new PayloadBase<bool>(result);
+        }
+
+        [Authorize]
+        public PayloadBase<bool> AddCollectionYourSelf(
+            [Service] ICollectionService collectionService,
+            [CurrentUserGlobalState] CurrentUser currentUser,
+            AddCollectionYourSelfInput input)
+        {
+            var errors = new List<UserError>();
+
+            if (!input.Validate())
+            {
+                var error = new UserError
+                (
+                    message: "Input empty or incomplete.",
+                    code: "400"
+                );
+                errors.Add(error);
+                return new PayloadBase<bool>(errors);
+            }
+
+            bool result = collectionService.AddCollectionToUser(input.CollectionId, currentUser.AccountId.ToString());
 
             return new PayloadBase<bool>(result);
         }
