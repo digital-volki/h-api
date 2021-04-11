@@ -32,7 +32,7 @@ namespace Leifez.Images
                 return new PayloadBase<IEnumerable<Image>>(errors);
             }
 
-            var result = imageService.Get(input.Guids, currentUser.AccountId.ToString());
+            var result = imageService.Get(input.Guids, currentUser?.AccountId.ToString());
             if (!result.Any())
             {
                 var error = new UserError

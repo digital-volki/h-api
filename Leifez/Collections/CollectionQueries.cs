@@ -24,7 +24,7 @@ namespace Leifez.Collections
             [ID(nameof(Collection))] string id,
             [CurrentUserGlobalState] CurrentUser currentUser,
             [Service] ICollectionService collectionService) =>
-                collectionService.GetCollection(id, currentUser.AccountId.ToString());
+                collectionService.GetCollection(id, currentUser?.AccountId.ToString());
     }
 }
 

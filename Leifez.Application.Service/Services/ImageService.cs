@@ -252,15 +252,19 @@ namespace Leifez.Application.Service.Services
                     var drawingImage = DrawingImage.FromFile(fileInfo.FullName);
                     Image image = dbImage.Map<Image>(_mapper);
                     image.Data = ImageToBase64(drawingImage);
-                    image.IsLike = _commonDomain.GetLike(
-                    CommonService.LikeToMd5(
-                        new DbLike()
-                        {
-                            UserId = userId,
-                            EntityId = image.Guid,
-                            ContentType = ContentType.Image
-                        }
-                    )) != null;
+
+                    if (!string.IsNullOrEmpty(userId))
+                    {
+                        image.IsLike = _commonDomain.GetLike(
+                        CommonService.LikeToMd5(
+                            new DbLike()
+                            {
+                                UserId = userId,
+                                EntityId = image.Guid,
+                                ContentType = ContentType.Image
+                            }
+                        )) != null;
+                    }
 
                     image.Likes = _commonDomain.GetLikes(image.Guid, ContentType.Image);
                     
