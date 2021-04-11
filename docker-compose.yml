@@ -25,6 +25,19 @@ services:
     volumes:
       - ./rc_data:/var/lib/postgresql/data    
 
+  db-feature:
+    image: postgres
+    restart: always
+    ports:
+      - "5438:5432"
+    environment:
+      POSTGRES_USER: feature
+      POSTGRES_DB: feature
+      POSTGRES_PASSWORD: JGJS89ydhnflsar312h89HLFDF2
+    volumes:
+      - ./feature_data:/var/lib/postgresql/data    
+
+
   web:
     ports:
       - "80:80"
