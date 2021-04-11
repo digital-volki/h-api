@@ -5,10 +5,10 @@ namespace Leifez.Application.Service.Interfaces
 {
     public interface ICollectionService
     {
-        Collection GetCollection(string collectionId);
-        IQueryable<Collection> GetCollections();
+        Collection GetCollection(string collectionId, string userId);
+        IQueryable<Collection> GetCollections(string userId);
         IQueryable<Collection> GetCollectionsByUser(string userId);
-        string Create(Collection collection);
+        Collection Create(Collection collection);
         bool Update(Collection collection);
         bool IsBelong(string accountId);
         bool AddCollectionToUser(string collectionId, string userId);

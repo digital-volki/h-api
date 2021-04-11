@@ -1,6 +1,8 @@
-﻿using HotChocolate.Types;
+﻿using HotChocolate;
+using HotChocolate.Types;
 using Leifez.Application.Domain.Models;
 using Leifez.Application.Service.Interfaces;
+using Leifez.General;
 using System.Threading.Tasks;
 
 namespace Leifez.Types
@@ -15,7 +17,8 @@ namespace Leifez.Types
                 .ResolveNode((ctx, id) =>
                     Task<Collection>.Factory.StartNew(() =>
                     {
-                        return ctx.Service<ICollectionService>().GetCollection(id);
+                        CurrentUser currentUser = ctx.ArgumentValue<CurrentUser>(new NameString("CurrentUserGlobalState"));
+                        return ctx.Service<ICollectionService>().GetCollection(id, currentUser.AccountId.ToString());
                     }, ctx.RequestAborted));
 
         }

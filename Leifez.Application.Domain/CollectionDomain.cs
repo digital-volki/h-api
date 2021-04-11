@@ -23,27 +23,26 @@ namespace Leifez.Application.Domain
             _mapper = mapper;
         }
 
-        public string Create(DbCollection dbCollection)
+        public DbCollection Create(DbCollection dbCollection)
         {
-            string result = Guid.Empty.ToString();
             if (dbCollection == null)
             {
-                return result;
+                return null;
             }
 
             var dbCollectionResult = _dataContext.Insert(dbCollection);
 
             if (dbCollectionResult == null)
             {
-                return result;
+                return null;
             }
 
-            if (_dataContext.Save() != 0)
+            if (_dataContext.Save() == 0)
             {
-                result = dbCollectionResult.Id;
+                return null;
             }
 
-            return result;
+            return dbCollectionResult;
         }
 
         public DbCollection GetCollection(string collectionId)

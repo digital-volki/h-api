@@ -6,6 +6,7 @@ using Leifez.Common;
 using Leifez.Common.Mapping;
 using Leifez.Core.Infrastructure.Exceptions;
 using Leifez.Core.PostgreSQL.Models;
+using Leifez.Core.PostgreSQL.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace Leifez.Application.Service.Services
     public class CollectionService : ICollectionService
     {
         private readonly ICollectionDomain _collectionDomain;
+        private readonly ICommonDomain _commonDomain;
         private readonly IAccountDomain _accountDomain;
         private readonly IImageDomain _imageDomain;
         private readonly ITagDomain _tagDomain;
@@ -22,33 +24,38 @@ namespace Leifez.Application.Service.Services
 
         public CollectionService(
             ICollectionDomain collectionDomain,
+            ICommonDomain commonDomain,
             IAccountDomain accountDomain,
             IImageDomain imageDomain,
             ITagDomain tagDomain,
             IMapper mapper)
         {
             _collectionDomain = collectionDomain;
+            _commonDomain = commonDomain;
             _accountDomain = accountDomain;
             _imageDomain = imageDomain;
             _tagDomain = tagDomain;
             _mapper = mapper;
         }
 
-        public string Create(Collection collection)
+        public Collection Create(Collection collection)
         {
             DbCollection dbCollection = collection.Map<DbCollection>(_mapper);
             DbUser user = _accountDomain.GetAccount(collection.AuthorId);
             dbCollection.Users.Add(user);
             dbCollection.Id = Guid.NewGuid().ToString();
             dbCollection.Author = user;
-            dbCollection.Tags = _tagDomain.Get(collection.Tags).ToList();
+            if (collection.Tags.Any())
+            {
+                dbCollection.Tags = _tagDomain.Get(collection.Tags).ToList();
+            }
             dbCollection.CreatedAt = DateTime.UtcNow;
             dbCollection.UpdatedAt = DateTime.UtcNow;
 
-            return _collectionDomain.Create(dbCollection);
+            return _collectionDomain.Create(dbCollection).Map<Collection>(_mapper);
         }
 
-        public Collection GetCollection(string collectionId)
+        public Collection GetCollection(string collectionId, string userId)
         {
             var collection = _collectionDomain.GetCollection(collectionId).Map<Collection>(_mapper);
             if (collection == null)
@@ -59,15 +66,41 @@ namespace Leifez.Application.Service.Services
                     code: "404"
                 );
             }
+
+            collection.IsLike = _commonDomain.GetLike(
+                CommonService.LikeToMd5(
+                    new DbLike() 
+                    {
+                        UserId = userId,
+                        EntityId = collection.Id,
+                        ContentType = ContentType.Collection
+                    }
+                )) != null;
+
+            collection.Likes = _commonDomain.GetLikes(collection.Id, ContentType.Collection);
             return collection;
         }
 
-        public IQueryable<Collection> GetCollections()
+        public IQueryable<Collection> GetCollections(string userId)
         {
             IQueryable<Collection> collections = _collectionDomain.GetCollections();
             if (collections == null)
             {
                 collections = new List<Collection>().AsQueryable();
+            }
+            foreach (Collection collection in collections)
+            {
+                collection.IsLike = _commonDomain.GetLike(
+                    CommonService.LikeToMd5(
+                        new DbLike()
+                        {
+                            UserId = userId,
+                            EntityId = collection.Id,
+                            ContentType = ContentType.Collection
+                        }
+                    )) != null;
+
+                collection.Likes = _commonDomain.GetLikes(collection.Id, ContentType.Collection);
             }
             return collections;
         }
@@ -80,11 +113,28 @@ namespace Leifez.Application.Service.Services
             {
                 return new List<Collection>().AsQueryable();
             }
+
             collections = user?.Collections.AsQueryable();
             if (collections == null)
             {
                 collections = new List<Collection>().AsQueryable();
             }
+
+            foreach (Collection collection in collections)
+            {
+                collection.IsLike = _commonDomain.GetLike(
+                    CommonService.LikeToMd5(
+                        new DbLike()
+                        {
+                            UserId = userId,
+                            EntityId = collection.Id,
+                            ContentType = ContentType.Collection
+                        }
+                    )) != null;
+
+                collection.Likes = _commonDomain.GetLikes(collection.Id, ContentType.Collection);
+            }
+
             return collections;
         }
 

@@ -16,6 +16,7 @@ namespace Leifez.Images
     {
         public PayloadBase<IEnumerable<Image>> GetImages(
             [Service] IImageService imageService,
+            [CurrentUserGlobalState] CurrentUser currentUser,
             GetImagesInput input)
         {
             var errors = new List<UserError>();
@@ -31,7 +32,7 @@ namespace Leifez.Images
                 return new PayloadBase<IEnumerable<Image>>(errors);
             }
 
-            var result = imageService.Get(input.Guids);
+            var result = imageService.Get(input.Guids, currentUser.AccountId.ToString());
             if (!result.Any())
             {
                 var error = new UserError

@@ -1,6 +1,7 @@
 ﻿using Leifez.Application.Domain.Interfaces;
 using Leifez.Core.PostgreSQL;
 using Leifez.Core.PostgreSQL.Models;
+using Leifez.Core.PostgreSQL.Models.Enums;
 using System.Linq;
 
 namespace Leifez.Application.Domain
@@ -34,6 +35,11 @@ namespace Leifez.Application.Domain
         public DbLike GetLike(string hashId)
         {
             return _dataContext.GetQueryable<DbLike>().Where(l => l.HashId == hashId).FirstOrDefault();
+        }
+
+        public int GetLikes(string entityId, ContentType contentType)
+        {
+            return _dataContext.GetQueryable<DbLike>().Where(l => l.EntityId == entityId && l.ContentType == contentType).Count();
         }
 
         public bool RemoveLike(string hashId)

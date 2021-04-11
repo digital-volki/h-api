@@ -16,9 +16,8 @@ namespace Leifez.Collections
     public class CollectionMutations
     {
         [Authorize]
-        public PayloadBase<string> CreateCollection(
+        public PayloadBase<Collection> CreateCollection(
             [Service] ICollectionService collectionService,
-            [Service] ITagService tagService,
             [CurrentUserGlobalState] CurrentUser currentUser,
             CreateCollectionInput input)
         {
@@ -32,7 +31,7 @@ namespace Leifez.Collections
                     code: "400"
                 );
                 errors.Add(error);
-                return new PayloadBase<string>(errors);
+                return new PayloadBase<Collection>(errors);
             }
 
             var collection = new Collection()
@@ -43,8 +42,8 @@ namespace Leifez.Collections
                 Tags = input.Tags.ToList()
             };
 
-            string result = collectionService.Create(collection);
-            if (result == Guid.Empty.ToString())
+            Collection result = collectionService.Create(collection);
+            if (result == null)
             {
                 var error = new UserError
                 (
@@ -52,10 +51,10 @@ namespace Leifez.Collections
                     code: "500"
                 );
                 errors.Add(error);
-                return new PayloadBase<string>(errors);
+                return new PayloadBase<Collection>(errors);
             }
 
-            return new PayloadBase<string>(result);
+            return new PayloadBase<Collection>(result);
         }
 
         [Authorize]

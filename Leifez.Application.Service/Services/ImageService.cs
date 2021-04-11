@@ -12,6 +12,7 @@ using System.Linq;
 using System.Collections.Generic;
 using Leifez.Common.Mapping;
 using Leifez.Application.Domain.Models;
+using Leifez.Core.PostgreSQL.Models.Enums;
 
 namespace Leifez.Application.Service.Services
 {
@@ -22,18 +23,21 @@ namespace Leifez.Application.Service.Services
 
         private readonly DirectoryInfo RootDirectoryInfo = new DirectoryInfo("files");
         private readonly IImageDomain _imageDomain;
+        private readonly ICommonDomain _commonDomain;
         private readonly ICollectionDomain _collectionDomain;
         private readonly IMapper _mapper;
         private readonly ILogger<ImageService> _logger;
 
         public ImageService(
             IImageDomain imageDomain,
+            ICommonDomain commonDomain,
             ICollectionDomain collectionDomain,
             IMapper mapper,
             ILogger<ImageService> logger)
         {
             _mapper = mapper;
             _imageDomain = imageDomain;
+            _commonDomain = commonDomain;
             _collectionDomain = collectionDomain;
             _logger = logger;
         }
@@ -235,7 +239,7 @@ namespace Leifez.Application.Service.Services
             throw new System.NotImplementedException();
         }
 
-        public List<Image> Get(IEnumerable<string> guids)
+        public List<Image> Get(IEnumerable<string> guids, string userId)
         {
             var result = new List<Image>();
             var dbImages = _imageDomain.Get(guids);
@@ -248,6 +252,18 @@ namespace Leifez.Application.Service.Services
                     var drawingImage = DrawingImage.FromFile(fileInfo.FullName);
                     Image image = dbImage.Map<Image>(_mapper);
                     image.Data = ImageToBase64(drawingImage);
+                    image.IsLike = _commonDomain.GetLike(
+                    CommonService.LikeToMd5(
+                        new DbLike()
+                        {
+                            UserId = userId,
+                            EntityId = image.Guid,
+                            ContentType = ContentType.Image
+                        }
+                    )) != null;
+
+                    image.Likes = _commonDomain.GetLikes(image.Guid, ContentType.Image);
+                    
                     result.Add(image);
                 }
             }

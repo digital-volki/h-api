@@ -8,7 +8,7 @@ namespace Leifez.Application.Domain.Interfaces
     {
         DbCollection GetCollection(string collectionId);
         IQueryable<Collection> GetCollections();
-        string Create(DbCollection collection);
+        DbCollection Create(DbCollection collection);
         bool Update(DbCollection collection);
     }
 }

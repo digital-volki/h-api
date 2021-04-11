@@ -18,7 +18,7 @@ namespace Leifez.Application.Service.Services
         {
             _commonDomain = commonDomain;
         }
-        private string LikeToMd5(DbLike like)
+        public static string LikeToMd5(DbLike like)
         {
             using (MD5 md5 = MD5.Create())
             {
