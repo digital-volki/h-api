@@ -17,7 +17,7 @@ namespace Leifez.Collections
             [CurrentUserGlobalState] CurrentUser currentUser,
             string userId) =>
                 string.IsNullOrEmpty(userId) 
-                    ? collectionService.GetCollections(currentUser.AccountId.ToString()) 
+                    ? collectionService.GetCollections(currentUser?.AccountId.ToString()) 
                     : collectionService.GetCollectionsByUser(userId);
 
         public Collection GetCollectionById(

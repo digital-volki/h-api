@@ -135,17 +135,30 @@ namespace Leifez.General
 
         private static HttpRequestInterceptorDelegate AuthenticationInterceptor()
         {
-            return (context, executor, builder, cancellationToken) =>
+            try
             {
-                if (context.GetUser().Identity.IsAuthenticated)
+                return (context, executor, builder, cancellationToken) =>
                 {
-                    builder.SetProperty("currentUser",
-                        new CurrentUser(Guid.Parse(context.User.FindFirstValue(ClaimTypes.NameIdentifier)),
-                            context.User.Claims.Select(x => $"{x.Type} : {x.Value}").ToList()));
-                }
+                    if (context.GetUser().Identity.IsAuthenticated)
+                    {
+                        builder.SetProperty("currentUser",
+                            new CurrentUser(Guid.Parse(context.User.FindFirstValue(ClaimTypes.NameIdentifier)),
+                                context.User.Claims.Select(x => $"{x.Type} : {x.Value}").ToList()));
+                    }
+                    else
+                    {
+                        builder.SetProperty("currentUser", null);
+                    }
 
-                return new ValueTask(Task.CompletedTask);
-            };
+                    return new ValueTask(Task.CompletedTask);
+                };
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
     }
 }

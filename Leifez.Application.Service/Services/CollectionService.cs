@@ -67,17 +67,21 @@ namespace Leifez.Application.Service.Services
                 );
             }
 
-            collection.IsLike = _commonDomain.GetLike(
-                CommonService.LikeToMd5(
-                    new DbLike() 
-                    {
-                        UserId = userId,
-                        EntityId = collection.Id,
-                        ContentType = ContentType.Collection
-                    }
-                )) != null;
+            if (!string.IsNullOrEmpty(userId))
+            {
+                collection.IsLike = _commonDomain.GetLike(
+                    CommonService.LikeToMd5(
+                        new DbLike() 
+                        {
+                            UserId = userId,
+                            EntityId = collection.Id,
+                            ContentType = ContentType.Collection
+                        }
+                    )) != null;
 
+            }
             collection.Likes = _commonDomain.GetLikes(collection.Id, ContentType.Collection);
+
             return collection;
         }
 
@@ -90,7 +94,9 @@ namespace Leifez.Application.Service.Services
             }
             foreach (Collection collection in collections)
             {
-                collection.IsLike = _commonDomain.GetLike(
+                if (!string.IsNullOrEmpty(userId))
+                {
+                    collection.IsLike = _commonDomain.GetLike(
                     CommonService.LikeToMd5(
                         new DbLike()
                         {
@@ -99,7 +105,7 @@ namespace Leifez.Application.Service.Services
                             ContentType = ContentType.Collection
                         }
                     )) != null;
-
+                }
                 collection.Likes = _commonDomain.GetLikes(collection.Id, ContentType.Collection);
             }
             return collections;
@@ -122,7 +128,9 @@ namespace Leifez.Application.Service.Services
 
             foreach (Collection collection in collections)
             {
-                collection.IsLike = _commonDomain.GetLike(
+                if (!string.IsNullOrEmpty(userId))
+                {
+                    collection.IsLike = _commonDomain.GetLike(
                     CommonService.LikeToMd5(
                         new DbLike()
                         {
@@ -131,7 +139,7 @@ namespace Leifez.Application.Service.Services
                             ContentType = ContentType.Collection
                         }
                     )) != null;
-
+                }
                 collection.Likes = _commonDomain.GetLikes(collection.Id, ContentType.Collection);
             }
 
