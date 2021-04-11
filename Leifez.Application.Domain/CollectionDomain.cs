@@ -6,6 +6,7 @@ using Leifez.Core.PostgreSQL;
 using Leifez.Core.PostgreSQL.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Leifez.Application.Domain
@@ -47,6 +48,11 @@ namespace Leifez.Application.Domain
 
         public DbCollection GetCollection(string collectionId)
         {
+            if (string.IsNullOrEmpty(collectionId))
+            {
+                return null;
+            }
+
             return _dataContext.GetQueryable<DbCollection>()
                 .Include(c => c.Author)
                 .Include(c => c.Tags)
@@ -60,6 +66,21 @@ namespace Leifez.Application.Domain
                 .Include(c => c.Author)
                 .Include(c => c.Tags)
                 .Include(c => c.Images)
+                .MapToList<DbCollection, Collection>(_mapper).AsQueryable();
+        }
+
+        public IQueryable<Collection> GetCollections(IEnumerable<string> collectionIds)
+        {
+            if (collectionIds == null || !collectionIds.Any())
+            {
+                return null;
+            }
+
+            return _dataContext.GetQueryable<DbCollection>()
+                .Include(c => c.Author)
+                .Include(c => c.Tags)
+                .Include(c => c.Images)
+                .Where(c => collectionIds.Contains(c.Id))
                 .MapToList<DbCollection, Collection>(_mapper).AsQueryable();
         }
 

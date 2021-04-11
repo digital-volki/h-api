@@ -120,7 +120,8 @@ namespace Leifez.Application.Service.Services
                 return new List<Collection>().AsQueryable();
             }
 
-            collections = user?.Collections.AsQueryable();
+            collections = _collectionDomain.GetCollections(user?.Collections.Select(c => c.Id));
+
             if (collections == null)
             {
                 collections = new List<Collection>().AsQueryable();
