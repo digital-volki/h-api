@@ -39,8 +39,7 @@ services:
 
 
   web:
-    ports:
-      - "80:80"
+    hostname: fapix
     restart: always
     build:
       context: .
