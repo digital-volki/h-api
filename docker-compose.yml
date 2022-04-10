@@ -45,7 +45,7 @@ services:
       context: .
       dockerfile: Leifez/Dockerfile
     volumes:
-      - /home/worker/raw_data:/app/files
+      - ./raw_data:/app/files
 
 networks:
   default:
